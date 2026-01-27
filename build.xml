@@ -80,4 +80,11 @@
             </target>
 
             -->
+    
+    <!-- Copy resource files to compiled classes directory so they get included in JAR -->
+    <target name="post-compile">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${resources.dir}"/>
+        </copy>
+    </target>
 </project>
