@@ -351,7 +351,7 @@ public final class c {
             var12 += var2;
          }
 
-         var0.drawString("按“确定”键返回。", var7 + 3, var9 + var12 + var8 + 3, 0);
+         var0.drawString("Press 'OK' to return.", var7 + 3, var9 + var12 + var8 + 3, 0);
       }
 
       var0.setClip(var7, var8, var5, var6 + 15);

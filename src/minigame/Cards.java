@@ -167,7 +167,7 @@ public class Cards implements MiniGame_H, Constants_H {
       if (this.time < 1) {
          if (this.time == 0) {
             this.time = -1;
-            this.gr.say("游戏失败！！！", -1);
+            this.gr.say("Game Over!!!", -1);
          } else if (this.time == -1 && this.gr.say_c == 0) {
             this.go(0, this.lv);
          }
@@ -176,7 +176,7 @@ public class Cards implements MiniGame_H, Constants_H {
             this.find_count = -1;
             GameRun var10000 = this.gr;
             var10000.money += this.time * 125 + 100;
-            this.gr.say("获得金钱：" + (this.time * 125 + 100), -1);
+            this.gr.say("Gold gained: " + (this.time * 125 + 100), -1);
             byte[] var3 = this.gr.rmsOther;
             var3[8] = (byte)(var3[8] | 1 << this.lv);
          } else if (this.find_count == -1 && this.gr.say_c == 0) {
@@ -206,13 +206,13 @@ public class Cards implements MiniGame_H, Constants_H {
 
    public void draw0(int x, int y, int h) {
       Ui.i().fillRectB();
-      Ui.i().drawString("游戏规则", 120, y + 20, 33, 3, 1);
+      Ui.i().drawString("Game Rules", 120, y + 20, 33, 3, 1);
       Ui.i().drawUi(7, 82, y + 20, 40, 0);
       Ui.i().drawUi(7, 158, y + 20, 36, 4);
       Ui.i().drawK(x, y + 20 + 5, 240 - (x << 1), h, 4);
       Ui.i().drawK(x, y + 20 + 10 + h, 240 - (x << 1), 60, 4);
       Ui.i().drawStringY(this.gr.about_a, 19, y + 20 + 10, 20, 0, 0);
-      Ui.i().drawString("需要的参加费：" + this.sell_money + "金", 19, y + 40 + 10 + h, 0, 0, 1);
+      Ui.i().drawString("Entry Fee Required: " + this.sell_money + " Gold", 19, y + 40 + 10 + h, 0, 0, 1);
       this.gr.drawMoney(120, 320, 3, false);
       Ui.i().drawYesNo(true, true);
    }
@@ -234,8 +234,8 @@ public class Cards implements MiniGame_H, Constants_H {
       if (this.count > 0) {
          Ui.i().drawNum("" + this.count / 10, 130, 24, 36, 2);
       } else {
-         Ui.i().drawString("游戏开始", 120, 4, 17, 3, 0);
-         Ui.i().drawString("可错次数：" + (this.time < 0 ? 0 : this.time - 1) + "次", 120, 287, 17, 0, 0);
+         Ui.i().drawString("Start Game", 120, 4, 17, 3, 0);
+         Ui.i().drawString("Allowed Misses: " + (this.time < 0 ? 0 : this.time - 1) + " Times", 120, 287, 17, 0, 0);
       }
 
    }

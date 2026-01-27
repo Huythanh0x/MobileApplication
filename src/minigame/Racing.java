@@ -45,13 +45,13 @@ public class Racing implements MiniGame_H, Constants_H {
 
    private void draw0(int x, int y, int h, int fh) {
       Ui.i().fillRectB();
-      Ui.i().drawString("游戏规则", 120, y + fh, 33, 3, 1);
+      Ui.i().drawString("Game Rules", 120, y + fh, 33, 3, 1);
       Ui.i().drawUi(7, 82, y + fh, 40, 0);
       Ui.i().drawUi(7, 158, y + fh, 36, 4);
       Ui.i().drawK(x - 1, y + fh + 10, 240 - (x << 1) + 2, h, 4);
       Ui.i().drawK(x, y + fh + 10 + h + 5, 240 - (x << 1), fh * 3, 4);
       Ui.i().drawStringY(this.gr.about_a, 12, y + fh + 15, fh, 0, 0);
-      Ui.i().drawString("请选择押注的大小：", 19, y + fh + 10 + h + 7, 0, 0, 0);
+      Ui.i().drawString("Please select bet size:", 19, y + fh + 10 + h + 7, 0, 0, 0);
 
       for(byte i = 0; i < this.length; ++i) {
          Ui.i().drawK(33 + i * 67, y + fh * 2 + 10 + h + 15, 38, fh + 4, 1);
@@ -67,7 +67,7 @@ public class Racing implements MiniGame_H, Constants_H {
    private void draw1(int x, int y, int h) {
       Ui.i().fillRectB();
       Ui.i().drawK(x, y, 240 - (x << 1), 300 - (y << 1), 4);
-      Ui.i().drawString("请选择押注的宠物：", 19, y + 5, 0, 0, 0);
+      Ui.i().drawString("Please select pet to bet on:", 19, y + 5, 0, 0, 0);
 
       byte i;
       for(i = 0; i < this.length; ++i) {
@@ -81,11 +81,11 @@ public class Racing implements MiniGame_H, Constants_H {
          Ui.i().drawTriangle(120, y + 20 + 49, 118, true, true);
       }
 
-      Ui.i().drawString("兴奋度：", 19, y + 20 + 13 + h, 0, 0, 0);
+      Ui.i().drawString("Excitement:", 19, y + 20 + 13 + h, 0, 0, 0);
       this.gr.drawFealty(6, 2, 76, y + 20 + 19 + h);
       Ui.i().drawStringY(this.gr.about_a, 19, y + 40 + 19 + h, 20, 0, 0);
       h = 59 + h + 20 + this.gr.about_a.length * 20;
-      Ui.i().drawString("请选择道具：", 19, y + h, 0, 0, 0);
+      Ui.i().drawString("Please select item:", 19, y + h, 0, 0, 0);
       h = h + 20 + 3;
 
       for(i = 0; i < this.length; ++i) {
@@ -151,14 +151,14 @@ public class Racing implements MiniGame_H, Constants_H {
          this.sel = 0;
          this.state = 0;
          this.length = 3;
-         this.gr.setStringB("选择你认为会得第一的一只宠物和押注的大小，注数越大获胜后的奖励越丰厚！#n一注：投入100金，获胜后得120金。#n二注：投入300金，获胜后得350金。#n三注：投入1000金，获胜后得1200金。", 200, 0);
-         this.gr.setStringB("一注#n二注#n三注", 200, 1);
+         this.gr.setStringB("Choose the pet you think will come first and bet size. Larger bets mean greater rewards on victory!#n1 Bet: Invest 100 Gold, get 120 Gold on victory.#n2 Bet: Invest 300 Gold, get 350 Gold on victory.#n3 Bet: Invest 1000 Gold, get 1200 Gold on victory.", 200, 0);
+         this.gr.setStringB("1 Bet#n2 Bet#n3 Bet", 200, 1);
       } else if (mode == 1) {
          this.myDate[0] = this.sel;
          this.sel = 0;
          this.state = 1;
          this.length = 4;
-         this.gr.setStringB("每喂一个兴奋菇花费10金，可增加一格兴奋度。", 200, 0);
+         this.gr.setStringB("Each excitement mushroom costs 10 Gold and increases excitement by one level.", 200, 0);
       } else if (mode == 2) {
          this.myDate[1] = this.sel;
          this.sel = 0;
@@ -269,7 +269,7 @@ public class Racing implements MiniGame_H, Constants_H {
             if (this.myDate[3] == this.myDate[1]) {
                GameRun var3 = this.gr;
                var3.money += this.money[this.myDate[0] * 2 + 1];
-               this.gr.say("获得：" + this.money[this.myDate[0] * 2 + 1] + "金", 0);
+               this.gr.say("Obtained: " + this.money[this.myDate[0] * 2 + 1] + " Gold", 0);
                byte[] var4 = this.gr.rmsOther;
                var4[4] = (byte)(var4[4] | 1 << this.lv);
             } else {

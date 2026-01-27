@@ -196,7 +196,7 @@ public class SMSSender implements Constants_H, Key_H {
          Ms.i().keyRelease();
          if (this.smsType == 4 && this.sel[0] != 7 && (this.gr.myMon_length < 1 || !this.isMyMonLevel())) {
             this.sendSms = -1;
-            this.gr.say("目前没有可以升级的宠物！", 0);
+            this.gr.say("No pets available to upgrade!", 0);
          } else if (this.sendSms != 0 && this.smsCount[this.smsType][1] > 1 && this.gr.rmsSms[this.smsCount[this.smsType][2]] > 0 && this.gr.rmsSms[this.smsCount[this.smsType][2]] != this.smsCount[this.smsType][1]) {
             this.sendSms = 0;
          } else if (this.sendSms != 0) {

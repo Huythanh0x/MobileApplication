@@ -139,7 +139,7 @@ public class GameRun extends GameRun_F {
       System.gc();
       mc.createFlashImage();
       mc.goMain_menu();
-      this.setAction_str(new String[]{"读取进度", "新游戏", "音量      ", "游戏帮助", "关   于", "更多精彩", "退出游戏"});
+      this.setAction_str(new String[]{"Load Progress", "New Game", "Volume      ", "Game Help", "About", "More", "Exit Game"});
       this.selectx = this.selecty = (byte)(this.rmsOther[0] == -1 ? 1 : 0);
    }
 
@@ -211,8 +211,8 @@ public class GameRun extends GameRun_F {
                   this.b_c = 1;
                   this.say_s = 52;
                   this.levelPro(this.myB.now_id, true);
-                  this.setStringB("生命：+" + this.proReplace[this.myB.now_id][0] + "#n" + "能量" + "：+" + this.proReplace[this.myB.now_id][1], 240, 0);
-                  this.setStringB("力量：+" + this.proReplace[this.myB.now_id][3] + "#n" + "防御" + "：+" + this.proReplace[this.myB.now_id][4] + "#n" + "敏捷" + "：+" + this.proReplace[this.myB.now_id][5], 240, 1);
+                  this.setStringB("HP: +" + this.proReplace[this.myB.now_id][0] + "#n" + "Energy" + ": +" + this.proReplace[this.myB.now_id][1], 240, 0);
+                  this.setStringB("Strength: +" + this.proReplace[this.myB.now_id][3] + "#n" + "Defense" + ": +" + this.proReplace[this.myB.now_id][4] + "#n" + "Agility" + ": +" + this.proReplace[this.myB.now_id][5], 240, 1);
                   this.initMonStream(2, this.mList_id[this.myB.getMon().monster[0]][0], 1);
                } else {
                   ++this.myB.now_id;
@@ -236,29 +236,25 @@ public class GameRun extends GameRun_F {
                   }
 
                   if (var7) {
-                     var8.append("可以进化了");
-                  }
+                  var8.append("Can evolve");
+               }
 
-                  StringBuffer var4 = new StringBuffer("");
-                  var7 = false;
+               StringBuffer var4 = new StringBuffer("");
+               var7 = false;
 
-                  for(var1 = 0; var1 < 5; ++var1) {
-                     if (this.getRid(var1) != -2 && this.getNexp(var1, 1) == this.getNexp(var1, 3)) {
-                        if (!Ms.i().equals(var4, "")) {
-                           var4.append("、");
-                        }
-
-                        var4.append(this.monsterT[this.monster_pro[this.getNid(var1)][6]] + "的宠物蛋");
-                        var7 = true;
-                     }
-                  }
-
-                  if (var7) {
-                     var4.append("经验已满，可以孵化了。");
-                     if (!Ms.i().equals(var8, "")) {
-                        var8.append("#n");
+               for(var1 = 0; var1 < 5; ++var1) {
+                  if (this.getRid(var1) != -2 && this.getNexp(var1, 1) == this.getNexp(var1, 3)) {
+                     if (!Ms.i().equals(var4, "")) {
+                        var4.append(", ");
                      }
 
+                     var4.append(this.monsterT[this.monster_pro[this.getNid(var1)][6]] + " pet egg");
+                     var7 = true;
+                  }
+               }
+
+               if (var7) {
+                  var4.append(" experience is full, ready to hatch.");
                      var8.append(var4.toString());
                   }
 
@@ -305,7 +301,7 @@ public class GameRun extends GameRun_F {
 
                Object var6 = null;
                if (this.cMon_count == this.max_monsters && this.myMon_length == this.max_takes) {
-                  this.say("所能携带的宠物已经达到上限！", -1);
+                  this.say("Pet capacity reached!", -1);
                   this.enB.act_num = 1;
                   this.myB.act_num = 0;
                   run_state = -31;
@@ -317,7 +313,7 @@ public class GameRun extends GameRun_F {
 
                   this.enB.action = 2;
                   this.enB.dead = 1;
-                  this.say("捕获" + this.getNameMon(this.enB.getMon().monster[0]) + "已成功！", 0);
+                  this.say("Captured " + this.getNameMon(this.enB.getMon().monster[0]) + " successfully!", 0);
                   if (this.getMonster(this.enB.getMon(), -1, false) == 0) {
                      this.myMonsters[this.myMon_length - 1].monster[1] = (byte)(this.myMon_length - 1);
                   }
@@ -427,15 +423,15 @@ public class GameRun extends GameRun_F {
             break;
          case 51:
             this.map.drawBlackSRC(g, 30, true);
-            this.drawZero("结束", 310);
+            this.drawZero("End", 310);
             break;
          case 60:
             mc.drawRectBG();
-            this.showString("战斗失败了,训练师的梦想不能实现了!", 160, 0);
+            this.showString("Battle lost! Your trainer's dream won't come true!", 160, 0);
             break;
          case 61:
             mc.drawRectBG();
-            this.showString("你要继续游戏，确定吗？", 280, 0);
+            this.showString("Continue the game?", 280, 0);
             this.drawSelectMenu(this.action_str, 82, 120, 76, 2, 0, this.popMenu);
             break;
          case 65:

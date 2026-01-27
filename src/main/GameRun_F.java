@@ -106,7 +106,7 @@ public class GameRun_F implements Constants_H, Key_H {
    }
 
    public void drawZero(int x, int y, int anchor, int color) {
-      Ui.i().drawString("按0键继续", x, y, anchor, color, 0);
+      Ui.i().drawString("Press 0 to continue", x, y, anchor, color, 0);
    }
 
    public void drawZero(String str, int y) {
@@ -339,13 +339,13 @@ public class GameRun_F implements Constants_H, Key_H {
       int var10003 = y + 5;
       Graphics var10004 = g;
       Graphics var10005 = g;
-      var10000.drawString("菜单", var10002, var10003, 1 | 16, this.selectx == 0 ? 0 : 1, 0);
+      var10000.drawString("Menu", var10002, var10003, 1 | 16, this.selectx == 0 ? 0 : 1, 0);
       var10000 = Ui.i();
       var10002 = x + (w >> 1) + 19;
       var10003 = y + 5;
       var10004 = g;
       var10005 = g;
-      var10000.drawString("系统", var10002, var10003, 1 | 16, this.selectx == 0 ? 1 : 0, 0);
+      var10000.drawString("System", var10002, var10003, 1 | 16, this.selectx == 0 ? 1 : 0, 0);
       Ui.i().drawTriangle(x + (w >> 1), y + 12, 57, true, true);
    }
 
