@@ -793,7 +793,7 @@ public class PayPlatform extends Canvas implements Runnable, CommandListener {
                         }
                      }
 
-                     String var4 = d(this.V) + "(发送短信：" + this.aB + "条)";
+                     String var4 = d(this.V) + " (Send SMS: " + this.aB + " msg)";
                      Vector var17;
                      (var17 = new Vector()).addElement(a(5, 0) + "\n" + a(19, 0) + " " + var4);
                      this.d = true;

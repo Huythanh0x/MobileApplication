@@ -252,7 +252,7 @@ public final class c {
       int var14 = Integer.parseInt(var1.get("r").toString());
       int var15 = Integer.parseInt(var1.get("q").toString());
       String var16 = var1.get("z").toString();
-      String var17 = "保存密码？";
+      String var17 = "Save password?";
       if (var4 == var1) {
          var12 = var8[9];
          b(var0, var13, var10, var3 + var5 + var6, var7 - 9, var15 + 11);

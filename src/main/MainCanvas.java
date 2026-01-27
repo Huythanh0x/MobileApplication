@@ -368,7 +368,7 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
                               this.newGame();
                            } else {
                               this.menu_state = 2;
-                              this.gr.gogoString = "这将清除您之前的所有记录，是否继续？";
+                              this.gr.gogoString = "This will clear all previous records. Continue?";
                            }
 
                            return;
@@ -580,7 +580,7 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
    }
 
    private void drawGameAbout() {
-      String[] aboutWord = new String[]{"开发商：华娱无线", "客服电话：", "010-88901665", "客服邮箱：", "geekan@imy.cn"};
+      String[] aboutWord = new String[]{"Developer: Huayou Wireless", "Support Phone:", "010-88901665", "Support Email:", "geekan@imy.cn"};
       GameRun var10000 = this.gr;
       GameRun.g.setColor(255);
 

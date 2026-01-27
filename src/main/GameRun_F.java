@@ -111,7 +111,7 @@ public class GameRun_F implements Constants_H, Key_H {
 
    public void drawZero(String str, int y) {
       Ui var10000 = Ui.i();
-      String var10001 = "按0键" + str;
+      String var10001 = "Press 0 to " + str;
       Graphics var10004 = g;
       Graphics var10005 = g;
       var10000.drawString(var10001, 120, y, 1 | 32, 0, 0);
