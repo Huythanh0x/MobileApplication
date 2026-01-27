@@ -71,7 +71,7 @@ public final class a {
       int var4 = (int)(this.c[0] >>> 3) & 63;
       long[] var10000 = this.c;
       if ((var10000[0] += (long)(var2 << 3)) < (long)(var2 << 3)) {
-         int var10002 = this.c[1]++;
+         int var10002 = (int) this.c[1]++;
       }
 
       var10000 = this.c;

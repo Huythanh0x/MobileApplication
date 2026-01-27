@@ -1,6 +1,7 @@
 package uccommon;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
@@ -79,98 +80,136 @@ public final class e {
 
             a = true;
             (new b(c)).start();
-            if ("POST".equals(var4)) {
-               b = (HttpConnection)Connector.open(var3, 3, true);
-            } else {
-               b = (HttpConnection)Connector.open(var3, 1, true);
-            }
-
-            b.setRequestMethod(var4);
-            b.setRequestProperty("Connection", "close");
-            String var24;
-            if (var5 != null) {
-               Enumeration var25 = var5.keys();
-
-               while(var25.hasMoreElements()) {
-                  var3 = (String)var25.nextElement();
-                  var24 = (String)var5.get(var3);
-                  b.setRequestProperty(var3, var24);
+            try {
+               if ("POST".equals(var4)) {
+                  b = (HttpConnection)Connector.open(var3, 3, true);
+               } else {
+                  b = (HttpConnection)Connector.open(var3, 1, true);
                }
-            }
 
-            if (var2 != null && !"".equals(var2.trim())) {
-               b.setRequestProperty("Referer", var2);
-            }
+               b.setRequestMethod(var4);
+               b.setRequestProperty("Connection", "close");
+               String var24;
+               if (var5 != null) {
+                  Enumeration var25 = var5.keys();
 
-            if ("POST".equals(var4) && var6 != null) {
-               b.setRequestProperty("Content-Length", String.valueOf(var6.length));
-               (h = b.openOutputStream()).write(var6);
-               h.close();
-            }
-
-            int var21 = b.getResponseCode();
-            Hashtable var20;
-            (var20 = new Hashtable()).put("respCode", new Integer(var21));
-            if ((var24 = b.getHeaderField("Content-Type")) != null) {
-               var20.put("contType", var24);
-            }
-
-            if (var21 != 200 && var21 != 302 && var21 != 301) {
-               if (b != null) {
-                  try {
-                     b.close();
-                  } catch (Exception var9) {
-                     var9.printStackTrace();
+                  while(var25.hasMoreElements()) {
+                     var3 = (String)var25.nextElement();
+                     var24 = (String)var5.get(var3);
+                     b.setRequestProperty(var3, var24);
                   }
                }
 
-               a = false;
-               return var20;
-            } else if (var21 != 302 && var21 != 301) {
-               try {
-                  i = b.openInputStream();
-                  var8 = b.getHeaderField("content-length");
+               if (var2 != null && !"".equals(var2.trim())) {
+                  b.setRequestProperty("Referer", var2);
+               }
 
-                  int var18;
-                  try {
-                     var18 = Integer.parseInt(var8);
-                  } catch (Exception var14) {
-                     var18 = -1;
+               if ("POST".equals(var4) && var6 != null) {
+                  b.setRequestProperty("Content-Length", String.valueOf(var6.length));
+                  (h = b.openOutputStream()).write(var6);
+                  h.close();
+               }
+
+               int var21 = b.getResponseCode();
+               Hashtable var20;
+               (var20 = new Hashtable()).put("respCode", new Integer(var21));
+               if ((var24 = b.getHeaderField("Content-Type")) != null) {
+                  var20.put("contType", var24);
+               }
+
+               if (var21 != 200 && var21 != 302 && var21 != 301) {
+                  if (b != null) {
+                     try {
+                        b.close();
+                     } catch (Exception var9) {
+                        var9.printStackTrace();
+                     }
                   }
 
-                  ByteArrayOutputStream var19 = new ByteArrayOutputStream();
-                  if (var18 > 0) {
-                     for(int var22 = 0; var22 < var18 && (var21 = i.read()) >= 0; ++var22) {
-                        var19.write(var21);
-                     }
-                  } else {
-                     while((var21 = i.read()) != -1) {
-                        var19.write((byte)var21);
-                     }
-                  }
-
-                  byte[] var23 = var19.toByteArray();
-                  var20.put("data", var23);
                   a = false;
-                  var19.close();
+                  return var20;
+               } else if (var21 != 302 && var21 != 301) {
+                  try {
+                     i = b.openInputStream();
+                     var8 = b.getHeaderField("content-length");
+
+                     int var18;
+                     try {
+                        var18 = Integer.parseInt(var8);
+                     } catch (Exception var14) {
+                        var18 = -1;
+                     }
+
+                     ByteArrayOutputStream var19 = new ByteArrayOutputStream();
+                     if (var18 > 0) {
+                        for(int var22 = 0; var22 < var18 && (var21 = i.read()) >= 0; ++var22) {
+                           var19.write(var21);
+                        }
+                     } else {
+                        while((var21 = i.read()) != -1) {
+                           var19.write((byte)var21);
+                        }
+                     }
+
+                     byte[] var23 = var19.toByteArray();
+                     var20.put("data", var23);
+                     a = false;
+                     var19.close();
+                     if (i != null) {
+                        try {
+                           i.close();
+                        } catch (Exception var13) {
+                        }
+                     }
+
+                     if (b != null) {
+                        try {
+                           b.close();
+                        } catch (Exception var12) {
+                        }
+                     }
+                  } catch (Exception var16) {
+                     var16.printStackTrace();
+                     return null;
+                  }
+
                   if (i != null) {
                      try {
                         i.close();
-                     } catch (Exception var13) {
+                     } catch (Exception var11) {
                      }
                   }
 
                   if (b != null) {
                      try {
                         b.close();
-                     } catch (Exception var12) {
+                     } catch (Exception var10) {
                      }
                   }
-               } catch (Exception var16) {
-                  var16.printStackTrace();
-                  return null;
-               }
 
+                  return var20;
+               } else if ((var8 = b.getHeaderField("Location")) != null && !"".equals(var8.trim())) {
+                  Hashtable var17 = a(new e(var8, "GET", (byte[])null, var0.f, c), var1, var0.d);
+                  if (b != null) {
+                     try {
+                        b.close();
+                     } catch (Exception var15) {
+                     }
+                  }
+
+                  return var17;
+               } else {
+                  throw new Exception("WapPay.sendHttpRequest() " + var21 + " Jump==> conn.getRequestProperty(\"Location\") ==null ");
+               }
+            } catch (IOException var10) {
+               var10.printStackTrace();
+               a = false;
+               return null;
+            } catch (Exception var11) {
+               var11.printStackTrace();
+               a = false;
+               return null;
+            } finally {
                if (i != null) {
                   try {
                      i.close();
@@ -184,20 +223,6 @@ public final class e {
                   } catch (Exception var10) {
                   }
                }
-
-               return var20;
-            } else if ((var8 = b.getHeaderField("Location")) != null && !"".equals(var8.trim())) {
-               Hashtable var17 = a(new e(var8, "GET", (byte[])null, var0.f, c), var1, var0.d);
-               if (b != null) {
-                  try {
-                     b.close();
-                  } catch (Exception var15) {
-                  }
-               }
-
-               return var17;
-            } else {
-               throw new Exception("WapPay.sendHttpRequest() " + var21 + " Jump==> conn.getRequestProperty(\"Location\") ==null ");
             }
          } else {
             return null;

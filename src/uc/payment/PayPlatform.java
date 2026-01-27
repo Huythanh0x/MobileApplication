@@ -2093,7 +2093,7 @@ public class PayPlatform extends Canvas implements Runnable, CommandListener {
    private static String[] a(String var0, char var1, int var2) {
       int var3;
       if (var2 <= 0) {
-         var1 = -1;
+         var1 = (char) -1;
 
          for(var3 = -1; (var3 = var0.indexOf(10, var3 + 1)) >= 0; ++var1) {
          }
