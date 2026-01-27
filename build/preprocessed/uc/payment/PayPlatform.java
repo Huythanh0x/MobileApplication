@@ -34,2537 +34,2545 @@ import uccommon.d;
 import uccommon.e;
 
 public class PayPlatform extends Canvas implements Runnable, CommandListener {
-  private static PayPlatform a = null;
-  
-  private static MIDlet b = null;
-  
-  private static boolean c = true;
-  
-  private boolean d = false;
-  
-  private static int e;
-  
-  private static int f;
-  
-  private static int g;
-  
-  private static int h;
-  
-  private Image i = null;
-  
-  private static int j = 0;
-  
-  private int k = 0;
-  
-  private int l = 0;
-  
-  private int[] m;
-  
-  private Vector n = null;
-  
-  private Hashtable o = new Hashtable();
-  
-  private Hashtable p = new Hashtable();
-  
-  private String q;
-  
-  private Hashtable r = null;
-  
-  private Vector s;
-  
-  private Vector t;
-  
-  private byte u = 0;
-  
-  private long v = 0L;
-  
-  private boolean w = false;
-  
-  private int x;
-  
-  private static Hashtable y = null;
-  
-  private static String z = "a";
-  
-  private static String A = "b";
-  
-  private static String B = "e";
-  
-  private static String C = "d";
-  
-  private static String D = "g";
-  
-  private static String E = "f";
-  
-  private static Hashtable F = null;
-  
-  private static Hashtable G = null;
-  
-  private static Hashtable H = null;
-  
-  private static Hashtable I = null;
-  
-  private static Hashtable J = null;
-  
-  private boolean K;
-  
-  private TextBox L;
-  
-  private Command M;
-  
-  private Command N;
-  
-  private Command O;
-  
-  private int P;
-  
-  private static String Q = "POST";
-  
-  private String R;
-  
-  private String S;
-  
-  private int T;
-  
-  private String U;
-  
-  private int V;
-  
-  private String W;
-  
-  private String X;
-  
-  private String Y;
-  
-  private static boolean Z = false;
-  
-  private static String aa = "";
-  
-  private String ab;
-  
-  private String ac;
-  
-  private String ad;
-  
-  private String ae;
-  
-  private int af;
-  
-  private static String[] ag = null;
-  
-  private static String[] ah = null;
-  
-  private static Hashtable ai = null;
-  
-  private int aj;
-  
-  private static String ak = "";
-  
-  private static Hashtable al = new Hashtable();
-  
-  private Hashtable am;
-  
-  private String an;
-  
-  private String ao;
-  
-  private String ap;
-  
-  private String aq;
-  
-  private String ar;
-  
-  private String as;
-  
-  private static String at = "";
-  
-  private static String au = "";
-  
-  private static String av = "";
-  
-  private int aw;
-  
-  private int ax;
-  
-  private String ay;
-  
-  private int az;
-  
-  private int aA;
-  
-  private int aB;
-  
-  private int aC;
-  
-  private static int aD = 0;
-  
-  private static int aE = 0;
-  
-  private static int aF = 1;
-  
-  private static int aG = 2;
-  
-  private static String[] aH = new String[5];
-  
-  private static String aI = "";
-  
-  private static String aJ = "";
-  
-  private static String aK = "";
-  
-  private String[] aL;
-  
-  private String[] aM;
-  
-  private static String aN = "";
-  
-  private static Hashtable aO = null;
-  
-  private static boolean aP = false;
-  
-  private static String aQ;
-  
-  private static String aR;
-  
-  private String aS;
-  
-  private String aT;
-  
-  private boolean aU;
-  
-  private String aV;
-  
-  private String aW;
-  
-  private String aX;
-  
-  private static Random aY;
-  
-  private static int aZ = 30000;
-  
-  private boolean ba = false;
-  
-  static {
-    try {
-      l();
-    } catch (Exception exception) {
-      aP = true;
-    } 
-    a();
-  }
-  
-  private PayPlatform(MIDlet paramMIDlet, String paramString, int paramInt1, int paramInt2, int paramInt3, int paramInt4, int paramInt5) {
-    this.w = false;
-    this.x = 0;
-    this.K = false;
-    this.P = 0;
-    this.R = "1";
-    this.S = "0";
-    this.T = 0;
-    this.U = "";
-    this.ab = "";
-    this.ac = "";
-    this.ad = "";
-    this.ae = "";
-    this.af = 0;
-    this.aj = 0;
-    aR = "";
-    aQ = "";
-    this.am = new Hashtable();
-    this.an = "";
-    this.ao = "";
-    this.as = "";
-    this.aA = 0;
-    this.aB = 0;
-    this.aC = 0;
-    this.aL = null;
-    this.aM = null;
-    this.aS = "";
-    this.aT = "";
-    this.aU = false;
-    setFullScreenMode(c);
-    b = paramMIDlet;
-    this.q = paramString;
-    e = 0;
-    f = 0;
-    g = 0;
-    h = 0;
-    this.V = paramInt5;
-    if (g == 0)
-      g = getWidth(); 
-    if (h == 0)
-      h = getHeight(); 
-    a();
-    b();
-    try {
-      if (!aP) {
-        i();
-        String[] arrayOfString = m();
-        F.put("c", arrayOfString[0]);
-        G.put("c", arrayOfString[1]);
-        ak = arrayOfString[2];
-        return;
-      } 
-    } catch (Exception exception) {}
-  }
-  
-  private static void a() {
-    if (ai == null || ag == null || ah == null) {
-      ai = new Hashtable();
-      Vector vector1 = new Vector();
-      Vector vector2 = new Vector();
-      String str;
-      if ((str = d("/APISetting.ini")) != null && !str.equals("")) {
-        String[] arrayOfString = b(str, "\r\n");
-        byte b1 = 0;
-        for (byte b2 = 0; b2 < arrayOfString.length; b2++) {
-          String str1;
-          if ((str1 = arrayOfString[b2]) != null)
-            if (str1.indexOf("[Settings]") >= 0) {
-              b1 = 2;
-            } else if (str1.indexOf("[Language1]") >= 0) {
-              b1 = 3;
-            } else if (str1.indexOf("[Language2]") >= 0) {
-              b1 = 5;
-            } else {
-              int i;
-              switch (b1) {
-                case 2:
-                  if (!str1.equals("") && (i = str1.indexOf("=")) >= 0) {
-                    String str2 = str1.substring(0, i);
-                    str1 = str1.substring(i + 1, str1.length());
-                    ai.put(str2, str1);
-                  } 
-                  break;
-                case 3:
-                  vector1.addElement(str1);
-                  break;
-                case 5:
-                  vector2.addElement(str1);
-                  break;
-              } 
-            }  
-        } 
-      } 
-      ag = new String[vector1.size()];
-      vector1.copyInto((Object[])ag);
-      ah = new String[vector2.size()];
-      vector2.copyInto((Object[])ah);
+   private static PayPlatform a = null;
+   private static MIDlet b = null;
+   private static boolean c = true;
+   private boolean d = false;
+   private static int e;
+   private static int f;
+   private static int g;
+   private static int h;
+   private Image i = null;
+   private static int j = 0;
+   private int k = 0;
+   private int l = 0;
+   private int[] m;
+   private Vector n = null;
+   private Hashtable o = new Hashtable();
+   private Hashtable p = new Hashtable();
+   private String q;
+   private Hashtable r = null;
+   private Vector s;
+   private Vector t;
+   private byte u = 0;
+   private long v = 0L;
+   private boolean w = false;
+   private int x;
+   private static Hashtable y = null;
+   private static String z = "a";
+   private static String A = "b";
+   private static String B = "e";
+   private static String C = "d";
+   private static String D = "g";
+   private static String E = "f";
+   private static Hashtable F = null;
+   private static Hashtable G = null;
+   private static Hashtable H = null;
+   private static Hashtable I = null;
+   private static Hashtable J = null;
+   private boolean K;
+   private TextBox L;
+   private Command M;
+   private Command N;
+   private Command O;
+   private int P;
+   private static String Q = "POST";
+   private String R;
+   private String S;
+   private int T;
+   private String U;
+   private int V;
+   private String W;
+   private String X;
+   private String Y;
+   private static boolean Z = false;
+   private static String aa = "";
+   private String ab;
+   private String ac;
+   private String ad;
+   private String ae;
+   private int af;
+   private static String[] ag = null;
+   private static String[] ah = null;
+   private static Hashtable ai = null;
+   private int aj;
+   private static String ak = "";
+   private static Hashtable al = new Hashtable();
+   private Hashtable am;
+   private String an;
+   private String ao;
+   private String ap;
+   private String aq;
+   private String ar;
+   private String as;
+   private static String at = "";
+   private static String au = "";
+   private static String av = "";
+   private int aw;
+   private int ax;
+   private String ay;
+   private int az;
+   private int aA;
+   private int aB;
+   private int aC;
+   private static int aD = 0;
+   private static int aE = 0;
+   private static int aF = 1;
+   private static int aG = 2;
+   private static String[] aH = new String[5];
+   private static String aI = "";
+   private static String aJ = "";
+   private static String aK = "";
+   private String[] aL;
+   private String[] aM;
+   private static String aN = "";
+   private static Hashtable aO = null;
+   private static boolean aP = false;
+   private static String aQ;
+   private static String aR;
+   private String aS;
+   private String aT;
+   private boolean aU;
+   private String aV;
+   private String aW;
+   private String aX;
+   private static Random aY;
+   private static int aZ = 30000;
+   private boolean ba = false;
+
+   static {
       try {
-        if ((aN = System.getProperty("wireless.messaging.sms.smsc").trim()).length() > 11 && aN.indexOf("13") >= 0)
-          aN = aN.substring(aN.indexOf("13")); 
-        return;
-      } catch (Exception exception) {
-        aN = "";
-      } 
-    } 
-  }
-  
-  private void b() {
-    this.aB = 0;
-    this.P = 0;
-    this.d = false;
-    try {
-      byte[] arrayOfByte = a(4, (byte[])null, "upg_api_private");
-      ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(arrayOfByte);
-      DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
-      try {
-        at = dataInputStream.readUTF();
-        av = dataInputStream.readUTF();
-        au = dataInputStream.readUTF();
-        dataInputStream.close();
-        byteArrayInputStream.close();
-      } catch (Exception exception) {
-        (byteArrayInputStream = null).printStackTrace();
-      } 
-      this.aw = 0;
-    } catch (Exception exception) {}
-    if (at == null || at.equals(""))
-      if (aN == null || aN.equals("") || aN.length() < 8) {
-        this.aw = 0;
-        av = "19000101";
-      } else {
-        String[] arrayOfString1 = b(c.a("smsclist", ai), "=#=");
-        String[] arrayOfString2 = b(c.a("smsinfo", ai), "=#=");
-        String[] arrayOfString3 = b(c.a("smstext", ai), "=#=");
-        for (byte b1 = 0; b1 < arrayOfString1.length; b1++) {
-          if ((at == null || at.equals("")) && arrayOfString1[b1].equals("all")) {
-            at = arrayOfString2[b1];
-            au = arrayOfString3[b1];
-          } else {
-            String[] arrayOfString4 = b(arrayOfString1[b1], ",");
-            for (byte b2 = 0; b2 < arrayOfString4.length; b2++) {
-              if (aN.startsWith(arrayOfString4[b2]) || aN.startsWith("+" + arrayOfString4[b2]) || aN.startsWith("+86" + arrayOfString4[b2]) || aN.startsWith("86" + arrayOfString4[b2]) || aN.startsWith("0" + arrayOfString4[b2])) {
-                at = arrayOfString2[b1];
-                au = arrayOfString3[b1];
-              } 
-            } 
-          } 
-        } 
-        at = c("7D7026B0B3", at);
-        if (c.a("smsendday", ai) != null && !c.a("smsendday", ai).equals("")) {
-          this.aw = Integer.parseInt(c.a("smsendday", ai));
-        } else {
-          this.aw = 7;
-        } 
-      }  
-    String str = c.a("urlpath", ai);
-    aa = "http://" + c("7D7026B0B3", str);
-    this.ab = String.valueOf(aa) + c("7D7026B0B3", c.a("upointpayUrl", ai));
-    this.ac = String.valueOf(aa) + c("7D7026B0B3", c.a("updatesmsUrl", ai));
-    this.ad = String.valueOf(aa) + c("7D7026B0B3", c.a("payresultUrl", ai));
-    this.ae = String.valueOf(aa) + c("7D7026B0B3", c.a("discountUrl", ai));
-    this.aV = c.a("ydsmsport", ai);
-    this.aW = c.a("ltsmsport", ai);
-    this.af = Integer.parseInt(c.a("forcecharge", ai));
-    aK = c.a("idType", ai);
-    aJ = c.a("idName", ai);
-    if (d(200).equals(""))
-      aE = aG; 
-    aZ = Integer.parseInt(c.a("conntimeout", ai)) * 1000;
-    aI = c.a("coinName", ai);
-    this.ap = c.a("launchsite", ai);
-    this.aq = c.a("phonetype", ai);
-    this.ar = c.a("backupcode", ai);
-    this.m = new int[10];
-    if (!c.a("colors", ai).equals("")) {
-      String[] arrayOfString1 = b(c.a("colors", ai), ",");
-      for (byte b1 = 0; b1 < arrayOfString1.length; b1++)
-        this.m[b1] = Integer.parseInt(arrayOfString1[b1]); 
-    } 
-    String[] arrayOfString = b(c.a("payMethod", ai), ",");
-    Vector vector1 = new Vector();
-    Vector vector2 = new Vector();
-    for (byte b = 0; b < arrayOfString.length; b++) {
-      String str2 = "";
-      int i = Integer.parseInt(arrayOfString[b]);
-      String str1 = arrayOfString[b];
-      switch (i) {
-        case 1:
-          str2 = a(a(1, 1), "$(str)", "");
-          break;
-        case 2:
-          str2 = a(a(2, 1), "$(str)", "");
-          break;
-      } 
-      vector1.addElement(str1);
-      vector2.addElement(str2);
-    } 
-    this.aL = new String[vector1.size()];
-    this.aM = new String[vector1.size()];
-    vector1.copyInto((Object[])this.aL);
-    vector2.copyInto((Object[])this.aM);
-    try {
-      this.aj = Integer.parseInt(c.a("payDefault", ai));
-      Integer.parseInt(this.aL[this.aj]);
-    } catch (Exception exception) {}
-    this.i = c.a();
-    j = c.b.getHeight() + 8;
-    this.M = new Command(a(0, 0), 4, 0);
-    this.N = new Command(a(1, 0), 2, 1);
-    F = c.a("y", "", 5, "n", "", c.c, a(8, 1), c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "y");
-    G = c.a("y", "", 5, "n", "", c.c, a(5, 1), c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
-    H = c.a("y", "", 5, "n", "", c.c, a(63, 1), c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
-    I = c.a("y", "", 5, "n", "", c.c, a(74, 1), c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
-    J = c.a("y", "", 5, "c", "", c.c, "savepassword", c.a, this.m[1], this.m[0], this.m[1], 14, 14);
-    (aO = new Hashtable()).put("Content-Type", "application/x-www-form-urlencoded");
-  }
-  
-  private void c() {
-    this.s = null;
-    this.t = null;
-    this.r = null;
-    this.x = 0;
-    this.n = new Vector();
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("n", this.i, 0, "", "", c.c, "", -1));
-    this.n.addElement(c.a(vector, g, this.i.getHeight(), this.m[0], -1, "n", "", ""));
-    c.a(this.n, 1, this.m[2], g);
-  }
-  
-  private void a(String paramString1, String paramString2, String paramString3, String paramString4) {
-    c();
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("n", a(63, 1), 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[6], -1, "n", "", ""));
-    c.a(this.n, 2, -1, g);
-    String[] arrayOfString = a(a(64, 1), c.a, g - 10);
-    for (byte b = 0; b < arrayOfString.length; b++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString[b], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    c.a(this.n, 2, this.m[2], g);
-    (vector = new Vector()).addElement(c.a("n", "支付密码", 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.e, 0));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    (vector = new Vector()).addElement(H);
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.n, 5, -1, g);
-    (vector = new Vector()).addElement(c.a("y", a(0, 0), 5, "m", String.valueOf(3), c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.o, a(0, 0), paramString1, paramString2);
-    c.a(this.p, a(1, 0), paramString3, paramString4);
-    this.ba = true;
-    this.u = 4;
-  }
-  
-  private void b(String paramString1, String paramString2, String paramString3, String paramString4) {
-    c();
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("n", a(71, 1), 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[6], -1, "n", "", ""));
-    c.a(this.n, 2, -1, g);
-    String[] arrayOfString = a(a(72, 1), c.a, g - 10);
-    byte b;
-    for (b = 0; b < arrayOfString.length; b++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString[b], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    (vector = new Vector()).addElement(I);
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.n, 5, -1, g);
-    arrayOfString = a(a(73, 1), c.a, g - 10);
-    for (b = 0; b < arrayOfString.length; b++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString[b], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    (vector = new Vector()).addElement(c.a("n", a(75, 1), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("y", a(77, 1), 5, "t", String.valueOf(3), c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("n", a(76, 1), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("y", a(77, 1), 5, "t", String.valueOf(4), c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.o, a(0, 0), paramString1, paramString2);
-    c.a(this.p, a(1, 0), paramString3, paramString4);
-    this.ba = true;
-    this.u = 4;
-  }
-  
-  private void c(String paramString1, String paramString2, String paramString3, String paramString4) {
-    c();
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("n", a(20, 0), 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[6], -1, "n", "", ""));
-    c.a(this.n, 0, this.m[2], g);
-    (vector = new Vector()).addElement(c.a("n", a(a(67, 1), "$(str)", (new StringBuffer(String.valueOf(this.V))).toString()), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("n", a(66, 1), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    vector.addElement(c.a("n", String.valueOf(this.aS) + "折", a(a(66, 1), c.a) + 5, "", "", c.c, "", c.b, this.m[6], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("n", a(68, 1), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    vector.addElement(c.a("n", String.valueOf(this.aT) + " U点", a(a(68, 1), c.a) + 5, "", "", c.c, "", c.b, this.m[6], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    (vector = new Vector()).addElement(c.a("n", a(69, 1), 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    c.a(this.n, 5, this.m[2], g);
-    (vector = new Vector()).addElement(c.a("y", a(0, 0), 5, "r", A, c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.n, 10, this.m[2], g);
-    String[] arrayOfString = a(a(70, 1), c.a, g - 10);
-    for (byte b = 0; b < arrayOfString.length; b++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString[b], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    c.a(this.n, 5, this.m[2], g);
-    (vector = new Vector()).addElement(c.a("n", "优视科技 版权所有", 5, "", "", c.c, "", c.a, this.m[4], -1, -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    c.a(this.o, a(0, 0), paramString1, paramString2);
-    c.a(this.p, a(1, 0), paramString3, paramString4);
-    this.ba = false;
-    this.u = 4;
-  }
-  
-  private void a(String[] paramArrayOfString, Vector[] paramArrayOfVector, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, String paramString6, String paramString7, String paramString8, String paramString9) {
-    c();
-    for (byte b = 0; b < paramArrayOfString.length; b++) {
-      Vector vector1;
-      (vector1 = new Vector()).addElement(c.a("n", paramArrayOfString[b], 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector1, g, j, this.m[6], -1, "n", "", ""));
-      c.a(this.n, 2, this.m[2], g);
-      for (byte b1 = 0; b1 < paramArrayOfVector[b].size(); b1++) {
-        String[] arrayOfString = a(paramArrayOfVector[b].elementAt(b1), c.a, g - 10);
-        for (byte b2 = 0; b2 < arrayOfString.length; b2++) {
-          (vector1 = new Vector()).addElement(c.a("n", arrayOfString[b2], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-          this.n.addElement(c.a(vector1, g, j, this.m[2], -1, "n", "", ""));
-        } 
-      } 
-      c.a(this.n, 2, this.m[2], g);
-    } 
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("y", paramString7, 0, paramString8, paramString9, c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g));
-    this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-    c.a(this.n, 20, this.m[2], g);
-    (vector = new Vector()).addElement(c.a("n", "优视科技 版权所有", 5, "", "", c.c, "", c.a, this.m[4], -1, -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    c.a(this.o, paramString1, paramString2, paramString3);
-    c.a(this.p, paramString4, paramString5, paramString6);
-    this.u = 4;
-  }
-  
-  private void d() {
-    c();
-    Vector vector;
-    (vector = new Vector()).addElement(c.a("n", a(20, 0), 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[6], -1, "n", "", ""));
-    c.a(this.n, 0, this.m[2], g);
-    String[] arrayOfString1 = a(this.U, c.a, g - 10);
-    for (byte b2 = 0; b2 < arrayOfString1.length; b2++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString1[b2], 5, "", "", c.c, "", c.a, this.m[1], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    (vector = new Vector()).addElement(c.a("n", a(0, 1), 5, "", "", c.c, "", c.b, this.m[0], -1, -1, c.d, 0));
-    this.n.addElement(c.a(vector, g, j, this.m[6], -1, "n", "", ""));
-    String[] arrayOfString2 = a(a(65, 1), c.b, g - 10);
-    byte b1;
-    for (b1 = 0; b1 < arrayOfString2.length; b1++) {
-      (vector = new Vector()).addElement(c.a("n", arrayOfString2[b1], 5, "", "", c.c, "", c.b, this.m[6], -1, -1, c.d, 0));
-      this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    } 
-    c.a(this.n, 5, this.m[2], g);
-    for (b1 = 0; b1 < this.aL.length; b1++) {
-      (vector = new Vector()).addElement(c.a("y", this.aM[b1], 0, "t", String.valueOf(this.aL[b1]), c.c, "", c.b, this.m[1], this.m[4], -1, c.e, g));
-      this.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-      c.a(this.n, 2, this.m[2], g);
-    } 
-    c.a(this.n, 20, this.m[2], g);
-    System.out.println("ver:1.0final");
-    (vector = new Vector()).addElement(c.a("n", "优视科技 版权所有", 5, "", "", c.c, "", c.a, this.m[4], -1, -1, c.e, g - 10));
-    this.n.addElement(c.a(vector, g, j, this.m[2], -1, "n", "", ""));
-    c.a(this.o, a(0, 0), "o", "");
-    c.a(this.p, a(1, 0), "p", "");
-    this.u = 4;
-  }
-  
-  protected void paint(Graphics paramGraphics) {
-    paramGraphics.setColor(this.m[2]);
-    paramGraphics.fillRect(0, 0, g, h);
-    this.l = 0;
-    if (this.s == null || this.u == 4) {
-      this.s = new Vector();
-      this.t = new Vector();
-      this.u = 5;
-    } 
-    if (this.n != null)
-      for (byte b = 0; b < this.n.size(); b++)
-        a(paramGraphics, this.n.elementAt(b));  
-    this.k = this.l;
-    if (this.u == 5)
-      this.u = -1; 
-    c.a(paramGraphics, g, h, j, this.m, this.o.get("c").toString(), this.p.get("c").toString());
-    String str;
-    if (y != null && (str = y.get("a").toString()) == "b") {
-      Vector vector1 = (Vector)y.get("c");
-      Vector vector2 = new Vector();
-      for (byte b = 0; b < vector1.size(); b++) {
-        String[] arrayOfString = a(vector1.elementAt(b), c.a, Integer.parseInt(y.get("r").toString()));
-        for (byte b1 = 0; b1 < arrayOfString.length; b1++)
-          vector2.addElement(arrayOfString[b1]); 
-      } 
-      c.a(paramGraphics, y, j, this.m, vector2);
-    } 
-  }
-  
-  private void a(Graphics paramGraphics, Hashtable paramHashtable) {
-    int i = Integer.parseInt(paramHashtable.get("q").toString());
-    c.a(paramGraphics, paramHashtable, this.l, this.x);
-    Vector vector;
-    if (this.l + this.x < h && this.l + this.x + i > 0 && (vector = (Vector)paramHashtable.get("c")) != null)
-      for (byte b = 0; b < vector.size(); b++) {
-        Hashtable hashtable;
-        String str;
-        if ((str = (hashtable = vector.elementAt(b)).get("a").toString()) == "2")
-          c.a(paramGraphics, hashtable, i, this.l, this.x); 
-        if (str == "5")
-          c.b(paramGraphics, hashtable, i, this.l, this.x); 
-        Object[] arrayOfObject;
-        if (str == "1" && (arrayOfObject = c.a(paramGraphics, hashtable, i, this.r, this.l, this.x, this.m)) != null)
-          a((Hashtable)arrayOfObject[0], Integer.parseInt(arrayOfObject[1].toString()), Integer.parseInt(arrayOfObject[2].toString()), Integer.parseInt(arrayOfObject[3].toString()), Integer.parseInt(arrayOfObject[4].toString())); 
-        if (str == "3" && (arrayOfObject = c.a(paramGraphics, hashtable, i, j, this.r, this.l, this.x, g, h, this.m)) != null)
-          a((Hashtable)arrayOfObject[0], Integer.parseInt(arrayOfObject[1].toString()), Integer.parseInt(arrayOfObject[2].toString()), Integer.parseInt(arrayOfObject[3].toString()), Integer.parseInt(arrayOfObject[4].toString())); 
-        if (str == "6" && (arrayOfObject = c.a(paramGraphics, hashtable, i, j, this.r, this.l, this.x, g, this.m)) != null)
-          a((Hashtable)arrayOfObject[0], Integer.parseInt(arrayOfObject[1].toString()), Integer.parseInt(arrayOfObject[2].toString()), Integer.parseInt(arrayOfObject[3].toString()), Integer.parseInt(arrayOfObject[4].toString())); 
-      }  
-    this.l += i;
-  }
-  
-  public void run() {
-    if (aP) {
-      long l = System.currentTimeMillis();
-      c.a(y = c.a("n", g, h, j), "正在初始化数据，请稍等");
-      RecordStore recordStore = null;
-      byte[] arrayOfByte = new byte[1024];
-      try {
-        RecordStore.deleteRecordStore("upg_api_private");
-      } catch (Exception exception) {}
-      try {
-        (recordStore = RecordStore.openRecordStore("upg_api_private", true, 0, false)).addRecord(arrayOfByte, 0, 200);
-        recordStore.addRecord(arrayOfByte, 0, 100);
-        recordStore.addRecord(arrayOfByte, 0, 500);
-        recordStore.addRecord(arrayOfByte, 0, 200);
-        recordStore.addRecord(arrayOfByte, 0, 1);
-        recordStore.addRecord(arrayOfByte, 0, 1);
-        recordStore.addRecord(arrayOfByte, 0, 1);
-      } catch (Exception exception) {
-        (arrayOfByte = null).printStackTrace();
-        aE = aF;
-      } 
-      a(recordStore);
-      if (aE == 0) {
-        j();
-        av = a(true);
-        if (aN == null || aN.equals("") || aN.length() < 8)
-          av = "19000101"; 
-        h();
-      } 
-      if (System.currentTimeMillis() - l < 1000L)
-        c.a(1000L - System.currentTimeMillis() - l); 
-      aP = false;
-      y = null;
-    } 
-    while (this.w) {
-      String str;
-      Vector vector;
-      boolean bool1;
-      boolean bool2;
-      PayPlatform payPlatform;
-      boolean bool3;
-      switch (this.P) {
-        case 1:
-          if (this.L != null) {
-            TextBox textBox = this.L;
-            PayPlatform payPlatform1 = this;
-            Display display;
-            Displayable displayable = (display = Display.getDisplay(b)).getCurrent();
-            payPlatform1.K = true;
-            display.setCurrent((Displayable)textBox);
-            while (payPlatform1.K)
-              c.a(60L); 
-            display.setCurrent(displayable);
-          } 
-          str = this.L.getString();
-          if (this.O == this.M)
-            this.r.put("c", str); 
-          this.u = 4;
-          this.P = 0;
-          break;
-        case 6:
-          aD += this.V;
-          updatePaidMoney(this.R, this.V);
-          (vector = new Vector()).addElement(a(5, 0));
-          if (!aK.equals("noid")) {
-            vector.addElement(String.valueOf(a(89, 1)) + ": " + F.get("c").toString());
-            vector.addElement(String.valueOf(a(41, 1)) + ": " + this.W + " U点");
-            vector.addElement(String.valueOf(a(88, 1)) + ": " + this.X + " U点");
-          } 
-          a(new String[] { a(20, 0) }new Vector[] { vector }, a(0, 0), "o", "", a(1, 0), "p", "", a(0, 0), "p", "");
-          this.d = true;
-          y = null;
-          this.P = 0;
-          break;
-        case 2:
-          if (b(0) < 0) {
-            if (y != null)
-              y.put("v", "y"); 
-            this.P = 0;
-            break;
-          } 
-          this.P = 6;
-          break;
-        case 3:
-          if (b(1) < 0) {
-            if (y != null)
-              y.put("v", "y"); 
-            this.P = 0;
-            break;
-          } 
-          this.P = 6;
-          break;
-        case 4:
-          if (y == null)
-            c.a(y = c.a("n", g, h, j), a(61, 1)); 
-          if (bool1 = a(this.an, this.ao, 2000)) {
-            this.aC++;
-            this.T += this.aA;
-            updatePaidMoney(this.R, this.T);
-            this.aB++;
-            if (this.T < this.V) {
-              String str3;
-              str = a(a(a(a(a(str3 = String.valueOf(a(8, 0)) + "，" + a(10, 0), "$(str3)", this.as), "$(str2)", (new StringBuffer(String.valueOf(this.az - this.aB))).toString()), "$(str1)", (new StringBuffer(String.valueOf(this.aB))).toString()), "$(str4)", d(this.V)), "$(str5)", (new StringBuffer(String.valueOf(this.aB + 1))).toString());
-              (vector = new Vector()).addElement(str);
-              if (F.get("c").toString() != null && !"".equals(F.get("c").toString()))
-                vector.addElement(String.valueOf(aJ) + ":" + " " + F.get("c").toString()); 
-              y = null;
-              this.P = 0;
-              str = "r";
-              String str2 = B;
-              a(new String[] { a(20, 0) }new Vector[] { vector }, a(0, 0), "o", "", a(1, 0), str, str2, a(0, 0), "m", String.valueOf(4));
-            } else {
-              if (this.ax == 1 || (this.ax == 0 && this.af == 1))
-                try {
-                  if (!c(1))
-                    c(1); 
-                } catch (Exception exception) {} 
-              String str2 = String.valueOf(d(this.V)) + "(发送短信：" + this.aB + "条)";
-              Vector vector1;
-              (vector1 = new Vector()).addElement(String.valueOf(a(5, 0)) + "\n" + a(19, 0) + " " + str2);
-              this.d = true;
-              y = null;
-              this.P = 0;
-              a(new String[] { a(20, 0) }new Vector[] { vector1 }, a(0, 0), "o", "", a(1, 0), "p", "", a(0, 0), "p", "");
-            } 
-            String str1 = this.R;
-            PayPlatform payPlatform1 = this;
-            try {
-              ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-              DataOutputStream dataOutputStream;
-              (dataOutputStream = new DataOutputStream(byteArrayOutputStream)).writeUTF(payPlatform1.an);
-              dataOutputStream.writeUTF(payPlatform1.ao);
-              dataOutputStream.writeInt(payPlatform1.aA);
-              dataOutputStream.writeInt(payPlatform1.aB);
-              dataOutputStream.writeInt(payPlatform1.az);
-              dataOutputStream.writeUTF(payPlatform1.as);
-              dataOutputStream.writeUTF(c.a("addtimes", ai));
-              payPlatform1.am.put(str1, byteArrayOutputStream.toByteArray());
-              dataOutputStream.close();
-              byteArrayOutputStream.close();
-              payPlatform1.g();
-            } catch (Exception exception) {
-              (str = null).printStackTrace();
-            } 
-            break;
-          } 
-          y.put("v", "y");
-          c.a(y, a(7, 0));
-          this.P = 0;
-          break;
-        case 8:
-          o();
-          this.P = 0;
-          break;
-        case 9:
-          if (!(payPlatform = this).aU && !(bool3 = payPlatform.f())) {
-            y.put("v", "y");
-          } else {
-            payPlatform.c("o", "", "r", z);
-          } 
-          this.P = 0;
-          break;
-        case 10:
-          if (y == null)
-            c.a(y = c.a("n", g, h, j), a(61, 1)); 
-          if (I.get("c") == null || I.get("c").equals("")) {
-            c.a(y, a(83, 1));
-            y.put("v", "y");
-            this.P = 0;
-            break;
-          } 
-          if (bool2 = a(this.aX, "game:" + I.get("c").toString(), 0)) {
-            c.a(y, a(82, 1));
-            y.put("v", "y");
-            this.P = 0;
-            a("r", A);
-            break;
-          } 
-          y.put("v", "y");
-          c.a(y, a(7, 0));
-          this.P = 0;
-          break;
-      } 
-      if (aE == 1) {
-        str = String.valueOf(a(14, 0)) + a(15, 0) + a(16, 0) + "\n";
-        (y = c.a("y", g, h, j)).put("v", "y");
-        c.a(y, str);
-        aE = 0;
-      } 
-      c.a(50L);
-    } 
-    ag = null;
-    ah = null;
-    ai = null;
-    F = null;
-    G = null;
-    H = null;
-  }
-  
-  private boolean e() {
-    byte[] arrayOfByte;
-    if (y == null)
-      y = c.a("n", g, h, j); 
-    c.a(y, a(31, 0));
-    String str1 = this.ac;
-    String str2 = k();
-    StringBuffer stringBuffer;
-    (stringBuffer = new StringBuffer()).append("user_id=" + str2);
-    stringBuffer.append("&cpid=" + this.Y);
-    stringBuffer.append("&gameid=" + this.q);
-    stringBuffer.append("&area=");
-    stringBuffer.append("&smsno=" + aN);
-    e e = new e(str1, Q, stringBuffer.toString(), aO, aZ);
-    try {
-      Hashtable hashtable;
-      if ((hashtable = e.a(e, Z, "")) == null) {
-        c.a(y, "获取短信数据失败，请改用其他手段支付");
-        return false;
-      } 
-      int i = Integer.parseInt(hashtable.get("respCode").toString());
-      if (hashtable != null && !hashtable.equals("") && i >= 200 && i <= 299) {
-        String str;
-        if ((str = new String((byte[])hashtable.get("data"), "UTF-8")).startsWith("-102")) {
-          if (a(str, 2, "#").equals("response_null")) {
-            c.a(y, "对不起，您所在的地区没有开通短信付费通道，请使用U点进行支付！");
-            return false;
-          } 
-          c.a(y, "获取短信数据失败，请改用其他手段支付");
-          return false;
-        } 
-        arrayOfByte = (byte[])hashtable.get("data");
-      } else {
-        c.a(y, "获取短信数据失败，请改用其他手段支付");
-        return false;
-      } 
-    } catch (Exception exception) {
-      c.a(y, "获取短信数据失败");
-      return false;
-    } 
-    try {
-      str2 = new String(arrayOfByte, "UTF-8");
-    } catch (Exception exception) {
-      str2 = new String(arrayOfByte);
-    } 
-    if (str2.length() > 2) {
-      av = (at = str2).substring(0, at.indexOf("^&*")).substring(at.lastIndexOf(',') + 1);
-      au = at.substring(at.indexOf("^&*") + 3);
-      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-      DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-      try {
-        dataOutputStream.writeUTF(at);
-        dataOutputStream.writeUTF(av);
-        dataOutputStream.writeUTF(au);
-        byte[] arrayOfByte1 = byteArrayOutputStream.toByteArray();
-        a(4, arrayOfByte1, "upg_api_private");
-        dataOutputStream.close();
-        byteArrayOutputStream.close();
-      } catch (Exception exception) {
-        (stringBuffer = null).printStackTrace();
-        aE = aF;
-      } 
-      y = null;
-      return true;
-    } 
-    return false;
-  }
-  
-  private boolean f() {
-    byte[] arrayOfByte;
-    String str2;
-    if (y == null)
-      y = c.a("n", g, h, j); 
-    c.a(y, a(32, 0));
-    String str1 = this.ae;
-    StringBuffer stringBuffer;
-    (stringBuffer = new StringBuffer()).append("cpid=" + this.Y);
-    stringBuffer.append("&gameid=" + this.q);
-    stringBuffer.append("&u_money=" + this.V);
-    e e = new e(str1, Q, stringBuffer.toString(), aO, aZ);
-    try {
-      Hashtable hashtable;
-      if ((hashtable = e.a(e, Z, "")) == null) {
-        c.a(y, "获取U点支付信息失败！");
-        return false;
-      } 
-      int i = Integer.parseInt(hashtable.get("respCode").toString());
-      if (hashtable != null && !hashtable.equals("") && i >= 200 && i <= 299) {
-        arrayOfByte = (byte[])hashtable.get("data");
-      } else {
-        c.a(y, "获取U点支付信息失败！");
-        return false;
-      } 
-    } catch (Exception exception) {
-      c.a(y, "获取U点支付信息失败！");
-      return false;
-    } 
-    try {
-      str2 = new String(arrayOfByte, "UTF-8");
-    } catch (Exception exception) {
-      str2 = new String(arrayOfByte);
-    } 
-    if (str2.length() > 2) {
-      y = null;
-      try {
-        if (a(str2, 2, "#").equals("none")) {
-          this.aS = "无折扣";
-          this.aT = String.valueOf(this.V) + " " + aI;
-        } else {
-          this.aS = a(str2, 2, "#");
-          this.aT = a(str2, 4, "#");
-        } 
-        a(str2, 3, "#");
-      } catch (Exception exception) {
-        c.a(y, "获取U点支付信息失败！");
-        return false;
-      } 
-      this.aU = true;
-      return true;
-    } 
-    c.a(y, "获取U点支付信息失败！");
-    return false;
-  }
-  
-  private static void a(RecordStore paramRecordStore) {
-    if (paramRecordStore == null)
-      return; 
-    try {
-      paramRecordStore.closeRecordStore();
-      return;
-    } catch (Exception exception) {
-      (paramRecordStore = null).printStackTrace();
-      return;
-    } 
-  }
-  
-  private static byte[] a(int paramInt, byte[] paramArrayOfbyte, String paramString) {
-    byte[] arrayOfByte = null;
-    try {
-      RecordStore recordStore = RecordStore.openRecordStore(paramString, false);
-      if (paramArrayOfbyte == null) {
-        arrayOfByte = new byte[recordStore.getRecordSize(paramInt)];
-        recordStore.getRecord(paramInt, arrayOfByte, 0);
-      } else {
-        recordStore.setRecord(paramInt, paramArrayOfbyte, 0, paramArrayOfbyte.length);
-      } 
-      a(recordStore);
-      return arrayOfByte;
-    } catch (Exception exception) {
-      return null;
-    } 
-  }
-  
-  private void g() {
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-    int i = this.am.size();
-    Enumeration enumeration = this.am.keys();
-    try {
-      dataOutputStream.writeInt(i);
-      dataOutputStream.writeInt(this.aC);
-      while (enumeration.hasMoreElements()) {
-        String str = enumeration.nextElement();
-        byte[] arrayOfByte1 = (byte[])this.am.get(str);
-        dataOutputStream.writeUTF(str);
-        dataOutputStream.writeInt(arrayOfByte1.length);
-        dataOutputStream.write(arrayOfByte1);
-      } 
-      byte[] arrayOfByte = byteArrayOutputStream.toByteArray();
-      a(3, arrayOfByte, "upg_api_private");
-      dataOutputStream.close();
-      byteArrayOutputStream.close();
-      return;
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-      aE = aF;
-      return;
-    } 
-  }
-  
-  private static void h() {
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-    try {
-      dataOutputStream.writeUTF("");
-      dataOutputStream.writeUTF(av);
-      dataOutputStream.writeUTF("");
-      byte[] arrayOfByte = byteArrayOutputStream.toByteArray();
-      a(4, arrayOfByte, "upg_api_private");
-      dataOutputStream.close();
-      byteArrayOutputStream.close();
-      return;
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-      aE = aF;
-      return;
-    } 
-  }
-  
-  private void i() {
-    byte[] arrayOfByte = a(3, (byte[])null, "upg_api_private");
-    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(arrayOfByte);
-    try {
-      DataInputStream dataInputStream;
-      int i = (dataInputStream = new DataInputStream(byteArrayInputStream)).readInt();
-      this.aC = dataInputStream.readInt();
-      for (byte b = 0; b < i; b++) {
-        String str = dataInputStream.readUTF();
-        byte[] arrayOfByte1 = new byte[dataInputStream.readInt()];
-        dataInputStream.readFully(arrayOfByte1);
-        this.am.put(str, arrayOfByte1);
-      } 
-      dataInputStream.close();
-      byteArrayInputStream.close();
-      return;
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-      return;
-    } 
-  }
-  
-  private boolean a(String paramString) {
-    byte[] arrayOfByte;
-    if ((arrayOfByte = (byte[])this.am.get(paramString)) == null)
-      return false; 
-    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(arrayOfByte);
-    DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
-    try {
-      this.an = dataInputStream.readUTF();
-      this.ao = dataInputStream.readUTF();
-      this.aA = dataInputStream.readInt();
-      this.aB = dataInputStream.readInt();
-      this.az = dataInputStream.readInt();
-      this.as = dataInputStream.readUTF();
-      ai.put("addtimes", dataInputStream.readUTF());
-      dataInputStream.close();
-      byteArrayInputStream.close();
-      return true;
-    } catch (Exception exception) {
-      (byteArrayInputStream = null).printStackTrace();
-      return false;
-    } 
-  }
-  
-  private static void j() {
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-    int i = al.size();
-    Enumeration enumeration = al.keys();
-    try {
-      dataOutputStream.writeInt(i);
-      while (enumeration.hasMoreElements()) {
-        String str;
-        int j = b(str = enumeration.nextElement());
-        dataOutputStream.writeUTF(str);
-        dataOutputStream.writeInt(j);
-      } 
-      byte[] arrayOfByte = byteArrayOutputStream.toByteArray();
-      a(1, arrayOfByte, "upg_api_private");
-      dataOutputStream.close();
-      byteArrayOutputStream.close();
-      return;
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-      aE = aF;
-      return;
-    } 
-  }
-  
-  private static int b(String paramString) {
-    return !(paramString = String.valueOf(al.get(paramString))).equals("null") ? Integer.parseInt(paramString) : 0;
-  }
-  
-  private static String k() {
-    if (ak == null || ak.equals("")) {
-      byte b1 = 8;
-      long l1 = System.currentTimeMillis();
-      long l2 = 1L;
-      for (byte b2 = 0; b2 < 8; b2++)
-        l2 *= 10L; 
-      long l3;
-      String str = String.valueOf(l3 = a(l2));
-    } 
-    return ak;
-  }
-  
-  private static void l() {
-    byte[] arrayOfByte = a(1, (byte[])null, "upg_api_private");
-    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(arrayOfByte);
-    try {
-      DataInputStream dataInputStream;
-      int i = (dataInputStream = new DataInputStream(byteArrayInputStream)).readInt();
-      for (byte b = 0; b < i; b++) {
-        String str = dataInputStream.readUTF();
-        int j = dataInputStream.readInt();
-        al.put(str, new Integer(j));
-      } 
-      dataInputStream.close();
-      byteArrayInputStream.close();
-      return;
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-      return;
-    } 
-  }
-  
-  public static void updatePaidMoney(String paramString, int paramInt) {
-    al.put(paramString, new Integer(paramInt));
-    j();
-  }
-  
-  private static long a(long paramLong) {
-    if (aY == null)
-      aY = new Random(); 
-    long l;
-    return l = (aY.nextLong() >>> 1L) % paramLong;
-  }
-  
-  private static String a(int paramInt) {
-    String str;
-    for (str = ""; str.length() < paramInt; str = String.valueOf(str) + a(10L));
-    if (str.length() > paramInt)
-      str.substring(0, paramInt); 
-    return str;
-  }
-  
-  private static void a(String paramString1, String paramString2, boolean paramBoolean) {
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-    Z = paramBoolean;
-    try {
-      if (paramString1 == null)
-        paramString1 = ""; 
-      if (paramString2 == null)
-        paramString2 = ""; 
-      if (ak == null)
-        ak = ""; 
-      dataOutputStream.writeUTF(paramString1);
-      if (J.get("z") == "y") {
-        dataOutputStream.writeUTF(paramString2);
-      } else {
-        dataOutputStream.writeUTF("");
-      } 
-      dataOutputStream.writeUTF(ak);
-      byte[] arrayOfByte = byteArrayOutputStream.toByteArray();
-      a(2, arrayOfByte, "upg_api_private");
-      dataOutputStream.close();
-      byteArrayOutputStream.close();
-      return;
-    } catch (Exception exception) {
-      (paramString1 = null).printStackTrace();
-      aE = aF;
-      return;
-    } 
-  }
-  
-  private static String[] m() {
-    String[] arrayOfString = new String[2];
-    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(a(2, (byte[])null, "upg_api_private"));
-    DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
-    try {
-      arrayOfString[0] = dataInputStream.readUTF();
-      arrayOfString[1] = dataInputStream.readUTF();
-      arrayOfString[2] = dataInputStream.readUTF();
-      dataInputStream.close();
-      byteArrayInputStream.close();
-    } catch (Exception exception) {}
-    return arrayOfString;
-  }
-  
-  public void commandAction(Command paramCommand, Displayable paramDisplayable) {
-    if (paramDisplayable != this.L)
-      return; 
-    if (this.L == null)
-      return; 
-    if (paramCommand == this.N || paramCommand == this.M || paramCommand == null) {
-      this.O = paramCommand;
-      this.K = false;
-      return;
-    } 
-  }
-  
-  protected void pointerPressed(int paramInt1, int paramInt2) {
-    if (y != null) {
-      String str = y.get("a").toString();
-      if (y.get("a").toString() == "a") {
-        String[] arrayOfString = (String[])y.get("c");
-        int j = Integer.parseInt(y.get("r").toString());
-        int k = Integer.parseInt(y.get("q").toString());
-        int m = Integer.parseInt(y.get("d").toString());
-        int n = Integer.parseInt(y.get("m").toString());
-        int i1 = k / arrayOfString.length;
-        if (paramInt1 >= m && paramInt1 <= m + j && paramInt2 >= n && paramInt2 <= n + k)
-          for (byte b1 = 0; b1 < arrayOfString.length; b1++) {
-            if (paramInt2 > n + i1 * b1 && paramInt2 < n + i1 * (b1 + 1)) {
-              a(((String[])y.get("e"))[b1], ((String[])y.get("f"))[b1]);
-              y = null;
-              break;
-            } 
-          }  
-        int i = Integer.parseInt(y.get("t").toString());
-        if (paramInt2 >= h - j && paramInt1 <= g / 3) {
-          a(((String[])y.get("e"))[i], ((String[])y.get("f"))[i]);
-          y = null;
-          return;
-        } 
-        if (paramInt2 >= h - j && paramInt1 >= g - g / 3) {
-          a("u", "");
-          y = null;
-        } 
-      } 
-      if (str == "b" && y.get("v").toString() == "y")
-        y = null; 
-      return;
-    } 
-    byte b = -1;
-    PayPlatform payPlatform = this;
-    if (this.t != null)
-      for (byte b1 = 0; b1 < this.t.size(); b1++) {
-        Hashtable hashtable;
-        int k = Integer.parseInt((hashtable = payPlatform.t.elementAt(b1)).get("d").toString());
-        int m = Integer.parseInt(hashtable.get("m").toString());
-        int i = Integer.parseInt(hashtable.get("r").toString());
-        int j = Integer.parseInt(hashtable.get("q").toString());
-        if (paramInt1 > k && paramInt1 < k + i && paramInt2 > m && paramInt2 < m + j) {
-          b = b1;
-          break;
-        } 
-      }  
-    if (b >= 0 && paramInt2 < h - j) {
-      this.r = this.s.elementAt(b);
-      this.u = 3;
-      return;
-    } 
-    if (paramInt2 >= h - j && paramInt1 <= g / 3) {
-      a(this.o.get("e").toString(), this.o.get("f").toString());
-      return;
-    } 
-    if (paramInt2 >= h - j && paramInt1 >= g - g / 3)
-      a(this.p.get("e").toString(), this.p.get("f").toString()); 
-  }
-  
-  protected void keyPressed(int paramInt) {
-    int i = 0;
-    try {
-      i = getGameAction(paramInt);
-    } catch (Exception exception2) {
-      Exception exception1;
-      (exception1 = null).printStackTrace();
-    } 
-    if ((paramInt == -6 || paramInt == -21 || paramInt == 21 || (paramInt == e && e != 0)) && i != 6 && i != 1 && i != 2 && i != 5)
-      i = 9; 
-    if ((paramInt == -7 || paramInt == -22 || paramInt == 22 || (paramInt == f && f != 0)) && i != 6 && i != 1 && i != 2 && i != 5)
-      i = 10; 
-    if (this.u == 4 || this.u == 5)
-      return; 
-    if (y != null) {
-      int j;
-      String str;
-      if ((str = y.get("a").toString()) == "a") {
-        j = ((String[])y.get("c")).length;
-        int k = Integer.parseInt(y.get("t").toString());
-        switch (i) {
-          case 8:
-          case 9:
-            if (y.get("a") == "a") {
-              a(((String[])y.get("e"))[k], ((String[])y.get("f"))[k]);
-              return;
-            } 
-            y = null;
-            return;
-          case 10:
-            y = null;
-            return;
-          case 1:
-            if (k > 0)
-              k--; 
-            y.put("t", String.valueOf(k));
-            return;
-          case 6:
-            if (k < j - 1)
-              k++; 
-            y.put("t", String.valueOf(k));
-            break;
-        } 
-        return;
-      } 
-      if (j == "b" && y.get("v").toString() == "y" && (i == 9 || i == 10 || i == 8))
-        y = null; 
-      return;
-    } 
-    switch (i) {
-      case 6:
-        this.u = 1;
-        break;
-      case 1:
-        this.u = 2;
-        break;
-      case 8:
-        this.u = 3;
-        break;
-      case 9:
-        a(this.o.get("e").toString(), this.o.get("f").toString());
-        break;
-      case 10:
-        a(this.p.get("e").toString(), this.p.get("f").toString());
-        break;
-    } 
-    this.v = System.currentTimeMillis();
-  }
-  
-  private void a(String paramString1, String paramString2) {
-    if (paramString1 == "p") {
+         l();
+      } catch (Exception var0) {
+         aP = true;
+      }
+
+      a();
+   }
+
+   private PayPlatform(MIDlet var1, String var2, int var3, int var4, int var5, int var6, int var7) {
       this.w = false;
-      return;
-    } 
-    if (paramString1 == "o") {
-      this.u = 3;
-      return;
-    } 
-    if (paramString1 == "r") {
-      if (paramString2 == A) {
-        paramString1 = "r";
-        paramString2 = D;
-        String str3 = paramString2;
-        String str2 = paramString1;
-        String str1 = "";
-        paramString2 = "o";
-        PayPlatform payPlatform;
-        (payPlatform = this).c();
-        Vector vector;
-        (vector = new Vector()).addElement(c.a("n", a(6, 1), 5, "", "", c.c, "", c.b, payPlatform.m[0], -1, -1, c.d, 0));
-        payPlatform.n.addElement(c.a(vector, g, j, payPlatform.m[6], -1, "n", "", ""));
-        (vector = new Vector()).addElement(c.a("n", String.valueOf(a(8, 1)) + "：", 5, "", "", c.c, "", c.a, payPlatform.m[1], -1, -1, c.e, 0));
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        (vector = new Vector()).addElement(F);
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        (vector = new Vector()).addElement(c.a("n", String.valueOf(a(5, 1)) + "：", 5, "", "", c.c, "", c.a, payPlatform.m[1], -1, -1, c.e, 0));
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        (vector = new Vector()).addElement(G);
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        c.a(payPlatform.n, 5, -1, g);
-        (vector = new Vector()).addElement(J);
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        c.a(payPlatform.n, 5, -1, g);
-        (vector = new Vector()).addElement(c.a("y", a(80, 1), 5, "m", String.valueOf(2), c.c, "", c.b, payPlatform.m[1], payPlatform.m[4], -1, c.e, g - 10));
-        payPlatform.n.addElement(c.a(vector, g, j, -1, -1, "n", "", ""));
-        c.a(payPlatform.n, 20, payPlatform.m[2], g);
-        (vector = new Vector()).addElement(c.a("n", "优视科技 版权所有", 5, "", "", c.c, "", c.a, payPlatform.m[4], -1, -1, c.e, g - 10));
-        payPlatform.n.addElement(c.a(vector, g, j, payPlatform.m[2], -1, "n", "", ""));
-        c.a(payPlatform.o, a(0, 0), paramString2, str1);
-        c.a(payPlatform.p, a(1, 0), str2, str3);
-        payPlatform.ba = false;
-        payPlatform.u = 4;
-        return;
-      } 
-      if (paramString2 == C) {
-        paramString1 = "r";
-        paramString2 = A;
-        a("o", "", paramString1, paramString2);
-        return;
-      } 
-      if (paramString2 == E) {
-        paramString1 = "r";
-        paramString2 = A;
-        b("o", "", paramString1, paramString2);
-        return;
-      } 
-      if (paramString2 == D) {
-        paramString1 = "r";
-        paramString2 = z;
-        c("o", "", paramString1, paramString2);
-        return;
-      } 
-      if (paramString2 == z) {
-        d();
-        return;
-      } 
-      if (paramString2 == B) {
-        y = null;
-        o();
-        return;
-      } 
-    } else {
-      int i;
-      if (paramString1 == "t") {
-        y = null;
-        if ((i = Integer.parseInt(paramString2)) == 1) {
-          this.P = (byte)Integer.parseInt("9");
-          return;
-        } 
-        if (i == 2) {
-          this.P = (byte)Integer.parseInt("8");
-          return;
-        } 
-        if (i == 3) {
-          this.aX = this.aV;
-          this.P = (byte)Integer.parseInt("10");
-          return;
-        } 
-        if (i == 4) {
-          this.aX = this.aW;
-          this.P = (byte)Integer.parseInt("10");
-          return;
-        } 
-        return;
-      } 
-      if (i == "u") {
-        y = null;
-        return;
-      } 
-    } 
-  }
-  
-  private void a(Hashtable paramHashtable, int paramInt1, int paramInt2, int paramInt3, int paramInt4) {
-    // Byte code:
-    //   0: aload_0
-    //   1: getfield s : Ljava/util/Vector;
-    //   4: ifnonnull -> 8
-    //   7: return
-    //   8: aload_0
-    //   9: getfield u : B
-    //   12: iconst_5
-    //   13: if_icmpne -> 45
-    //   16: aload_1
-    //   17: ifnull -> 45
-    //   20: aload_0
-    //   21: getfield s : Ljava/util/Vector;
-    //   24: aload_1
-    //   25: invokevirtual addElement : (Ljava/lang/Object;)V
-    //   28: aload_0
-    //   29: getfield t : Ljava/util/Vector;
-    //   32: iload #4
-    //   34: iload_2
-    //   35: iload #5
-    //   37: iload_3
-    //   38: invokestatic a : (IIII)Ljava/util/Hashtable;
-    //   41: invokevirtual addElement : (Ljava/lang/Object;)V
-    //   44: return
-    //   45: aload_0
-    //   46: getfield r : Ljava/util/Hashtable;
-    //   49: ifnonnull -> 84
-    //   52: aload_0
-    //   53: getfield s : Ljava/util/Vector;
-    //   56: ifnull -> 84
-    //   59: aload_0
-    //   60: getfield s : Ljava/util/Vector;
-    //   63: invokevirtual size : ()I
-    //   66: ifle -> 84
-    //   69: aload_0
-    //   70: aload_0
-    //   71: getfield s : Ljava/util/Vector;
-    //   74: iconst_0
-    //   75: invokevirtual elementAt : (I)Ljava/lang/Object;
-    //   78: checkcast java/util/Hashtable
-    //   81: putfield r : Ljava/util/Hashtable;
-    //   84: invokestatic currentTimeMillis : ()J
-    //   87: aload_0
-    //   88: getfield v : J
-    //   91: lsub
-    //   92: ldc2_w 50
-    //   95: lcmp
-    //   96: ifge -> 100
-    //   99: return
-    //   100: aload_0
-    //   101: dup
-    //   102: astore_2
-    //   103: getfield s : Ljava/util/Vector;
-    //   106: ifnull -> 119
-    //   109: aload_2
-    //   110: getfield s : Ljava/util/Vector;
-    //   113: invokevirtual size : ()I
-    //   116: ifne -> 123
-    //   119: iconst_m1
-    //   120: goto -> 162
-    //   123: iconst_0
-    //   124: istore_3
-    //   125: goto -> 150
-    //   128: aload_2
-    //   129: getfield s : Ljava/util/Vector;
-    //   132: iload_3
-    //   133: invokevirtual elementAt : (I)Ljava/lang/Object;
-    //   136: aload_2
-    //   137: getfield r : Ljava/util/Hashtable;
-    //   140: if_acmpne -> 147
-    //   143: iload_3
-    //   144: goto -> 162
-    //   147: iinc #3, 1
-    //   150: iload_3
-    //   151: aload_2
-    //   152: getfield s : Ljava/util/Vector;
-    //   155: invokevirtual size : ()I
-    //   158: if_icmplt -> 128
-    //   161: iconst_m1
-    //   162: istore_2
-    //   163: aload_0
-    //   164: getfield u : B
-    //   167: iconst_1
-    //   168: if_icmpne -> 297
-    //   171: iload_2
-    //   172: ifge -> 212
-    //   175: aload_0
-    //   176: getfield k : I
-    //   179: aload_0
-    //   180: getfield x : I
-    //   183: iadd
-    //   184: getstatic uc/payment/PayPlatform.h : I
-    //   187: getstatic uc/payment/PayPlatform.j : I
-    //   190: isub
-    //   191: if_icmple -> 206
-    //   194: aload_0
-    //   195: dup
-    //   196: getfield x : I
-    //   199: getstatic uc/payment/PayPlatform.j : I
-    //   202: isub
-    //   203: putfield x : I
-    //   206: aload_0
-    //   207: iconst_4
-    //   208: putfield u : B
-    //   211: return
-    //   212: iload_2
-    //   213: aload_0
-    //   214: getfield s : Ljava/util/Vector;
-    //   217: invokevirtual size : ()I
-    //   220: iconst_1
-    //   221: isub
-    //   222: if_icmpge -> 247
-    //   225: aload_0
-    //   226: aload_0
-    //   227: getfield s : Ljava/util/Vector;
-    //   230: iload_2
-    //   231: iconst_1
-    //   232: iadd
-    //   233: invokevirtual elementAt : (I)Ljava/lang/Object;
-    //   236: checkcast java/util/Hashtable
-    //   239: putfield r : Ljava/util/Hashtable;
-    //   242: aload_0
-    //   243: iconst_4
-    //   244: putfield u : B
-    //   247: iload_2
-    //   248: aload_0
-    //   249: getfield s : Ljava/util/Vector;
-    //   252: invokevirtual size : ()I
-    //   255: iconst_1
-    //   256: isub
-    //   257: if_icmpne -> 296
-    //   260: aload_0
-    //   261: getfield k : I
-    //   264: aload_0
-    //   265: getfield x : I
-    //   268: iadd
-    //   269: getstatic uc/payment/PayPlatform.h : I
-    //   272: getstatic uc/payment/PayPlatform.j : I
-    //   275: isub
-    //   276: if_icmple -> 291
-    //   279: aload_0
-    //   280: dup
-    //   281: getfield x : I
-    //   284: getstatic uc/payment/PayPlatform.j : I
-    //   287: isub
-    //   288: putfield x : I
-    //   291: aload_0
-    //   292: iconst_4
-    //   293: putfield u : B
-    //   296: return
-    //   297: aload_0
-    //   298: getfield u : B
-    //   301: iconst_2
-    //   302: if_icmpne -> 389
-    //   305: iload_2
-    //   306: ifge -> 334
-    //   309: aload_0
-    //   310: getfield x : I
-    //   313: ifge -> 328
-    //   316: aload_0
-    //   317: dup
-    //   318: getfield x : I
-    //   321: getstatic uc/payment/PayPlatform.j : I
-    //   324: iadd
-    //   325: putfield x : I
-    //   328: aload_0
-    //   329: iconst_4
-    //   330: putfield u : B
-    //   333: return
-    //   334: iload_2
-    //   335: ifne -> 362
-    //   338: aload_0
-    //   339: getfield x : I
-    //   342: ifge -> 357
-    //   345: aload_0
-    //   346: dup
-    //   347: getfield x : I
-    //   350: getstatic uc/payment/PayPlatform.j : I
-    //   353: iadd
-    //   354: putfield x : I
-    //   357: aload_0
-    //   358: iconst_4
-    //   359: putfield u : B
-    //   362: iload_2
-    //   363: ifle -> 388
-    //   366: aload_0
-    //   367: aload_0
-    //   368: getfield s : Ljava/util/Vector;
-    //   371: iload_2
-    //   372: iconst_1
-    //   373: isub
-    //   374: invokevirtual elementAt : (I)Ljava/lang/Object;
-    //   377: checkcast java/util/Hashtable
-    //   380: putfield r : Ljava/util/Hashtable;
-    //   383: aload_0
-    //   384: iconst_4
-    //   385: putfield u : B
-    //   388: return
-    //   389: aload_0
-    //   390: getfield r : Ljava/util/Hashtable;
-    //   393: ifnull -> 404
-    //   396: aload_0
-    //   397: getfield r : Ljava/util/Hashtable;
-    //   400: aload_1
-    //   401: if_acmpeq -> 405
-    //   404: return
-    //   405: aload_0
-    //   406: getfield u : B
-    //   409: iconst_3
-    //   410: if_icmpne -> 666
-    //   413: aload_0
-    //   414: getfield r : Ljava/util/Hashtable;
-    //   417: ldc 'e'
-    //   419: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   422: invokevirtual toString : ()Ljava/lang/String;
-    //   425: astore_2
-    //   426: aload_0
-    //   427: getfield r : Ljava/util/Hashtable;
-    //   430: ldc 'f'
-    //   432: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   435: invokevirtual toString : ()Ljava/lang/String;
-    //   438: astore_3
-    //   439: aload_2
-    //   440: ldc 'q'
-    //   442: if_acmpeq -> 661
-    //   445: aload_2
-    //   446: ldc 'n'
-    //   448: if_acmpne -> 544
-    //   451: aload_0
-    //   452: getfield r : Ljava/util/Hashtable;
-    //   455: ldc 'n'
-    //   457: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   460: invokevirtual toString : ()Ljava/lang/String;
-    //   463: invokestatic parseInt : (Ljava/lang/String;)I
-    //   466: istore #4
-    //   468: aload_0
-    //   469: getfield r : Ljava/util/Hashtable;
-    //   472: ldc 's'
-    //   474: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   477: invokevirtual toString : ()Ljava/lang/String;
-    //   480: astore_1
-    //   481: aload_0
-    //   482: getfield r : Ljava/util/Hashtable;
-    //   485: ldc 'c'
-    //   487: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   490: invokevirtual toString : ()Ljava/lang/String;
-    //   493: astore_2
-    //   494: new javax/microedition/lcdui/TextBox
-    //   497: dup
-    //   498: aload_1
-    //   499: aload_2
-    //   500: iload #4
-    //   502: iconst_0
-    //   503: invokespecial <init> : (Ljava/lang/String;Ljava/lang/String;II)V
-    //   506: dup
-    //   507: astore_1
-    //   508: aload_0
-    //   509: getfield M : Ljavax/microedition/lcdui/Command;
-    //   512: invokevirtual addCommand : (Ljavax/microedition/lcdui/Command;)V
-    //   515: aload_1
-    //   516: aload_0
-    //   517: getfield N : Ljavax/microedition/lcdui/Command;
-    //   520: invokevirtual addCommand : (Ljavax/microedition/lcdui/Command;)V
-    //   523: aload_1
-    //   524: aload_0
-    //   525: invokevirtual setCommandListener : (Ljavax/microedition/lcdui/CommandListener;)V
-    //   528: aload_0
-    //   529: aload_1
-    //   530: putfield L : Ljavax/microedition/lcdui/TextBox;
-    //   533: aload_0
-    //   534: iconst_m1
-    //   535: putfield u : B
-    //   538: aload_0
-    //   539: iconst_1
-    //   540: putfield P : I
-    //   543: return
-    //   544: aload_2
-    //   545: ldc 'c'
-    //   547: if_acmpne -> 591
-    //   550: aload_1
-    //   551: ldc 'z'
-    //   553: invokevirtual get : (Ljava/lang/Object;)Ljava/lang/Object;
-    //   556: ldc 'y'
-    //   558: if_acmpne -> 576
-    //   561: aload_1
-    //   562: ldc 'z'
-    //   564: ldc 'n'
-    //   566: invokevirtual put : (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    //   569: pop
-    //   570: aload_0
-    //   571: iconst_m1
-    //   572: putfield u : B
-    //   575: return
-    //   576: aload_1
-    //   577: ldc 'z'
-    //   579: ldc 'y'
-    //   581: invokevirtual put : (Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-    //   584: pop
-    //   585: aload_0
-    //   586: iconst_m1
-    //   587: putfield u : B
-    //   590: return
-    //   591: aload_2
-    //   592: ldc 'm'
-    //   594: if_acmpne -> 612
-    //   597: aload_0
-    //   598: iconst_m1
-    //   599: putfield u : B
-    //   602: aload_0
-    //   603: aload_3
-    //   604: invokestatic parseInt : (Ljava/lang/String;)I
-    //   607: i2b
-    //   608: putfield P : I
-    //   611: return
-    //   612: aload_2
-    //   613: ldc 'p'
-    //   615: if_acmpne -> 624
-    //   618: aload_0
-    //   619: iconst_0
-    //   620: putfield w : Z
-    //   623: return
-    //   624: aload_2
-    //   625: ldc 't'
-    //   627: if_acmpne -> 647
-    //   630: aconst_null
-    //   631: putstatic uc/payment/PayPlatform.y : Ljava/util/Hashtable;
-    //   634: aload_0
-    //   635: iconst_m1
-    //   636: putfield u : B
-    //   639: aload_0
-    //   640: ldc 't'
-    //   642: aload_3
-    //   643: invokespecial a : (Ljava/lang/String;Ljava/lang/String;)V
-    //   646: return
-    //   647: aload_2
-    //   648: ldc 'r'
-    //   650: if_acmpne -> 661
-    //   653: aload_0
-    //   654: ldc 'r'
-    //   656: aload_3
-    //   657: invokespecial a : (Ljava/lang/String;Ljava/lang/String;)V
-    //   660: return
-    //   661: aload_0
-    //   662: iconst_4
-    //   663: putfield u : B
-    //   666: return
-  }
-  
-  private int b(int paramInt) {
-    String str2 = "";
-    if (y == null)
-      y = c.a("n", g, h, j); 
-    if (F.get("c").equals("") || G.get("c").equals("")) {
-      c.a(y, a(23, 0));
-      return -1;
-    } 
-    if (!e(F.get("c").toString()) || !e(G.get("c").toString())) {
-      c.a(y, "错误：您输入的账号密码中含有非法字符，请检查！");
-      return -1;
-    } 
-    if (!f(F.get("c").toString())) {
-      c.a(y, "错误：请输入由数字组成的账号/手机号。");
-      return -1;
-    } 
-    if (paramInt == 1) {
-      if (H.get("c").equals("")) {
-        c.a(y, a(23, 0));
-        return -1;
-      } 
-      if (!e(H.get("c").toString())) {
-        c.a(y, "错误：支付密码中含有非法字符，请检查！");
-        return -1;
-      } 
-    } 
-    String str3;
-    int i;
-    if ((i = c(str3 = a(F.get("c").toString(), G.get("c").toString(), (paramInt == 0) ? "" : H.get("c").toString(), str2, 0))) == -905 || i == -902)
-      i = c(str3 = a(F.get("c").toString(), G.get("c").toString(), (paramInt == 0) ? "" : H.get("c").toString(), str2, 1)); 
-    if (i == -102 && a(str3, 2, "#").equals("uc_tm_modify")) {
-      str2 = a(str3, 3, "#");
-      i = c(str3 = a(F.get("c").toString(), G.get("c").toString(), (paramInt == 0) ? "" : H.get("c").toString(), str2, 1));
-    } 
-    if (i < 0) {
-      String str = a(str3, 2, "#");
-      str2 = a(str3, 3, "#");
-      if (i == -102) {
-        if (str.equals("uc_password_error")) {
-          c.a(y, "您的账号或密码错误，请重新输入。");
-          a("r", A);
-          return -1;
-        } 
-        if (str.equals("um_system_error")) {
-          c.a(y, "系统错误，支付失败，U点未被扣除，请重试或更换其他支付方式！");
-          aQ = "";
-          d();
-          return -1;
-        } 
-        if (str.equals("um_account_error")) {
-          c.a(y, "您的账户余额不足，无法完成本次支付，请用UC浏览器登录UC充值中心(pay.uc.cn)为U点账户充值。");
-          d();
-          return -1;
-        } 
-        if (str.equals("um_paypwd_error")) {
-          if (this.ba) {
-            c.a(y, "支付失败，原因：" + str2);
-          } else {
-            y = null;
-            a("r", C);
-          } 
-          return -1;
-        } 
-        c.a(y, "支付失败，原因：" + str2);
-        d();
-        return -1;
-      } 
-      c.a(y, "网络繁忙，连接失败，本次支付不成功，请返回尝试重新支付。");
-      d();
-      return i;
-    } 
-    String str1 = a(str3, 2, "#");
-    if (i == 200 && str1.equals("succ")) {
-      this.W = a(str3, 3, "#");
-      this.X = a(str3, 4, "#");
-      a(F.get("c").toString(), G.get("c").toString(), Z);
-      if (J.get("z") != "y")
-        G.put("c", ""); 
-      aQ = "";
-      this.ba = false;
-      return i;
-    } 
-    d();
-    return -1;
-  }
-  
-  private String a(String paramString1, String paramString2, String paramString3, String paramString4, int paramInt) {
-    byte[] arrayOfByte;
-    if (paramString1 == null || paramString2 == null)
-      return "-1#" + a(29, 1); 
-    a a = new a();
-    String str1 = this.ab;
-    String str2 = k();
-    String str3 = this.q;
-    String str7 = this.Y;
-    String str6 = paramString1;
-    if (aQ == null || aQ.equals(""))
-      aQ = String.valueOf(str7) + str3 + str6 + a(10); 
-    str3 = aQ;
-    String str4 = (new StringBuffer(String.valueOf(e(this.V)))).toString();
-    String str5 = String.valueOf((str2.length() <= 5) ? str2 : str2.substring(0, 5)) + ((this.Y.length() <= 5) ? this.Y : this.Y.substring(0, 5)) + ((this.q.length() <= 5) ? this.q : this.q.substring(0, 5)) + this.V;
-    str5 = a.a(str5);
-    paramString4 = paramString4.equals("") ? a(false) : paramString4;
-    str6 = paramString2 = String.valueOf(paramString4) + "`" + paramString1 + "`" + paramString2;
-    str7 = new String(a.b("ucweb#20100518").toUpperCase().substring(0, 10).getBytes());
-    paramString2 = d.a(str6, str7);
-    str6 = "";
-    if (paramString3 != null && !paramString3.equals(""))
-      str6 = a.a(String.valueOf(a.a(String.valueOf(paramString1) + paramString3).toUpperCase()) + paramString4); 
-    StringBuffer stringBuffer;
-    (stringBuffer = new StringBuffer()).append("user_id=" + str2);
-    stringBuffer.append("&cpid=" + this.Y);
-    stringBuffer.append("&gameid=" + this.q);
-    stringBuffer.append("&optid=" + this.R);
-    stringBuffer.append("&u_money=" + this.V);
-    stringBuffer.append("&charge=" + str4);
-    stringBuffer.append("&consume_id=" + str3);
-    stringBuffer.append("&ucid=" + paramString1);
-    stringBuffer.append("&sign=" + str5);
-    stringBuffer.append("&uc_token=" + paramString2);
-    stringBuffer.append("&pay_pwd=" + str6);
-    stringBuffer.append("&consume_time=" + paramString4);
-    stringBuffer.append("&tm=" + paramString4);
-    stringBuffer.append("&eid=4");
-    stringBuffer.append("&ch_code=" + this.ap);
-    e e = new e(str1, Q, stringBuffer.toString(), aO, aZ);
-    try {
-      if (paramInt == 0) {
-        c.a(y, a(11, 0));
-      } else {
-        c.a(y, "正在重试联网...");
-      } 
-      Hashtable hashtable;
-      if ((hashtable = e.a(e, Z, "")) == null) {
-        c.a(y, String.valueOf(a(39, 1)) + ": -904 " + a(37, 1));
-        return "-904#nullcontent";
-      } 
-      int i = Integer.parseInt(hashtable.get("respCode").toString());
-      if (hashtable != null && i >= 200 && i <= 299) {
-        arrayOfByte = (byte[])hashtable.get("data");
-      } else {
-        return "-905#ResponseCode=" + i;
-      } 
-    } catch (Exception exception) {
-      c.a(y, "网络繁忙，连接失败，本次支付不成功，请返回尝试重新支付。");
-      return "-902#network problem";
-    } 
-    try {
-      paramString2 = new String(arrayOfByte, "UTF-8");
-    } catch (Exception exception) {
-      paramString2 = new String(arrayOfByte);
-    } 
-    return paramString2;
-  }
-  
-  private boolean c(int paramInt) {
-    byte[] arrayOfByte;
-    c.a(y = c.a("n", g, h, j), a(31, 0));
-    String str1 = this.ad;
-    String str2 = k();
-    if (aR == null || aR.equals(""))
-      aR = a(20); 
-    String str3 = aR;
-    String str4 = (new a()).a(String.valueOf((str2.length() <= 5) ? str2 : str2.substring(0, 5)) + ((this.Y.length() <= 5) ? this.Y : this.Y.substring(0, 5)) + ((this.q.length() <= 5) ? this.q : this.q.substring(0, 5)) + e(this.T));
-    StringBuffer stringBuffer;
-    (stringBuffer = new StringBuffer()).append("user_id=" + str2);
-    stringBuffer.append("&cpid=" + this.Y);
-    stringBuffer.append("&gameid=" + this.q);
-    stringBuffer.append("&optid=" + this.R);
-    stringBuffer.append("&consume_id=" + str3);
-    stringBuffer.append("&charge=" + e(this.T));
-    stringBuffer.append("&optobj=" + this.S);
-    stringBuffer.append("&sms_channel=" + this.ay);
-    stringBuffer.append("&sms_port=" + this.an);
-    stringBuffer.append("&sms_content=" + this.ao);
-    stringBuffer.append("&sms_type=" + paramInt);
-    stringBuffer.append("&sendtime=" + a(false));
-    stringBuffer.append("&sign=" + str4);
-    e e = new e(str1, Q, stringBuffer.toString(), aO, aZ);
-    try {
-      Hashtable hashtable;
-      if ((hashtable = e.a(e, Z, "")) == null)
-        return false; 
-      int i = Integer.parseInt(hashtable.get("respCode").toString());
-      if (hashtable != null && i >= 200 && i <= 299) {
-        arrayOfByte = (byte[])hashtable.get("data");
-      } else {
-        return false;
-      } 
-    } catch (Exception exception) {
-      return false;
-    } 
-    try {
-      str1 = new String(arrayOfByte, "UTF-8");
-    } catch (Exception exception) {
-      str1 = new String(arrayOfByte);
-    } 
-    if (c(str1) == 200) {
+      this.x = 0;
+      this.K = false;
+      this.P = 0;
+      this.R = "1";
+      this.S = "0";
+      this.T = 0;
+      this.U = "";
+      this.ab = "";
+      this.ac = "";
+      this.ad = "";
+      this.ae = "";
+      this.af = 0;
+      this.aj = 0;
       aR = "";
-      return true;
-    } 
-    return false;
-  }
-  
-  private static String a(int paramInt1, int paramInt2) {
-    String str = "";
-    try {
-      switch (paramInt2) {
-        case 0:
-          str = ag[paramInt1];
-          break;
-        case 1:
-          str = ah[paramInt1];
-          break;
-      } 
-    } catch (Exception exception) {}
-    return str;
-  }
-  
-  private static String a(String paramString1, String paramString2, String paramString3) {
-    if (paramString1 == null || "".equals(paramString1) || paramString2 == null || "".equals(paramString2))
-      return paramString1; 
-    String str = "";
-    int i;
-    int j;
-    for (i = 0; (j = paramString1.indexOf(paramString2, i)) != -1; i = j + paramString2.length()) {
-      str = String.valueOf(str) + paramString1.substring(i, j);
-      str = String.valueOf(str) + paramString3;
-    } 
-    if (i != paramString1.length())
-      str = String.valueOf(str) + paramString1.substring(i); 
-    return str;
-  }
-  
-  private static String[] b(String paramString1, String paramString2) {
-    Vector vector;
-    int j;
-    if (paramString1 == null || paramString1.trim().length() == 0 || paramString2 == null)
-      return null; 
-    if (paramString1.equals("") || paramString2.equals(""))
-      return null; 
-    try {
-      vector = new Vector();
-      j = 0;
-      if (paramString1.indexOf(paramString2) == -1)
-        return new String[] { paramString1 }; 
-    } catch (Exception exception) {
-      return null;
-    } 
-    for (int i = paramString1.indexOf(paramString2); i < paramString1.length() && i != -1; i = paramString1.indexOf(paramString2, i + paramString2.length())) {
-      String str = paramString1.substring(j, i);
-      vector.addElement(str);
-      j = i + paramString2.length();
-    } 
-    vector.addElement(paramString1.substring(j));
-    String[] arrayOfString = new String[vector.size()];
-    vector.copyInto((Object[])arrayOfString);
-    return arrayOfString;
-  }
-  
-  private static int a(String paramString, Font paramFont) {
-    char[] arrayOfChar;
-    int i = (arrayOfChar = paramString.toCharArray()).length;
-    int j = 0;
-    for (byte b = 0; b < i; b++)
-      j += paramFont.charWidth(arrayOfChar[b]); 
-    return j;
-  }
-  
-  private static String[] a(String paramString, Font paramFont, int paramInt) {
-    if (paramString == null || paramFont == null)
-      return new String[] { "BUG split: " + paramString }; 
-    StringBuffer stringBuffer = new StringBuffer(paramString);
-    char[] arrayOfChar;
-    int i = (arrayOfChar = paramString.toCharArray()).length;
-    int j = 0;
-    byte b1 = 0;
-    byte b2 = 0;
-    for (byte b3 = 0; b3 < i; b3++) {
-      if (arrayOfChar[b3] == '\n') {
-        b1++;
-        j = 0;
-      } else if ((j += paramFont.charWidth(arrayOfChar[b3])) > paramInt) {
-        stringBuffer.insert(b3 + b2, '\n');
-        b1++;
-        b2++;
-        j = paramFont.charWidth(arrayOfChar[b3]);
-      } 
-    } 
-    b1++;
-    stringBuffer.append('\n');
-    return a(stringBuffer.toString(), '\n', b1);
-  }
-  
-  private static String[] a(String paramString, char paramChar, int paramInt) {
-    if (paramInt <= 0) {
-      byte b1 = -1;
-      int i = -1;
-      while ((i = paramString.indexOf('\n', i + 1)) >= 0)
-        b1++; 
-      if (b1 < 0)
-        return new String[] { paramString }; 
-    } 
-    String[] arrayOfString = new String[paramInt];
-    for (byte b = 0; b < paramInt; b++) {
-      int i;
-      if ((i = paramString.indexOf('\n')) == -1) {
-        arrayOfString[b] = paramString;
-      } else {
-        arrayOfString[b] = paramString.substring(0, i);
-        paramString = paramString.substring(i + 1);
-      } 
-    } 
-    return arrayOfString;
-  }
-  
-  private static String c(String paramString1, String paramString2) {
-    paramString2 = paramString1;
-    paramString1 = paramString2;
-    paramString2 = paramString2;
-    char[] arrayOfChar = new char[paramString1.length() / 4];
-    String str = "";
-    byte b1 = 0;
-    for (byte b2 = 0; b1 < paramString1.length() / 4; b2++) {
-      if (b2 == paramString2.length())
-        b2 = 0; 
-      int i = Integer.parseInt(paramString1.substring(b1 << 2, (b1 << 2) + 4));
-      arrayOfChar[b1] = (char)((char)i ^ paramString2.charAt(b2));
-      b1++;
-    } 
-    for (b1 = 0; b1 < paramString1.length() / 4; b1++)
-      str = String.valueOf(str) + arrayOfChar[b1]; 
-    return str;
-  }
-  
-  private static int c(String paramString) {
-    int i;
-    try {
-      if (paramString.equals("") || paramString == null)
-        return -110; 
-    } catch (Exception exception) {
-      return -110;
-    } 
-    if ((paramString = a(paramString, 1, "#")) == null)
-      return -110; 
-    try {
-      i = Integer.parseInt(paramString);
-    } catch (Exception exception) {
-      return -110;
-    } 
-    return i;
-  }
-  
-  private static String a(String paramString1, int paramInt, String paramString2) {
-    String[] arrayOfString;
-    return (paramInt <= 0) ? null : ((paramString1.indexOf(paramString2) < 0) ? null : (((arrayOfString = b(paramString1, paramString2)) == null) ? null : ((paramInt > arrayOfString.length) ? null : arrayOfString[paramInt - 1])));
-  }
-  
-  private static String d(int paramInt) {
-    String str1;
-    a();
-    String str2;
-    if ((str2 = c.a("locale", ai)).equals("")) {
-      aE = aG;
-      return "";
-    } 
-    String[] arrayOfString;
-    if ((arrayOfString = b(str2, ",")).length < 3) {
-      aE = aG;
-      return "";
-    } 
-    int i = Integer.parseInt((aH = arrayOfString)[2]);
-    if (aH[1].equals("元")) {
-      int j = paramInt * i / 100;
-      if ((paramInt = paramInt * i % 100) < 10) {
-        str1 = String.valueOf(j) + ".0" + aH[1];
-      } else {
-        str1 = String.valueOf(j) + "." + str1 + aH[1];
-      } 
-    } else {
-      if (str1 * i % 100 >= 50)
-        i++; 
-      str1 = String.valueOf(aH[1]) + " " + i;
-    } 
-    return str1;
-  }
-  
-  private static int e(int paramInt) {
-    a();
-    String str;
-    if ((str = c.a("locale", ai)).equals("")) {
-      aE = aG;
-      return 0;
-    } 
-    String[] arrayOfString;
-    if ((arrayOfString = b(str, ",")).length < 3) {
-      aE = aG;
-      return 0;
-    } 
-    int i = Integer.parseInt((aH = arrayOfString)[2]);
-    return paramInt = paramInt * i / 100;
-  }
-  
-  private static String d(String paramString) {
-    String str = "";
-    InputStream inputStream = null;
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-    byte[] arrayOfByte = new byte[1024];
-    try {
-      if ((inputStream = "".getClass().getResourceAsStream(paramString)) != null) {
-        int i;
-        while ((i = inputStream.read(arrayOfByte)) != -1)
-          dataOutputStream.write(arrayOfByte, 0, i); 
-        str = new String(byteArrayOutputStream.toByteArray(), "UTF-8");
-      } 
-      a(inputStream);
-      a(dataOutputStream);
-      a(byteArrayOutputStream);
-    } catch (Exception exception) {
-      a(inputStream);
-      a(dataOutputStream);
-      a(byteArrayOutputStream);
-    } 
-    return str;
-  }
-  
-  private static void a(InputStream paramInputStream) {
-    if (paramInputStream == null)
-      return; 
-    try {
-      paramInputStream.close();
-      return;
-    } catch (Exception exception) {
-      (paramInputStream = null).printStackTrace();
-      return;
-    } 
-  }
-  
-  private static void a(OutputStream paramOutputStream) {
-    if (paramOutputStream == null)
-      return; 
-    try {
-      paramOutputStream.close();
-      return;
-    } catch (Exception exception) {
-      (paramOutputStream = null).printStackTrace();
-      return;
-    } 
-  }
-  
-  private static boolean a(String paramString1, String paramString2, int paramInt) {
-    if (paramString1 == null || "".equals(paramString1.trim()))
-      return false; 
-    if (paramString2 == null || "".equals(paramString2.trim()))
-      return false; 
-    paramString1 = "sms://" + paramString1;
-    MessageConnection messageConnection = null;
-    boolean bool = false;
-    long l = System.currentTimeMillis();
-    try {
-      TextMessage textMessage;
-      (textMessage = (TextMessage)(messageConnection = (MessageConnection)Connector.open(paramString1)).newMessage("text")).setAddress(paramString1);
-      textMessage.setPayloadText(paramString2);
-      messageConnection.send((Message)textMessage);
+      aQ = "";
+      this.am = new Hashtable();
+      this.an = "";
+      this.ao = "";
+      this.as = "";
+      this.aA = 0;
+      this.aB = 0;
+      this.aC = 0;
+      this.aL = null;
+      this.aM = null;
+      this.aS = "";
+      this.aT = "";
+      this.aU = false;
+      this.setFullScreenMode(c);
+      b = var1;
+      this.q = var2;
+      e = 0;
+      f = 0;
+      g = 0;
+      h = 0;
+      this.V = var7;
+      if (g == 0) {
+         g = this.getWidth();
+      }
+
+      if (h == 0) {
+         h = this.getHeight();
+      }
+
+      a();
+      this.b();
+
       try {
-        messageConnection.send(null);
-      } catch (Exception exception) {
-        long l1;
-        if ((l1 = System.currentTimeMillis()) - l > paramInt)
-          bool = true; 
-      } 
-    } catch (Exception exception) {
-      (paramString1 = null).printStackTrace();
-      bool = false;
-    } 
-    try {
-      messageConnection.close();
-    } catch (Exception exception) {
-      (paramString1 = null).printStackTrace();
-    } 
-    return bool;
-  }
-  
-  private void n() {
-    Vector vector = new Vector();
-    if (this.T > 0 && this.T < this.V) {
-      String str = String.valueOf(a(8, 0)) + "，" + a(10, 0);
-      vector.addElement(String.valueOf(a(a(a(str, "$(str3)", this.as), "$(str2)", (new StringBuffer(String.valueOf(this.az - this.aB))).toString()), "$(str1)", (new StringBuffer(String.valueOf(this.aB))).toString())) + au);
-    } else {
-      String str = String.valueOf(a(9, 0)) + "，" + a(10, 0);
-      vector.addElement(String.valueOf(a(a(a(str, "$(str2)", this.as), "$(str1)", (new StringBuffer(String.valueOf(this.az))).toString()), "$(str3)", d(this.V))) + au);
-    } 
-    String[] arrayOfString = { a(20, 0) };
-    Vector[] arrayOfVector = { vector };
-    String str1 = "r";
-    String str2 = z;
-    a(arrayOfString, arrayOfVector, a(0, 0), "o", "", a(1, 0), str1, str2, a(0, 0), "m", String.valueOf(4));
-  }
-  
-  private void o() {
-    String[] arrayOfString;
-    String str2 = "";
-    if (av == null || av.equals(""))
-      av = "20100101"; 
-    String str3 = a(true);
-    String str1 = av;
-    int j = Integer.parseInt(str3.substring(0, 4));
-    int k = Integer.parseInt(str3.substring(4, 6));
-    int i = Integer.parseInt(str3.substring(6, 8));
-    long l1 = a(j, k, i);
-    j = Integer.parseInt(str1.substring(0, 4));
-    k = Integer.parseInt(str1.substring(4, 6));
-    i = Integer.parseInt(str1.substring(6, 8));
-    long l2 = a(j, k, i);
-    boolean bool;
-    long l3;
-    if ((int)((l3 = l1 - l2) / 1000L / 60L / 60L / 24L) > this.aw && !(bool = e())) {
-      y.put("v", "y");
-      d();
-      return;
-    } 
-    if (at == null || at.equals("") || at.indexOf(",") <= 0) {
-      c.a(y, "获取短信数据失败，请改用U点支付");
-      y.put("v", "y");
-      d();
-      return;
-    } 
-    if (at.indexOf("^|*") > 0) {
-      String str = (arrayOfString = b(at, "^|*"))[0];
-      j = 500;
-      k = 500;
-      for (byte b = 0; b < arrayOfString.length; b++) {
-        int m = e(this.V);
-        int n;
-        if ((n = Integer.parseInt(b(arrayOfString[b], ",")[4])) < k) {
-          k = n;
-          str = arrayOfString[b];
-        } 
-        if (m / n < j && m / n != 0) {
-          j = m / n;
-          str2 = arrayOfString[b];
-        } 
-      } 
-      if (j == 500)
-        str2 = str; 
-      arrayOfString = b(str2, ",");
-    } else {
-      arrayOfString = b(at, ",");
-    } 
-    if (arrayOfString == null || arrayOfString.length < 2) {
-      c.a(y, "获取短信数据失败，请改用U点支付");
-      y.put("v", "y");
-      d();
-      return;
-    } 
-    this.as = arrayOfString[4];
-    this.aA = Integer.parseInt(this.as) * 10;
-    this.az = this.V / this.aA;
-    this.ax = Integer.parseInt(arrayOfString[3]);
-    if (this.V % this.aA > 0)
-      this.az++; 
-    this.ay = arrayOfString[0];
-    this.an = arrayOfString[1];
-    this.ao = arrayOfString[2];
-    if (this.ax == 0) {
-      this.ao = String.valueOf(this.ao) + this.Y;
-      this.ao = String.valueOf(this.ao) + this.q;
-      this.ao = String.valueOf(this.ao) + this.R;
-      this.ao = String.valueOf(this.ao) + this.aq;
-      this.ao = String.valueOf(this.ao) + this.ap;
-      this.ao = String.valueOf(this.ao) + this.ar;
-    } 
-    if (this.ax == 1) {
-      if (!c(0)) {
-        y.put("v", "y");
-        d();
-        return;
-      } 
-      y.put("v", "y");
-      y = null;
-    } 
-    n();
-  }
-  
-  private static String a(boolean paramBoolean) {
-    Calendar calendar;
-    (calendar = Calendar.getInstance(TimeZone.getDefault())).setTime(new Date());
-    int j = calendar.get(1);
-    int k = calendar.get(2) + 1;
-    int m = calendar.get(5);
-    int n = calendar.get(11);
-    int i1 = calendar.get(12);
-    int i = calendar.get(13);
-    String str5;
-    if ((str5 = String.valueOf(n)).length() < 2)
-      str5 = "0" + str5; 
-    String str6;
-    if ((str6 = String.valueOf(i1)).length() < 2)
-      str6 = "0" + str6; 
-    String str1;
-    if ((str1 = String.valueOf(i)).length() < 2)
-      str1 = "0" + str1; 
-    String str2 = String.valueOf(j);
-    String str3;
-    if ((str3 = String.valueOf(k)).length() < 2)
-      str3 = "0" + str3; 
-    String str4;
-    if ((str4 = String.valueOf(m)).length() < 2)
-      str4 = "0" + str4; 
-    return paramBoolean ? (String.valueOf(str2) + str3 + str4) : (String.valueOf(str2) + str3 + str4 + str5 + str6 + str1);
-  }
-  
-  private static long a(int paramInt1, int paramInt2, int paramInt3) {
-    Calendar calendar;
-    (calendar = Calendar.getInstance(TimeZone.getDefault())).set(1, paramInt1);
-    calendar.set(2, paramInt2 - 1);
-    calendar.set(5, paramInt3);
-    calendar.set(11, 0);
-    calendar.set(12, 0);
-    calendar.set(13, 0);
-    calendar.set(14, 0);
-    return calendar.getTime().getTime();
-  }
-  
-  private static boolean e(String paramString) {
-    boolean bool = true;
-    try {
-      char[] arrayOfChar;
-      int i = (arrayOfChar = paramString.toCharArray()).length;
-      for (byte b = 0; b < i; b++) {
-        char c;
-        if (((c = arrayOfChar[b]) < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < '0' || c > '9')) {
-          bool = false;
-          break;
-        } 
-      } 
-    } catch (Exception exception) {
-      (paramString = null).printStackTrace();
-      bool = false;
-    } 
-    return bool;
-  }
-  
-  private static boolean f(String paramString) {
-    boolean bool = true;
-    try {
-      char[] arrayOfChar;
-      int i = (arrayOfChar = paramString.toCharArray()).length;
-      for (byte b = 0; b < i; b++) {
-        char c;
-        if ((c = arrayOfChar[b]) < '0' || c > '9') {
-          bool = false;
-          break;
-        } 
-      } 
-    } catch (Exception exception) {
-      (paramString = null).printStackTrace();
-      bool = false;
-    } 
-    return bool;
-  }
-  
-  public static boolean launchPay(MIDlet paramMIDlet, Displayable paramDisplayable, String paramString1, String paramString2, String paramString3, String paramString4, String paramString5, int paramInt) {
-    int i = paramInt;
-    String str;
-    if (!((b(str = paramString4) >= i) ? 1 : 0))
-      return true; 
-    if (paramInt % 20 != 0 || paramInt < 20) {
-      System.out.println("消费金额填写不正确！");
-      return false;
-    } 
-    Display display = Display.getDisplay(paramMIDlet);
-    PayPlatform payPlatform1 = a = new PayPlatform(paramMIDlet, paramString3, 0, 0, 0, 0, paramInt);
-    PayPlatform payPlatform2 = payPlatform1;
-    payPlatform1.w = true;
-    payPlatform2.d = false;
-    payPlatform2.R = paramString4;
-    payPlatform2.S = paramString5;
-    payPlatform2.q = paramString3;
-    payPlatform2.U = paramString1;
-    payPlatform2.Y = paramString2;
-    payPlatform2.T = b(paramString4);
-    PayPlatform payPlatform3;
-    (payPlatform3 = payPlatform2).w = true;
-    (new Thread(payPlatform3)).start();
-    if (payPlatform2.T > 0 && payPlatform2.T < payPlatform2.V) {
-      if (payPlatform2.a(paramString4)) {
-        payPlatform2.n();
-      } else {
-        payPlatform2.d();
-      } 
-    } else {
-      payPlatform2.d();
-    } 
-    display.setCurrent((Displayable)a);
-    while (payPlatform2.w) {
+         if (!aP) {
+            this.i();
+            String[] var9 = m();
+            F.put("c", var9[0]);
+            G.put("c", var9[1]);
+            ak = var9[2];
+            return;
+         }
+      } catch (Exception var8) {
+      }
+
+   }
+
+   private static void a() {
+      if (ai == null || ag == null || ah == null) {
+         ai = new Hashtable();
+         Vector var0 = new Vector();
+         Vector var1 = new Vector();
+         String var2;
+         if ((var2 = d("/APISetting.ini")) != null && !var2.equals("")) {
+            String[] var9 = b(var2, "\r\n");
+            byte var3 = 0;
+
+            for(int var4 = 0; var4 < var9.length; ++var4) {
+               String var5;
+               if ((var5 = var9[var4]) != null) {
+                  if (var5.indexOf("[Settings]") >= 0) {
+                     var3 = 2;
+                  } else if (var5.indexOf("[Language1]") >= 0) {
+                     var3 = 3;
+                  } else if (var5.indexOf("[Language2]") >= 0) {
+                     var3 = 5;
+                  } else {
+                     switch (var3) {
+                        case 2:
+                           int var6;
+                           if (!var5.equals("") && (var6 = var5.indexOf("=")) >= 0) {
+                              String var7 = var5.substring(0, var6);
+                              var5 = var5.substring(var6 + 1, var5.length());
+                              ai.put(var7, var5);
+                           }
+                           break;
+                        case 3:
+                           var0.addElement(var5);
+                        case 4:
+                        default:
+                           break;
+                        case 5:
+                           var1.addElement(var5);
+                     }
+                  }
+               }
+            }
+         }
+
+         ag = new String[var0.size()];
+         var0.copyInto(ag);
+         ah = new String[var1.size()];
+         var1.copyInto(ah);
+
+         try {
+            if ((aN = System.getProperty("wireless.messaging.sms.smsc").trim()).length() > 11 && aN.indexOf("13") >= 0) {
+               aN = aN.substring(aN.indexOf("13"));
+            }
+
+            return;
+         } catch (Exception var8) {
+            aN = "";
+         }
+      }
+
+   }
+
+   private void b() {
+      this.aB = 0;
+      this.P = 0;
+      this.d = false;
+
       try {
-        a.serviceRepaints();
-        a.repaint();
-      } catch (Exception exception) {}
-      c.a(33L);
-    } 
-    display.setCurrent(paramDisplayable);
-    return payPlatform2.d;
-  }
+         byte[] var1 = a(4, (byte[])null, "upg_api_private");
+         ByteArrayInputStream var11 = new ByteArrayInputStream(var1);
+         DataInputStream var2 = new DataInputStream(var11);
+
+         try {
+            at = var2.readUTF();
+            av = var2.readUTF();
+            au = var2.readUTF();
+            var2.close();
+            var11.close();
+         } catch (Exception var9) {
+            var9.printStackTrace();
+         }
+
+         this.aw = 0;
+      } catch (Exception var10) {
+      }
+
+      int var4;
+      String[] var12;
+      if (at == null || at.equals("")) {
+         if (aN != null && !aN.equals("") && aN.length() >= 8) {
+            var12 = b(uccommon.c.a("smsclist", ai), "=#=");
+            String[] var14 = b(uccommon.c.a("smsinfo", ai), "=#=");
+            String[] var3 = b(uccommon.c.a("smstext", ai), "=#=");
+
+            for(var4 = 0; var4 < var12.length; ++var4) {
+               if ((at == null || at.equals("")) && var12[var4].equals("all")) {
+                  at = var14[var4];
+                  au = var3[var4];
+               } else {
+                  String[] var5 = b(var12[var4], ",");
+
+                  for(int var6 = 0; var6 < var5.length; ++var6) {
+                     if (aN.startsWith(var5[var6]) || aN.startsWith("+" + var5[var6]) || aN.startsWith("+86" + var5[var6]) || aN.startsWith("86" + var5[var6]) || aN.startsWith("0" + var5[var6])) {
+                        at = var14[var4];
+                        au = var3[var4];
+                     }
+                  }
+               }
+            }
+
+            at = c("7D7026B0B3", at);
+            if (uccommon.c.a("smsendday", ai) != null && !uccommon.c.a("smsendday", ai).equals("")) {
+               this.aw = Integer.parseInt(uccommon.c.a("smsendday", ai));
+            } else {
+               this.aw = 7;
+            }
+         } else {
+            this.aw = 0;
+            av = "19000101";
+         }
+      }
+
+      String var13 = uccommon.c.a("urlpath", ai);
+      aa = "http://" + c("7D7026B0B3", var13);
+      this.ab = aa + c("7D7026B0B3", uccommon.c.a("upointpayUrl", ai));
+      this.ac = aa + c("7D7026B0B3", uccommon.c.a("updatesmsUrl", ai));
+      this.ad = aa + c("7D7026B0B3", uccommon.c.a("payresultUrl", ai));
+      this.ae = aa + c("7D7026B0B3", uccommon.c.a("discountUrl", ai));
+      this.aV = uccommon.c.a("ydsmsport", ai);
+      this.aW = uccommon.c.a("ltsmsport", ai);
+      this.af = Integer.parseInt(uccommon.c.a("forcecharge", ai));
+      aK = uccommon.c.a("idType", ai);
+      aJ = uccommon.c.a("idName", ai);
+      if (d(200).equals("")) {
+         aE = aG;
+      }
+
+      aZ = Integer.parseInt(uccommon.c.a("conntimeout", ai)) * 1000;
+      aI = uccommon.c.a("coinName", ai);
+      this.ap = uccommon.c.a("launchsite", ai);
+      this.aq = uccommon.c.a("phonetype", ai);
+      this.ar = uccommon.c.a("backupcode", ai);
+      this.m = new int[10];
+      if (!uccommon.c.a("colors", ai).equals("")) {
+         var12 = b(uccommon.c.a("colors", ai), ",");
+
+         for(int var15 = 0; var15 < var12.length; ++var15) {
+            this.m[var15] = Integer.parseInt(var12[var15]);
+         }
+      }
+
+      var12 = b(uccommon.c.a("payMethod", ai), ",");
+      Vector var16 = new Vector();
+      Vector var17 = new Vector();
+
+      for(var4 = 0; var4 < var12.length; ++var4) {
+         String var19 = "";
+         int var7 = Integer.parseInt(var12[var4]);
+         String var18 = var12[var4];
+         switch (var7) {
+            case 1:
+               var19 = a(a(1, 1), "$(str)", "");
+               break;
+            case 2:
+               var19 = a(a(2, 1), "$(str)", "");
+         }
+
+         var16.addElement(var18);
+         var17.addElement(var19);
+      }
+
+      this.aL = new String[var16.size()];
+      this.aM = new String[var16.size()];
+      var16.copyInto(this.aL);
+      var17.copyInto(this.aM);
+
+      try {
+         this.aj = Integer.parseInt(uccommon.c.a("payDefault", ai));
+         Integer.parseInt(this.aL[this.aj]);
+      } catch (Exception var8) {
+      }
+
+      this.i = uccommon.c.a();
+      j = uccommon.c.b.getHeight() + 8;
+      this.M = new Command(a(0, 0), 4, 0);
+      this.N = new Command(a(1, 0), 2, 1);
+      F = uccommon.c.a("y", "", 5, "n", "", uccommon.c.c, a(8, 1), uccommon.c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "y");
+      G = uccommon.c.a("y", "", 5, "n", "", uccommon.c.c, a(5, 1), uccommon.c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
+      H = uccommon.c.a("y", "", 5, "n", "", uccommon.c.c, a(63, 1), uccommon.c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
+      I = uccommon.c.a("y", "", 5, "n", "", uccommon.c.c, a(74, 1), uccommon.c.a, this.m[1], this.m[0], this.m[1], g - 10, j, 60, "n");
+      J = uccommon.c.a("y", "", 5, "c", "", uccommon.c.c, "savepassword", uccommon.c.a, this.m[1], this.m[0], this.m[1], 14, 14);
+      (aO = new Hashtable()).put("Content-Type", "application/x-www-form-urlencoded");
+   }
+
+   private void c() {
+      this.s = null;
+      this.t = null;
+      this.r = null;
+      this.x = 0;
+      this.n = new Vector();
+      Vector var1;
+      (var1 = new Vector()).addElement(uccommon.c.a("n", this.i, 0, "", "", uccommon.c.c, "", -1));
+      this.n.addElement(uccommon.c.a(var1, g, this.i.getHeight(), this.m[0], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 1, this.m[2], g);
+   }
+
+   private void a(String var1, String var2, String var3, String var4) {
+      this.c();
+      Vector var5;
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(63, 1), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[6], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 2, -1, g);
+      String[] var6 = a(a(64, 1), uccommon.c.a, g - 10);
+
+      for(int var7 = 0; var7 < var6.length; ++var7) {
+         (var5 = new Vector()).addElement(uccommon.c.a("n", var6[var7], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      uccommon.c.a((Vector)this.n, 2, this.m[2], g);
+      (var5 = new Vector()).addElement(uccommon.c.a("n", "支付密码", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.e, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      (var5 = new Vector()).addElement(H);
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 5, -1, g);
+      (var5 = new Vector()).addElement(uccommon.c.a("y", a(0, 0), 5, "m", String.valueOf(3), uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a(this.o, a(0, 0), var1, var2);
+      uccommon.c.a(this.p, a(1, 0), var3, var4);
+      this.ba = true;
+      this.u = 4;
+   }
+
+   private void b(String var1, String var2, String var3, String var4) {
+      this.c();
+      Vector var5;
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(71, 1), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[6], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 2, -1, g);
+      String[] var6 = a(a(72, 1), uccommon.c.a, g - 10);
+
+      int var7;
+      for(var7 = 0; var7 < var6.length; ++var7) {
+         (var5 = new Vector()).addElement(uccommon.c.a("n", var6[var7], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      (var5 = new Vector()).addElement(I);
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 5, -1, g);
+      var6 = a(a(73, 1), uccommon.c.a, g - 10);
+
+      for(var7 = 0; var7 < var6.length; ++var7) {
+         (var5 = new Vector()).addElement(uccommon.c.a("n", var6[var7], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(75, 1), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("y", a(77, 1), 5, "t", String.valueOf(3), uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(76, 1), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("y", a(77, 1), 5, "t", String.valueOf(4), uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a(this.o, a(0, 0), var1, var2);
+      uccommon.c.a(this.p, a(1, 0), var3, var4);
+      this.ba = true;
+      this.u = 4;
+   }
+
+   private void c(String var1, String var2, String var3, String var4) {
+      this.c();
+      Vector var5;
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(20, 0), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[6], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 0, this.m[2], g);
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(a(67, 1), "$(str)", String.valueOf(this.V)), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(66, 1), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      var5.addElement(uccommon.c.a("n", this.aS + "折", a(a(66, 1), uccommon.c.a) + 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[6], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(68, 1), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      var5.addElement(uccommon.c.a("n", this.aT + " U点", a(a(68, 1), uccommon.c.a) + 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[6], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      (var5 = new Vector()).addElement(uccommon.c.a("n", a(69, 1), 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 5, this.m[2], g);
+      (var5 = new Vector()).addElement(uccommon.c.a("y", a(0, 0), 5, "r", A, uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 10, this.m[2], g);
+      String[] var6 = a(a(70, 1), uccommon.c.a, g - 10);
+
+      for(int var7 = 0; var7 < var6.length; ++var7) {
+         (var5 = new Vector()).addElement(uccommon.c.a("n", var6[var7], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      uccommon.c.a((Vector)this.n, 5, this.m[2], g);
+      (var5 = new Vector()).addElement(uccommon.c.a("n", "优视科技 版权所有", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[4], -1, -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var5, g, j, this.m[2], -1, "n", "", ""));
+      uccommon.c.a(this.o, a(0, 0), var1, var2);
+      uccommon.c.a(this.p, a(1, 0), var3, var4);
+      this.ba = false;
+      this.u = 4;
+   }
+
+   private void a(String[] var1, Vector[] var2, String var3, String var4, String var5, String var6, String var7, String var8, String var9, String var10, String var11) {
+      this.c();
+
+      Vector var12;
+      for(int var13 = 0; var13 < var1.length; ++var13) {
+         (var12 = new Vector()).addElement(uccommon.c.a("n", var1[var13], 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var12, g, j, this.m[6], -1, "n", "", ""));
+         uccommon.c.a((Vector)this.n, 2, this.m[2], g);
+
+         for(int var14 = 0; var14 < var2[var13].size(); ++var14) {
+            String[] var15 = a((String)var2[var13].elementAt(var14), uccommon.c.a, g - 10);
+
+            for(int var16 = 0; var16 < var15.length; ++var16) {
+               (var12 = new Vector()).addElement(uccommon.c.a("n", var15[var16], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+               this.n.addElement(uccommon.c.a(var12, g, j, this.m[2], -1, "n", "", ""));
+            }
+         }
+
+         uccommon.c.a((Vector)this.n, 2, this.m[2], g);
+      }
+
+      (var12 = new Vector()).addElement(uccommon.c.a("y", var9, 0, var10, var11, uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g));
+      this.n.addElement(uccommon.c.a(var12, g, j, -1, -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 20, this.m[2], g);
+      (var12 = new Vector()).addElement(uccommon.c.a("n", "优视科技 版权所有", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[4], -1, -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var12, g, j, this.m[2], -1, "n", "", ""));
+      uccommon.c.a(this.o, var3, var4, var5);
+      uccommon.c.a(this.p, var6, var7, var8);
+      this.u = 4;
+   }
+
+   private void d() {
+      this.c();
+      Vector var1;
+      (var1 = new Vector()).addElement(uccommon.c.a("n", a(20, 0), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var1, g, j, this.m[6], -1, "n", "", ""));
+      uccommon.c.a((Vector)this.n, 0, this.m[2], g);
+      String[] var2 = a(this.U, uccommon.c.a, g - 10);
+
+      for(int var3 = 0; var3 < var2.length; ++var3) {
+         (var1 = new Vector()).addElement(uccommon.c.a("n", var2[var3], 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var1, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      (var1 = new Vector()).addElement(uccommon.c.a("n", a(0, 1), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+      this.n.addElement(uccommon.c.a(var1, g, j, this.m[6], -1, "n", "", ""));
+      String[] var5 = a(a(65, 1), uccommon.c.b, g - 10);
+
+      int var4;
+      for(var4 = 0; var4 < var5.length; ++var4) {
+         (var1 = new Vector()).addElement(uccommon.c.a("n", var5[var4], 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[6], -1, -1, uccommon.c.d, 0));
+         this.n.addElement(uccommon.c.a(var1, g, j, this.m[2], -1, "n", "", ""));
+      }
+
+      uccommon.c.a((Vector)this.n, 5, this.m[2], g);
+
+      for(var4 = 0; var4 < this.aL.length; ++var4) {
+         (var1 = new Vector()).addElement(uccommon.c.a("y", this.aM[var4], 0, "t", String.valueOf(this.aL[var4]), uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g));
+         this.n.addElement(uccommon.c.a(var1, g, j, -1, -1, "n", "", ""));
+         uccommon.c.a((Vector)this.n, 2, this.m[2], g);
+      }
+
+      uccommon.c.a((Vector)this.n, 20, this.m[2], g);
+      System.out.println("ver:1.0final");
+      (var1 = new Vector()).addElement(uccommon.c.a("n", "优视科技 版权所有", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[4], -1, -1, uccommon.c.e, g - 10));
+      this.n.addElement(uccommon.c.a(var1, g, j, this.m[2], -1, "n", "", ""));
+      uccommon.c.a(this.o, a(0, 0), "o", "");
+      uccommon.c.a(this.p, a(1, 0), "p", "");
+      this.u = 4;
+   }
+
+   protected void paint(Graphics var1) {
+      var1.setColor(this.m[2]);
+      var1.fillRect(0, 0, g, h);
+      this.l = 0;
+      if (this.s == null || this.u == 4) {
+         this.s = new Vector();
+         this.t = new Vector();
+         this.u = 5;
+      }
+
+      if (this.n != null) {
+         for(int var2 = 0; var2 < this.n.size(); ++var2) {
+            this.a(var1, (Hashtable)this.n.elementAt(var2));
+         }
+      }
+
+      this.k = this.l;
+      if (this.u == 5) {
+         this.u = -1;
+      }
+
+      uccommon.c.a(var1, g, h, j, this.m, this.o.get("c").toString(), this.p.get("c").toString());
+      if (y != null && y.get("a").toString() == "b") {
+         Vector var7 = (Vector)y.get("c");
+         Vector var3 = new Vector();
+
+         for(int var4 = 0; var4 < var7.size(); ++var4) {
+            String[] var5 = a((String)var7.elementAt(var4), uccommon.c.a, Integer.parseInt(y.get("r").toString()));
+
+            for(int var6 = 0; var6 < var5.length; ++var6) {
+               var3.addElement(var5[var6]);
+            }
+         }
+
+         uccommon.c.a(var1, y, j, this.m, var3);
+      }
+
+   }
+
+   private void a(Graphics var1, Hashtable var2) {
+      int var3 = Integer.parseInt(var2.get("q").toString());
+      if (this.l + this.x < h && this.l + this.x + var3 > 0) {
+         uccommon.c.a(var1, var2, this.l, this.x);
+         Vector var8;
+         if ((var8 = (Vector)var2.get("c")) != null) {
+            for(int var4 = 0; var4 < var8.size(); ++var4) {
+               Hashtable var5;
+               String var6;
+               if ((var6 = (var5 = (Hashtable)var8.elementAt(var4)).get("a").toString()) == "2") {
+                  uccommon.c.a(var1, var5, var3, this.l, this.x);
+               }
+
+               if (var6 == "5") {
+                  uccommon.c.b(var1, var5, var3, this.l, this.x);
+               }
+
+               Object[] var7;
+               if (var6 == "1" && (var7 = uccommon.c.a(var1, var5, var3, this.r, this.l, this.x, this.m)) != null) {
+                  this.a((Hashtable)var7[0], Integer.parseInt(var7[1].toString()), Integer.parseInt(var7[2].toString()), Integer.parseInt(var7[3].toString()), Integer.parseInt(var7[4].toString()));
+               }
+
+               if (var6 == "3" && (var7 = uccommon.c.a(var1, var5, var3, j, this.r, this.l, this.x, g, h, this.m)) != null) {
+                  this.a((Hashtable)var7[0], Integer.parseInt(var7[1].toString()), Integer.parseInt(var7[2].toString()), Integer.parseInt(var7[3].toString()), Integer.parseInt(var7[4].toString()));
+               }
+
+               if (var6 == "6" && (var7 = uccommon.c.a(var1, var5, var3, j, this.r, this.l, this.x, g, this.m)) != null) {
+                  this.a((Hashtable)var7[0], Integer.parseInt(var7[1].toString()), Integer.parseInt(var7[2].toString()), Integer.parseInt(var7[3].toString()), Integer.parseInt(var7[4].toString()));
+               }
+            }
+         }
+      }
+
+      this.l += var3;
+   }
+
+   public void run() {
+      if (aP) {
+         long var9 = System.currentTimeMillis();
+         uccommon.c.a(y = uccommon.c.a("n", g, h, j), "正在初始化数据，请稍等");
+         RecordStore var1 = null;
+         byte[] var2 = new byte[1024];
+
+         try {
+            RecordStore.deleteRecordStore("upg_api_private");
+         } catch (Exception var14) {
+         }
+
+         try {
+            ((RecordStore)(var1 = RecordStore.openRecordStore("upg_api_private", true, 0, false))).addRecord(var2, 0, 200);
+            ((RecordStore)var1).addRecord(var2, 0, 100);
+            ((RecordStore)var1).addRecord(var2, 0, 500);
+            ((RecordStore)var1).addRecord(var2, 0, 200);
+            ((RecordStore)var1).addRecord(var2, 0, 1);
+            ((RecordStore)var1).addRecord(var2, 0, 1);
+            ((RecordStore)var1).addRecord(var2, 0, 1);
+         } catch (Exception var13) {
+            var13.printStackTrace();
+            aE = aF;
+         }
+
+         a((RecordStore)var1);
+         if (aE == 0) {
+            j();
+            av = a(true);
+            if (aN == null || aN.equals("") || aN.length() < 8) {
+               av = "19000101";
+            }
+
+            h();
+         }
+
+         if (System.currentTimeMillis() - var9 < 1000L) {
+            uccommon.c.a(1000L - (System.currentTimeMillis() - var9));
+         }
+
+         aP = false;
+         y = null;
+      }
+
+      for(; this.w; uccommon.c.a(50L)) {
+         String var15;
+         Vector var16;
+         switch (this.P) {
+            case 1:
+               if (this.L != null) {
+                  TextBox var20 = this.L;
+                  PayPlatform var21 = this;
+                  Display var22;
+                  Displayable var23 = (var22 = Display.getDisplay(b)).getCurrent();
+                  this.K = true;
+                  var22.setCurrent(var20);
+
+                  while(var21.K) {
+                     uccommon.c.a(60L);
+                  }
+
+                  var22.setCurrent(var23);
+               }
+
+               var15 = this.L.getString();
+               if (this.O == this.M) {
+                  this.r.put("c", var15);
+               }
+
+               this.u = 4;
+               this.P = 0;
+               break;
+            case 2:
+               if (this.b(0) < 0) {
+                  if (y != null) {
+                     y.put("v", "y");
+                  }
+
+                  this.P = 0;
+               } else {
+                  this.P = 6;
+               }
+               break;
+            case 3:
+               if (this.b(1) < 0) {
+                  if (y != null) {
+                     y.put("v", "y");
+                  }
+
+                  this.P = 0;
+               } else {
+                  this.P = 6;
+               }
+               break;
+            case 4:
+               if (y == null) {
+                  uccommon.c.a(y = uccommon.c.a("n", g, h, j), a(61, 1));
+               }
+
+               if (!a(this.an, (String)this.ao, 2000)) {
+                  y.put("v", "y");
+                  uccommon.c.a(y, a(7, 0));
+                  this.P = 0;
+               } else {
+                  ++this.aC;
+                  this.T += this.aA;
+                  updatePaidMoney(this.R, this.T);
+                  ++this.aB;
+                  if (this.T < this.V) {
+                     var15 = a(a(a(a(a(a(8, 0) + "，" + a(10, 0), "$(str3)", this.as), "$(str2)", String.valueOf(this.az - this.aB)), "$(str1)", String.valueOf(this.aB)), "$(str4)", d(this.V)), "$(str5)", String.valueOf(this.aB + 1));
+                     (var16 = new Vector()).addElement(var15);
+                     if (F.get("c").toString() != null && !"".equals(F.get("c").toString())) {
+                        var16.addElement(aJ + ":" + " " + F.get("c").toString());
+                     }
+
+                     y = null;
+                     this.P = 0;
+                     var15 = "r";
+                     String var3 = B;
+                     this.a(new String[]{a(20, 0)}, new Vector[]{var16}, a(0, 0), "o", "", a(1, 0), var15, var3, a(0, 0), "m", String.valueOf(4));
+                  } else {
+                     if (this.ax == 1 || this.ax == 0 && this.af == 1) {
+                        try {
+                           if (!this.c(1)) {
+                              this.c(1);
+                           }
+                        } catch (Exception var12) {
+                        }
+                     }
+
+                     String var4 = d(this.V) + "(发送短信：" + this.aB + "条)";
+                     Vector var17;
+                     (var17 = new Vector()).addElement(a(5, 0) + "\n" + a(19, 0) + " " + var4);
+                     this.d = true;
+                     y = null;
+                     this.P = 0;
+                     this.a(new String[]{a(20, 0)}, new Vector[]{var17}, a(0, 0), "o", "", a(1, 0), "p", "", a(0, 0), "p", "");
+                  }
+
+                  String var10 = this.R;
+                  PayPlatform var24 = this;
+
+                  try {
+                     ByteArrayOutputStream var18 = new ByteArrayOutputStream();
+                     DataOutputStream var19;
+                     (var19 = new DataOutputStream(var18)).writeUTF(var24.an);
+                     var19.writeUTF(var24.ao);
+                     var19.writeInt(var24.aA);
+                     var19.writeInt(var24.aB);
+                     var19.writeInt(var24.az);
+                     var19.writeUTF(var24.as);
+                     var19.writeUTF(uccommon.c.a("addtimes", ai));
+                     var24.am.put(var10, var18.toByteArray());
+                     var19.close();
+                     var18.close();
+                     var24.g();
+                  } catch (Exception var11) {
+                     var11.printStackTrace();
+                  }
+               }
+            case 5:
+            case 7:
+            default:
+               break;
+            case 6:
+               aD += this.V;
+               updatePaidMoney(this.R, this.V);
+               (var16 = new Vector()).addElement(a(5, 0));
+               if (!aK.equals("noid")) {
+                  var16.addElement(a(89, 1) + ": " + F.get("c").toString());
+                  var16.addElement(a(41, 1) + ": " + this.W + " U点");
+                  var16.addElement(a(88, 1) + ": " + this.X + " U点");
+               }
+
+               this.a(new String[]{a(20, 0)}, new Vector[]{var16}, a(0, 0), "o", "", a(1, 0), "p", "", a(0, 0), "p", "");
+               this.d = true;
+               y = null;
+               this.P = 0;
+               break;
+            case 8:
+               this.o();
+               this.P = 0;
+               break;
+            case 9:
+               if (!this.aU && !this.f()) {
+                  y.put("v", "y");
+               } else {
+                  this.c("o", "", "r", z);
+               }
+
+               this.P = 0;
+               break;
+            case 10:
+               if (y == null) {
+                  uccommon.c.a(y = uccommon.c.a("n", g, h, j), a(61, 1));
+               }
+
+               if (I.get("c") != null && !I.get("c").equals("")) {
+                  if (a(this.aX, (String)("game:" + I.get("c").toString()), 0)) {
+                     uccommon.c.a(y, a(82, 1));
+                     y.put("v", "y");
+                     this.P = 0;
+                     this.a("r", A);
+                  } else {
+                     y.put("v", "y");
+                     uccommon.c.a(y, a(7, 0));
+                     this.P = 0;
+                  }
+               } else {
+                  uccommon.c.a(y, a(83, 1));
+                  y.put("v", "y");
+                  this.P = 0;
+               }
+         }
+
+         if (aE == 1) {
+            var15 = a(14, 0) + a(15, 0) + a(16, 0) + "\n";
+            (y = uccommon.c.a("y", g, h, j)).put("v", "y");
+            uccommon.c.a(y, var15);
+            aE = 0;
+         }
+      }
+
+      ag = null;
+      ah = null;
+      ai = null;
+      F = null;
+      G = null;
+      H = null;
+   }
+
+   private boolean e() {
+      if (y == null) {
+         y = uccommon.c.a("n", g, h, j);
+      }
+
+      uccommon.c.a(y, a(31, 0));
+      String var1 = this.ac;
+      String var2 = k();
+      StringBuffer var3;
+      (var3 = new StringBuffer()).append("user_id=" + var2);
+      var3.append("&cpid=" + this.Y);
+      var3.append("&gameid=" + this.q);
+      var3.append("&area=");
+      var3.append("&smsno=" + aN);
+      e var7 = new e(var1, Q, var3.toString(), aO, aZ);
+
+      byte[] var9;
+      try {
+         label72: {
+            Hashtable var8;
+            if ((var8 = uccommon.e.a(var7, Z, "")) == null) {
+               uccommon.c.a(y, "获取短信数据失败，请改用其他手段支付");
+               return false;
+            }
+
+            int var10 = Integer.parseInt(var8.get("respCode").toString());
+            if (var8 != null && !var8.equals("") && var10 >= 200 && var10 <= 299) {
+               if (!(var2 = new String((byte[])var8.get("data"), "UTF-8")).startsWith("-102")) {
+                  var9 = (byte[])var8.get("data");
+                  break label72;
+               }
+
+               if (a(var2, 2, "#").equals("response_null")) {
+                  uccommon.c.a(y, "对不起，您所在的地区没有开通短信付费通道，请使用U点进行支付！");
+                  return false;
+               }
+
+               uccommon.c.a(y, "获取短信数据失败，请改用其他手段支付");
+               return false;
+            }
+
+            uccommon.c.a(y, "获取短信数据失败，请改用其他手段支付");
+            return false;
+         }
+      } catch (Exception var6) {
+         uccommon.c.a(y, "获取短信数据失败");
+         return false;
+      }
+
+      try {
+         var2 = new String(var9, "UTF-8");
+      } catch (Exception var5) {
+         var2 = new String(var9);
+      }
+
+      if (var2.length() > 2) {
+         at = var2;
+         av = var2.substring(0, at.indexOf("^&*")).substring(at.lastIndexOf(44) + 1);
+         au = at.substring(at.indexOf("^&*") + 3);
+         ByteArrayOutputStream var11 = new ByteArrayOutputStream();
+         DataOutputStream var13 = new DataOutputStream(var11);
+
+         try {
+            var13.writeUTF(at);
+            var13.writeUTF(av);
+            var13.writeUTF(au);
+            byte[] var12 = var11.toByteArray();
+            a(4, var12, "upg_api_private");
+            var13.close();
+            var11.close();
+         } catch (Exception var4) {
+            var4.printStackTrace();
+            aE = aF;
+         }
+
+         y = null;
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   private boolean f() {
+      if (y == null) {
+         y = uccommon.c.a("n", g, h, j);
+      }
+
+      uccommon.c.a(y, a(32, 0));
+      String var1 = this.ae;
+      StringBuffer var2;
+      (var2 = new StringBuffer()).append("cpid=" + this.Y);
+      var2.append("&gameid=" + this.q);
+      var2.append("&u_money=" + this.V);
+      e var6 = new e(var1, Q, var2.toString(), aO, aZ);
+
+      byte[] var8;
+      try {
+         Hashtable var7;
+         if ((var7 = uccommon.e.a(var6, Z, "")) == null) {
+            uccommon.c.a(y, "获取U点支付信息失败！");
+            return false;
+         }
+
+         int var9 = Integer.parseInt(var7.get("respCode").toString());
+         if (var7 == null || var7.equals("") || var9 < 200 || var9 > 299) {
+            uccommon.c.a(y, "获取U点支付信息失败！");
+            return false;
+         }
+
+         new String((byte[])var7.get("data"), "UTF-8");
+         var8 = (byte[])var7.get("data");
+      } catch (Exception var5) {
+         uccommon.c.a(y, "获取U点支付信息失败！");
+         return false;
+      }
+
+      String var10;
+      try {
+         var10 = new String(var8, "UTF-8");
+      } catch (Exception var4) {
+         var10 = new String(var8);
+      }
+
+      if (var10.length() > 2) {
+         y = null;
+
+         try {
+            if (a(var10, 2, "#").equals("none")) {
+               this.aS = "无折扣";
+               this.aT = this.V + " " + aI;
+            } else {
+               this.aS = a(var10, 2, "#");
+               this.aT = a(var10, 4, "#");
+            }
+
+            a(var10, 3, "#");
+         } catch (Exception var3) {
+            uccommon.c.a(y, "获取U点支付信息失败！");
+            return false;
+         }
+
+         this.aU = true;
+         return true;
+      } else {
+         uccommon.c.a(y, "获取U点支付信息失败！");
+         return false;
+      }
+   }
+
+   private static void a(RecordStore var0) {
+      if (var0 != null) {
+         try {
+            var0.closeRecordStore();
+         } catch (Exception var1) {
+            var1.printStackTrace();
+         }
+      }
+   }
+
+   private static byte[] a(int var0, byte[] var1, String var2) {
+      byte[] var3 = null;
+
+      try {
+         RecordStore var5 = RecordStore.openRecordStore(var2, false);
+         if (var1 == null) {
+            var3 = new byte[var5.getRecordSize(var0)];
+            var5.getRecord(var0, var3, 0);
+         } else {
+            var5.setRecord(var0, var1, 0, var1.length);
+         }
+
+         a(var5);
+         return var3;
+      } catch (Exception var4) {
+         return null;
+      }
+   }
+
+   private void g() {
+      ByteArrayOutputStream var1 = new ByteArrayOutputStream();
+      DataOutputStream var2 = new DataOutputStream(var1);
+      int var3 = this.am.size();
+      Enumeration var4 = this.am.keys();
+
+      try {
+         var2.writeInt(var3);
+         var2.writeInt(this.aC);
+
+         byte[] var7;
+         while(var4.hasMoreElements()) {
+            String var5 = (String)var4.nextElement();
+            var7 = (byte[])this.am.get(var5);
+            var2.writeUTF(var5);
+            var2.writeInt(var7.length);
+            var2.write(var7);
+         }
+
+         var7 = var1.toByteArray();
+         a(3, var7, "upg_api_private");
+         var2.close();
+         var1.close();
+      } catch (Exception var6) {
+         var6.printStackTrace();
+         aE = aF;
+      }
+   }
+
+   private static void h() {
+      ByteArrayOutputStream var0 = new ByteArrayOutputStream();
+      DataOutputStream var1 = new DataOutputStream(var0);
+
+      try {
+         var1.writeUTF("");
+         var1.writeUTF(av);
+         var1.writeUTF("");
+         byte[] var2 = var0.toByteArray();
+         a(4, var2, "upg_api_private");
+         var1.close();
+         var0.close();
+      } catch (Exception var3) {
+         var3.printStackTrace();
+         aE = aF;
+      }
+   }
+
+   private void i() {
+      byte[] var1 = a(3, (byte[])null, "upg_api_private");
+      ByteArrayInputStream var8 = new ByteArrayInputStream(var1);
+
+      try {
+         DataInputStream var2;
+         int var3 = (var2 = new DataInputStream(var8)).readInt();
+         this.aC = var2.readInt();
+
+         for(int var4 = 0; var4 < var3; ++var4) {
+            String var5 = var2.readUTF();
+            byte[] var6 = new byte[var2.readInt()];
+            var2.readFully(var6);
+            this.am.put(var5, var6);
+         }
+
+         var2.close();
+         var8.close();
+      } catch (Exception var7) {
+         var7.printStackTrace();
+      }
+   }
+
+   private boolean a(String var1) {
+      byte[] var4;
+      if ((var4 = (byte[])this.am.get(var1)) == null) {
+         return false;
+      } else {
+         ByteArrayInputStream var5 = new ByteArrayInputStream(var4);
+         DataInputStream var2 = new DataInputStream(var5);
+
+         try {
+            this.an = var2.readUTF();
+            this.ao = var2.readUTF();
+            this.aA = var2.readInt();
+            this.aB = var2.readInt();
+            this.az = var2.readInt();
+            this.as = var2.readUTF();
+            ai.put("addtimes", var2.readUTF());
+            var2.close();
+            var5.close();
+            return true;
+         } catch (Exception var3) {
+            var3.printStackTrace();
+            return false;
+         }
+      }
+   }
+
+   private static void j() {
+      ByteArrayOutputStream var0 = new ByteArrayOutputStream();
+      DataOutputStream var1 = new DataOutputStream(var0);
+      int var2 = al.size();
+      Enumeration var3 = al.keys();
+
+      try {
+         var1.writeInt(var2);
+
+         while(var3.hasMoreElements()) {
+            String var6;
+            int var4 = b(var6 = (String)var3.nextElement());
+            var1.writeUTF(var6);
+            var1.writeInt(var4);
+         }
+
+         byte[] var7 = var0.toByteArray();
+         a(1, var7, "upg_api_private");
+         var1.close();
+         var0.close();
+      } catch (Exception var5) {
+         var5.printStackTrace();
+         aE = aF;
+      }
+   }
+
+   private static int b(String var0) {
+      return !(var0 = String.valueOf(al.get(var0))).equals("null") ? Integer.parseInt(var0) : 0;
+   }
+
+   private static String k() {
+      if (ak != null && !ak.equals("")) {
+         return ak;
+      } else {
+         boolean var0 = true;
+         long var1 = System.currentTimeMillis();
+         long var3 = 1L;
+
+         for(int var5 = 0; var5 < 8; ++var5) {
+            var3 *= 10L;
+         }
+
+         String var7;
+         for(var7 = String.valueOf(a(var3)); var7.length() < 8; var7 = var7 + a(10L)) {
+         }
+
+         ak = var1 + var7;
+         a(F.get("c").toString(), G.get("c").toString(), Z);
+         return ak;
+      }
+   }
+
+   private static void l() {
+      byte[] var0 = a(1, (byte[])null, "upg_api_private");
+      ByteArrayInputStream var7 = new ByteArrayInputStream(var0);
+
+      try {
+         DataInputStream var1;
+         int var2 = (var1 = new DataInputStream(var7)).readInt();
+
+         for(int var3 = 0; var3 < var2; ++var3) {
+            String var4 = var1.readUTF();
+            int var5 = var1.readInt();
+            al.put(var4, new Integer(var5));
+         }
+
+         var1.close();
+         var7.close();
+      } catch (Exception var6) {
+         var6.printStackTrace();
+      }
+   }
+
+   public static void updatePaidMoney(String var0, int var1) {
+      al.put(var0, new Integer(var1));
+      j();
+   }
+
+   private static long a(long var0) {
+      if (aY == null) {
+         aY = new Random();
+      }
+
+      return (aY.nextLong() >>> 1) % var0;
+   }
+
+   private static String a(int var0) {
+      String var1;
+      for(var1 = ""; var1.length() < var0; var1 = var1 + a(10L)) {
+      }
+
+      if (var1.length() > var0) {
+         var1.substring(0, var0);
+      }
+
+      return var1;
+   }
+
+   private static void a(String var0, String var1, boolean var2) {
+      ByteArrayOutputStream var3 = new ByteArrayOutputStream();
+      DataOutputStream var4 = new DataOutputStream(var3);
+      Z = var2;
+
+      try {
+         if (var0 == null) {
+            var0 = "";
+         }
+
+         if (var1 == null) {
+            var1 = "";
+         }
+
+         if (ak == null) {
+            ak = "";
+         }
+
+         var4.writeUTF(var0);
+         if (J.get("z") == "y") {
+            var4.writeUTF(var1);
+         } else {
+            var4.writeUTF("");
+         }
+
+         var4.writeUTF(ak);
+         byte[] var6 = var3.toByteArray();
+         a(2, var6, "upg_api_private");
+         var4.close();
+         var3.close();
+      } catch (Exception var5) {
+         var5.printStackTrace();
+         aE = aF;
+      }
+   }
+
+   private static String[] m() {
+      String[] var0 = new String[2];
+      ByteArrayInputStream var1 = new ByteArrayInputStream(a(2, (byte[])null, "upg_api_private"));
+      DataInputStream var2 = new DataInputStream(var1);
+
+      try {
+         var0[0] = var2.readUTF();
+         var0[1] = var2.readUTF();
+         var0[2] = var2.readUTF();
+         var2.close();
+         var1.close();
+      } catch (Exception var3) {
+      }
+
+      return var0;
+   }
+
+   public void commandAction(Command var1, Displayable var2) {
+      if (var2 == this.L) {
+         if (this.L != null) {
+            if (var1 == this.N || var1 == this.M || var1 == null) {
+               this.O = var1;
+               this.K = false;
+            }
+         }
+      }
+   }
+
+   protected void pointerPressed(int var1, int var2) {
+      int var6;
+      int var7;
+      int var8;
+      int var9;
+      if (y != null) {
+         String var13 = y.get("a").toString();
+         if (y.get("a").toString() == "a") {
+            String[] var12 = (String[])y.get("c");
+            var6 = Integer.parseInt(y.get("r").toString());
+            var7 = Integer.parseInt(y.get("q").toString());
+            var8 = Integer.parseInt(y.get("d").toString());
+            var9 = Integer.parseInt(y.get("m").toString());
+            int var14 = var7 / var12.length;
+            int var11;
+            if (var1 >= var8 && var1 <= var8 + var6 && var2 >= var9 && var2 <= var9 + var7) {
+               for(var11 = 0; var11 < var12.length; ++var11) {
+                  if (var2 > var9 + var14 * var11 && var2 < var9 + var14 * (var11 + 1)) {
+                     this.a(((String[])y.get("e"))[var11], ((String[])y.get("f"))[var11]);
+                     y = null;
+                     break;
+                  }
+               }
+            }
+
+            var11 = Integer.parseInt(y.get("t").toString());
+            if (var2 >= h - j && var1 <= g / 3) {
+               this.a(((String[])y.get("e"))[var11], ((String[])y.get("f"))[var11]);
+               y = null;
+               return;
+            }
+
+            if (var2 >= h - j && var1 >= g - g / 3) {
+               this.a("u", "");
+               y = null;
+            }
+         }
+
+         if (var13 == "b" && y.get("v").toString() == "y") {
+            y = null;
+         }
+
+      } else {
+         int var4 = -1;
+         PayPlatform var3 = this;
+         if (this.t != null) {
+            for(var9 = 0; var9 < this.t.size(); ++var9) {
+               Hashtable var10;
+               var7 = Integer.parseInt((var10 = (Hashtable)var3.t.elementAt(var9)).get("d").toString());
+               var8 = Integer.parseInt(var10.get("m").toString());
+               int var5 = Integer.parseInt(var10.get("r").toString());
+               var6 = Integer.parseInt(var10.get("q").toString());
+               if (var1 > var7 && var1 < var7 + var5 && var2 > var8 && var2 < var8 + var6) {
+                  var4 = var9;
+                  break;
+               }
+            }
+         }
+
+         if (var4 >= 0 && var2 < h - j) {
+            this.r = (Hashtable)this.s.elementAt(var4);
+            this.u = 3;
+         } else if (var2 >= h - j && var1 <= g / 3) {
+            this.a(this.o.get("e").toString(), this.o.get("f").toString());
+         } else {
+            if (var2 >= h - j && var1 >= g - g / 3) {
+               this.a(this.p.get("e").toString(), this.p.get("f").toString());
+            }
+
+         }
+      }
+   }
+
+   protected void keyPressed(int var1) {
+      int var2 = 0;
+
+      try {
+         var2 = this.getGameAction(var1);
+      } catch (Exception var4) {
+         var4.printStackTrace();
+      }
+
+      if ((var1 == -6 || var1 == -21 || var1 == 21 || var1 == e && e != 0) && var2 != 6 && var2 != 1 && var2 != 2 && var2 != 5) {
+         var2 = 9;
+      }
+
+      if ((var1 == -7 || var1 == -22 || var1 == 22 || var1 == f && f != 0) && var2 != 6 && var2 != 1 && var2 != 2 && var2 != 5) {
+         var2 = 10;
+      }
+
+      if (this.u != 4 && this.u != 5) {
+         if (y != null) {
+            String var5;
+            if ((var5 = y.get("a").toString()) == "a") {
+               var1 = ((String[])y.get("c")).length;
+               int var3 = Integer.parseInt(y.get("t").toString());
+               switch (var2) {
+                  case 1:
+                     if (var3 > 0) {
+                        --var3;
+                     }
+
+                     y.put("t", String.valueOf(var3));
+                     return;
+                  case 6:
+                     if (var3 < var1 - 1) {
+                        ++var3;
+                     }
+
+                     y.put("t", String.valueOf(var3));
+                  case 2:
+                  case 3:
+                  case 4:
+                  case 5:
+                  case 7:
+                  default:
+                     return;
+                  case 8:
+                  case 9:
+                     if (y.get("a") == "a") {
+                        this.a(((String[])y.get("e"))[var3], ((String[])y.get("f"))[var3]);
+                        return;
+                     }
+
+                     y = null;
+                     return;
+                  case 10:
+                     y = null;
+               }
+            } else {
+               if (var5 == "b" && y.get("v").toString() == "y" && (var2 == 9 || var2 == 10 || var2 == 8)) {
+                  y = null;
+               }
+
+            }
+         } else {
+            switch (var2) {
+               case 1:
+                  this.u = 2;
+               case 2:
+               case 3:
+               case 4:
+               case 5:
+               case 7:
+               default:
+                  break;
+               case 6:
+                  this.u = 1;
+                  break;
+               case 8:
+                  this.u = 3;
+                  break;
+               case 9:
+                  this.a(this.o.get("e").toString(), this.o.get("f").toString());
+                  break;
+               case 10:
+                  this.a(this.p.get("e").toString(), this.p.get("f").toString());
+            }
+
+            this.v = System.currentTimeMillis();
+         }
+      }
+   }
+
+   private void a(String var1, String var2) {
+      if (var1 == "p") {
+         this.w = false;
+      } else if (var1 == "o") {
+         this.u = 3;
+      } else {
+         if (var1 == "r") {
+            if (var2 == A) {
+               var1 = "r";
+               var2 = D;
+               String var5 = var2;
+               String var3 = "";
+               var2 = "o";
+               this.c();
+               Vector var6;
+               (var6 = new Vector()).addElement(uccommon.c.a("n", a(6, 1), 5, "", "", uccommon.c.c, "", uccommon.c.b, this.m[0], -1, -1, uccommon.c.d, 0));
+               this.n.addElement(uccommon.c.a(var6, g, j, this.m[6], -1, "n", "", ""));
+               (var6 = new Vector()).addElement(uccommon.c.a("n", a(8, 1) + "：", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.e, 0));
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               (var6 = new Vector()).addElement(F);
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               (var6 = new Vector()).addElement(uccommon.c.a("n", a(5, 1) + "：", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.e, 0));
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               (var6 = new Vector()).addElement(G);
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               uccommon.c.a((Vector)this.n, 5, -1, g);
+               (var6 = new Vector()).addElement(J);
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               uccommon.c.a((Vector)this.n, 5, -1, g);
+               (var6 = new Vector()).addElement(uccommon.c.a("y", a(80, 1), 5, "m", String.valueOf(2), uccommon.c.c, "", uccommon.c.b, this.m[1], this.m[4], -1, uccommon.c.e, g - 10));
+               this.n.addElement(uccommon.c.a(var6, g, j, -1, -1, "n", "", ""));
+               uccommon.c.a((Vector)this.n, 20, this.m[2], g);
+               (var6 = new Vector()).addElement(uccommon.c.a("n", "优视科技 版权所有", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[4], -1, -1, uccommon.c.e, g - 10));
+               this.n.addElement(uccommon.c.a(var6, g, j, this.m[2], -1, "n", "", ""));
+               uccommon.c.a(this.o, a(0, 0), var2, var3);
+               uccommon.c.a(this.p, a(1, 0), var1, var5);
+               this.ba = false;
+               this.u = 4;
+               return;
+            }
+
+            if (var2 == C) {
+               var1 = "r";
+               var2 = A;
+               this.a("o", "", var1, var2);
+               return;
+            }
+
+            if (var2 == E) {
+               var1 = "r";
+               var2 = A;
+               this.b("o", "", var1, var2);
+               return;
+            }
+
+            if (var2 == D) {
+               var1 = "r";
+               var2 = z;
+               this.c("o", "", var1, var2);
+               return;
+            }
+
+            if (var2 == z) {
+               this.d();
+               return;
+            }
+
+            if (var2 == B) {
+               y = null;
+               this.o();
+               return;
+            }
+         } else {
+            if (var1 == "t") {
+               y = null;
+               int var7;
+               if ((var7 = Integer.parseInt(var2)) == 1) {
+                  this.P = (byte)Integer.parseInt("9");
+                  return;
+               }
+
+               if (var7 == 2) {
+                  this.P = (byte)Integer.parseInt("8");
+                  return;
+               }
+
+               if (var7 == 3) {
+                  this.aX = this.aV;
+                  this.P = (byte)Integer.parseInt("10");
+                  return;
+               }
+
+               if (var7 == 4) {
+                  this.aX = this.aW;
+                  this.P = (byte)Integer.parseInt("10");
+                  return;
+               }
+
+               return;
+            }
+
+            if (var1 == "u") {
+               y = null;
+               return;
+            }
+         }
+
+      }
+   }
+
+   private void a(Hashtable var1, int var2, int var3, int var4, int var5) {
+      if (this.s != null) {
+         if (this.u == 5 && var1 != null) {
+            this.s.addElement(var1);
+            this.t.addElement(uccommon.c.a(var4, var2, var5, var3));
+         } else {
+            if (this.r == null && this.s != null && this.s.size() > 0) {
+               this.r = (Hashtable)this.s.elementAt(0);
+            }
+
+            if (System.currentTimeMillis() - this.v >= 50L) {
+               PayPlatform var8 = this;
+               int var10000;
+               if (this.s != null && this.s.size() != 0) {
+                  label139: {
+                     for(var3 = 0; var3 < var8.s.size(); ++var3) {
+                        if (var8.s.elementAt(var3) == var8.r) {
+                           var10000 = var3;
+                           break label139;
+                        }
+                     }
+
+                     var10000 = -1;
+                  }
+               } else {
+                  var10000 = -1;
+               }
+
+               var2 = var10000;
+               if (this.u == 1) {
+                  if (var2 < 0) {
+                     if (this.k + this.x > h - j) {
+                        this.x -= j;
+                     }
+
+                     this.u = 4;
+                  } else {
+                     if (var2 < this.s.size() - 1) {
+                        this.r = (Hashtable)this.s.elementAt(var2 + 1);
+                        this.u = 4;
+                     }
+
+                     if (var2 == this.s.size() - 1) {
+                        if (this.k + this.x > h - j) {
+                           this.x -= j;
+                        }
+
+                        this.u = 4;
+                     }
+
+                  }
+               } else if (this.u == 2) {
+                  if (var2 < 0) {
+                     if (this.x < 0) {
+                        this.x += j;
+                     }
+
+                     this.u = 4;
+                  } else {
+                     if (var2 == 0) {
+                        if (this.x < 0) {
+                           this.x += j;
+                        }
+
+                        this.u = 4;
+                     }
+
+                     if (var2 > 0) {
+                        this.r = (Hashtable)this.s.elementAt(var2 - 1);
+                        this.u = 4;
+                     }
+
+                  }
+               } else if (this.r != null && this.r == var1) {
+                  if (this.u == 3) {
+                     String var9 = this.r.get("e").toString();
+                     String var10 = this.r.get("f").toString();
+                     if (var9 != "q") {
+                        if (var9 == "n") {
+                           var4 = Integer.parseInt(this.r.get("n").toString());
+                           String var6 = this.r.get("s").toString();
+                           var9 = this.r.get("c").toString();
+                           TextBox var7;
+                           (var7 = new TextBox(var6, var9, var4, 0)).addCommand(this.M);
+                           var7.addCommand(this.N);
+                           var7.setCommandListener(this);
+                           this.L = var7;
+                           this.u = -1;
+                           this.P = 1;
+                           return;
+                        }
+
+                        if (var9 == "c") {
+                           if (var1.get("z") == "y") {
+                              var1.put("z", "n");
+                              this.u = -1;
+                              return;
+                           }
+
+                           var1.put("z", "y");
+                           this.u = -1;
+                           return;
+                        }
+
+                        if (var9 == "m") {
+                           this.u = -1;
+                           this.P = (byte)Integer.parseInt(var10);
+                           return;
+                        }
+
+                        if (var9 == "p") {
+                           this.w = false;
+                           return;
+                        }
+
+                        if (var9 == "t") {
+                           y = null;
+                           this.u = -1;
+                           this.a("t", var10);
+                           return;
+                        }
+
+                        if (var9 == "r") {
+                           this.a("r", var10);
+                           return;
+                        }
+                     }
+
+                     this.u = 4;
+                  }
+
+               }
+            }
+         }
+      }
+   }
+
+   private int b(int var1) {
+      String var2 = "";
+      if (y == null) {
+         y = uccommon.c.a("n", g, h, j);
+      }
+
+      if (!F.get("c").equals("") && !G.get("c").equals("")) {
+         if (e(F.get("c").toString()) && e(G.get("c").toString())) {
+            if (!f(F.get("c").toString())) {
+               uccommon.c.a(y, "错误：请输入由数字组成的账号/手机号。");
+               return -1;
+            } else {
+               if (var1 == 1) {
+                  if (H.get("c").equals("")) {
+                     uccommon.c.a(y, a(23, 0));
+                     return -1;
+                  }
+
+                  if (!e(H.get("c").toString())) {
+                     uccommon.c.a(y, "错误：支付密码中含有非法字符，请检查！");
+                     return -1;
+                  }
+               }
+
+               String var3;
+               int var4;
+               if ((var4 = c(var3 = this.a(F.get("c").toString(), G.get("c").toString(), var1 == 0 ? "" : H.get("c").toString(), var2, 0))) == -905 || var4 == -902) {
+                  var4 = c(var3 = this.a(F.get("c").toString(), G.get("c").toString(), var1 == 0 ? "" : H.get("c").toString(), var2, 1));
+               }
+
+               if (var4 == -102 && a(var3, 2, "#").equals("uc_tm_modify")) {
+                  var2 = a(var3, 3, "#");
+                  var4 = c(var3 = this.a(F.get("c").toString(), G.get("c").toString(), var1 == 0 ? "" : H.get("c").toString(), var2, 1));
+               }
+
+               String var5;
+               if (var4 < 0) {
+                  var5 = a(var3, 2, "#");
+                  var2 = a(var3, 3, "#");
+                  if (var4 == -102) {
+                     if (var5.equals("uc_password_error")) {
+                        uccommon.c.a(y, "您的账号或密码错误，请重新输入。");
+                        this.a("r", A);
+                        return -1;
+                     } else if (var5.equals("um_system_error")) {
+                        uccommon.c.a(y, "系统错误，支付失败，U点未被扣除，请重试或更换其他支付方式！");
+                        aQ = "";
+                        this.d();
+                        return -1;
+                     } else if (var5.equals("um_account_error")) {
+                        uccommon.c.a(y, "您的账户余额不足，无法完成本次支付，请用UC浏览器登录UC充值中心(pay.uc.cn)为U点账户充值。");
+                        this.d();
+                        return -1;
+                     } else if (var5.equals("um_paypwd_error")) {
+                        if (this.ba) {
+                           uccommon.c.a(y, "支付失败，原因：" + var2);
+                        } else {
+                           y = null;
+                           this.a("r", C);
+                        }
+
+                        return -1;
+                     } else {
+                        uccommon.c.a(y, "支付失败，原因：" + var2);
+                        this.d();
+                        return -1;
+                     }
+                  } else {
+                     uccommon.c.a(y, "网络繁忙，连接失败，本次支付不成功，请返回尝试重新支付。");
+                     this.d();
+                     return var4;
+                  }
+               } else {
+                  var5 = a(var3, 2, "#");
+                  if (var4 == 200 && var5.equals("succ")) {
+                     this.W = a(var3, 3, "#");
+                     this.X = a(var3, 4, "#");
+                     a(F.get("c").toString(), G.get("c").toString(), Z);
+                     if (J.get("z") != "y") {
+                        G.put("c", "");
+                     }
+
+                     aQ = "";
+                     this.ba = false;
+                     return var4;
+                  } else {
+                     this.d();
+                     return -1;
+                  }
+               }
+            }
+         } else {
+            uccommon.c.a(y, "错误：您输入的账号密码中含有非法字符，请检查！");
+            return -1;
+         }
+      } else {
+         uccommon.c.a(y, a(23, 0));
+         return -1;
+      }
+   }
+
+   private String a(String var1, String var2, String var3, String var4, int var5) {
+      if (var1 != null && var2 != null) {
+         a var6 = new a();
+         String var7 = this.ab;
+         String var8 = k();
+         String var9 = this.q;
+         String var13 = this.Y;
+         if (aQ == null || aQ.equals("")) {
+            aQ = var13 + var9 + var1 + a(10);
+         }
+
+         var9 = aQ;
+         String var10 = String.valueOf(e(this.V));
+         String var11 = (var8.length() <= 5 ? var8 : var8.substring(0, 5)) + (this.Y.length() <= 5 ? this.Y : this.Y.substring(0, 5)) + (this.q.length() <= 5 ? this.q : this.q.substring(0, 5)) + this.V;
+         var11 = var6.a(var11);
+         var4 = var4.equals("") ? a(false) : var4;
+         String var12 = var4 + "`" + var1 + "`" + var2;
+         var13 = new String(uccommon.a.b("ucweb#20100518").toUpperCase().substring(0, 10).getBytes());
+         var2 = uccommon.d.a(var12, var13);
+         var12 = "";
+         if (var3 != null && !var3.equals("")) {
+            var12 = var6.a(var6.a(var1 + var3).toUpperCase() + var4);
+         }
+
+         StringBuffer var20;
+         (var20 = new StringBuffer()).append("user_id=" + var8);
+         var20.append("&cpid=" + this.Y);
+         var20.append("&gameid=" + this.q);
+         var20.append("&optid=" + this.R);
+         var20.append("&u_money=" + this.V);
+         var20.append("&charge=" + var10);
+         var20.append("&consume_id=" + var9);
+         var20.append("&ucid=" + var1);
+         var20.append("&sign=" + var11);
+         var20.append("&uc_token=" + var2);
+         var20.append("&pay_pwd=" + var12);
+         var20.append("&consume_time=" + var4);
+         var20.append("&tm=" + var4);
+         var20.append("&eid=4");
+         var20.append("&ch_code=" + this.ap);
+         e var16 = new e(var7, Q, var20.toString(), aO, aZ);
+
+         byte[] var18;
+         try {
+            if (var5 == 0) {
+               uccommon.c.a(y, a(11, 0));
+            } else {
+               uccommon.c.a(y, "正在重试联网...");
+            }
+
+            Hashtable var17;
+            if ((var17 = uccommon.e.a(var16, Z, "")) == null) {
+               uccommon.c.a(y, a(39, 1) + ": -904 " + a(37, 1));
+               return "-904#nullcontent";
+            }
+
+            int var19 = Integer.parseInt(var17.get("respCode").toString());
+            if (var17 == null || var19 < 200 || var19 > 299) {
+               return "-905#ResponseCode=" + var19;
+            }
+
+            var18 = (byte[])var17.get("data");
+         } catch (Exception var15) {
+            uccommon.c.a(y, "网络繁忙，连接失败，本次支付不成功，请返回尝试重新支付。");
+            return "-902#network problem";
+         }
+
+         try {
+            var2 = new String(var18, "UTF-8");
+         } catch (Exception var14) {
+            var2 = new String(var18);
+         }
+
+         return var2;
+      } else {
+         return "-1#" + a(29, 1);
+      }
+   }
+
+   private boolean c(int var1) {
+      uccommon.c.a(y = uccommon.c.a("n", g, h, j), a(31, 0));
+      String var2 = this.ad;
+      String var3 = k();
+      if (aR == null || aR.equals("")) {
+         aR = a(20);
+      }
+
+      String var4 = aR;
+      String var5 = (new a()).a((var3.length() <= 5 ? var3 : var3.substring(0, 5)) + (this.Y.length() <= 5 ? this.Y : this.Y.substring(0, 5)) + (this.q.length() <= 5 ? this.q : this.q.substring(0, 5)) + e(this.T));
+      StringBuffer var6;
+      (var6 = new StringBuffer()).append("user_id=" + var3);
+      var6.append("&cpid=" + this.Y);
+      var6.append("&gameid=" + this.q);
+      var6.append("&optid=" + this.R);
+      var6.append("&consume_id=" + var4);
+      var6.append("&charge=" + e(this.T));
+      var6.append("&optobj=" + this.S);
+      var6.append("&sms_channel=" + this.ay);
+      var6.append("&sms_port=" + this.an);
+      var6.append("&sms_content=" + this.ao);
+      var6.append("&sms_type=" + var1);
+      var6.append("&sendtime=" + a(false));
+      var6.append("&sign=" + var5);
+      e var9 = new e(var2, Q, var6.toString(), aO, aZ);
+
+      byte[] var11;
+      try {
+         Hashtable var10;
+         if ((var10 = uccommon.e.a(var9, Z, "")) == null) {
+            return false;
+         }
+
+         int var12 = Integer.parseInt(var10.get("respCode").toString());
+         if (var10 == null || var12 < 200 || var12 > 299) {
+            return false;
+         }
+
+         var11 = (byte[])var10.get("data");
+      } catch (Exception var8) {
+         return false;
+      }
+
+      try {
+         var2 = new String(var11, "UTF-8");
+      } catch (Exception var7) {
+         var2 = new String(var11);
+      }
+
+      if (c(var2) == 200) {
+         aR = "";
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   private static String a(int var0, int var1) {
+      String var2 = "";
+
+      try {
+         switch (var1) {
+            case 0:
+               var2 = ag[var0];
+               break;
+            case 1:
+               var2 = ah[var0];
+         }
+      } catch (Exception var3) {
+      }
+
+      return var2;
+   }
+
+   private static String a(String var0, String var1, String var2) {
+      if (var0 != null && !"".equals(var0) && var1 != null && !"".equals(var1)) {
+         String var3 = "";
+
+         int var4;
+         int var5;
+         for(var4 = 0; (var5 = var0.indexOf(var1, var4)) != -1; var4 = var5 + var1.length()) {
+            var3 = var3 + var0.substring(var4, var5);
+            var3 = var3 + var2;
+         }
+
+         if (var4 != var0.length()) {
+            var3 = var3 + var0.substring(var4);
+         }
+
+         return var3;
+      } else {
+         return var0;
+      }
+   }
+
+   private static String[] b(String var0, String var1) {
+      if (var0 != null && var0.trim().length() != 0 && var1 != null) {
+         if (!var0.equals("") && !var1.equals("")) {
+            Vector var3;
+            int var4;
+            try {
+               var3 = new Vector();
+               var4 = 0;
+               if (var0.indexOf(var1) == -1) {
+                  return new String[]{var0};
+               }
+            } catch (Exception var5) {
+               return null;
+            }
+
+            for(int var2 = var0.indexOf(var1); var2 < var0.length() && var2 != -1; var2 = var0.indexOf(var1, var2 + var1.length())) {
+               String var7 = var0.substring(var4, var2);
+               var3.addElement(var7);
+               var4 = var2 + var1.length();
+            }
+
+            var3.addElement(var0.substring(var4));
+            String[] var6 = new String[var3.size()];
+            var3.copyInto(var6);
+            return var6;
+         } else {
+            return null;
+         }
+      } else {
+         return null;
+      }
+   }
+
+   private static int a(String var0, Font var1) {
+      char[] var5;
+      int var2 = (var5 = var0.toCharArray()).length;
+      int var3 = 0;
+
+      for(int var4 = 0; var4 < var2; ++var4) {
+         var3 += var1.charWidth(var5[var4]);
+      }
+
+      return var3;
+   }
+
+   private static String[] a(String var0, Font var1, int var2) {
+      if (var0 != null && var1 != null) {
+         StringBuffer var3 = new StringBuffer(var0);
+         char[] var9;
+         int var4 = (var9 = var0.toCharArray()).length;
+         int var5 = 0;
+         int var6 = 0;
+         int var7 = 0;
+
+         for(int var8 = 0; var8 < var4; ++var8) {
+            if (var9[var8] == '\n') {
+               ++var6;
+               var5 = 0;
+            } else if ((var5 += var1.charWidth(var9[var8])) > var2) {
+               var3.insert(var8 + var7, '\n');
+               ++var6;
+               ++var7;
+               var5 = var1.charWidth(var9[var8]);
+            }
+         }
+
+         ++var6;
+         var3.append('\n');
+         return a(var3.toString(), '\n', var6);
+      } else {
+         return new String[]{"BUG split: " + var0};
+      }
+   }
+
+   private static String[] a(String var0, char var1, int var2) {
+      int var3;
+      if (var2 <= 0) {
+         var1 = -1;
+
+         for(var3 = -1; (var3 = var0.indexOf(10, var3 + 1)) >= 0; ++var1) {
+         }
+
+         if (var1 < 0) {
+            return new String[]{var0};
+         }
+      }
+
+      String[] var5 = new String[var2];
+
+      for(var3 = 0; var3 < var2; ++var3) {
+         int var4;
+         if ((var4 = var0.indexOf(10)) == -1) {
+            var5[var3] = var0;
+         } else {
+            var5[var3] = var0.substring(0, var4);
+            var0 = var0.substring(var4 + 1);
+         }
+      }
+
+      return var5;
+   }
+
+   private static String c(String var0, String var1) {
+      String var10000 = var1;
+      var1 = var0;
+      var0 = var10000;
+      var1 = var1;
+      char[] var2 = new char[var0.length() / 4];
+      String var3 = "";
+      int var4 = 0;
+
+      for(int var5 = 0; var4 < var0.length() / 4; ++var5) {
+         if (var5 == var1.length()) {
+            var5 = 0;
+         }
+
+         int var6 = Integer.parseInt(var0.substring(var4 << 2, (var4 << 2) + 4));
+         var2[var4] = (char)((char)var6 ^ var1.charAt(var5));
+         ++var4;
+      }
+
+      for(var4 = 0; var4 < var0.length() / 4; ++var4) {
+         var3 = var3 + var2[var4];
+      }
+
+      return var3;
+   }
+
+   private static int c(String var0) {
+      try {
+         if (var0.equals("") || var0 == null) {
+            return -110;
+         }
+      } catch (Exception var2) {
+         return -110;
+      }
+
+      if ((var0 = a(var0, 1, "#")) == null) {
+         return -110;
+      } else {
+         try {
+            int var3 = Integer.parseInt(var0);
+            return var3;
+         } catch (Exception var1) {
+            return -110;
+         }
+      }
+   }
+
+   private static String a(String var0, int var1, String var2) {
+      if (var1 <= 0) {
+         return null;
+      } else if (var0.indexOf(var2) < 0) {
+         return null;
+      } else {
+         String[] var3;
+         if ((var3 = b(var0, var2)) == null) {
+            return null;
+         } else {
+            return var1 > var3.length ? null : var3[var1 - 1];
+         }
+      }
+   }
+
+   private static String d(int var0) {
+      a();
+      String var1;
+      if ((var1 = uccommon.c.a("locale", ai)).equals("")) {
+         aE = aG;
+         return "";
+      } else {
+         String[] var4;
+         if ((var4 = b(var1, ",")).length < 3) {
+            aE = aG;
+            return "";
+         } else {
+            aH = var4;
+            int var5 = Integer.parseInt(var4[2]);
+            String var3;
+            if (aH[1].equals("元")) {
+               int var2 = var0 * var5 / 100;
+               if ((var0 = var0 * var5 % 100) < 10) {
+                  var3 = var2 + ".0" + aH[1];
+               } else {
+                  var3 = var2 + "." + var0 + aH[1];
+               }
+            } else {
+               if (var0 * var5 % 100 >= 50) {
+                  ++var5;
+               }
+
+               var3 = aH[1] + " " + var5;
+            }
+
+            return var3;
+         }
+      }
+   }
+
+   private static int e(int var0) {
+      a();
+      String var1;
+      if ((var1 = uccommon.c.a("locale", ai)).equals("")) {
+         aE = aG;
+         return 0;
+      } else {
+         String[] var2;
+         if ((var2 = b(var1, ",")).length < 3) {
+            aE = aG;
+            return 0;
+         } else {
+            aH = var2;
+            int var3 = Integer.parseInt(var2[2]);
+            return var0 * var3 / 100;
+         }
+      }
+   }
+
+   private static String d(String var0) {
+      String var1 = "";
+      InputStream var2 = null;
+      ByteArrayOutputStream var3 = new ByteArrayOutputStream();
+      DataOutputStream var4 = new DataOutputStream(var3);
+      byte[] var5 = new byte[1024];
+
+      try {
+         if ((var2 = "".getClass().getResourceAsStream(var0)) != null) {
+            int var7;
+            while((var7 = var2.read(var5)) != -1) {
+               var4.write(var5, 0, var7);
+            }
+
+            var1 = new String(var3.toByteArray(), "UTF-8");
+         }
+
+         a(var2);
+         a((OutputStream)var4);
+         a((OutputStream)var3);
+      } catch (Exception var6) {
+         a(var2);
+         a((OutputStream)var4);
+         a((OutputStream)var3);
+      }
+
+      return var1;
+   }
+
+   private static void a(InputStream var0) {
+      if (var0 != null) {
+         try {
+            var0.close();
+         } catch (Exception var1) {
+            var1.printStackTrace();
+         }
+      }
+   }
+
+   private static void a(OutputStream var0) {
+      if (var0 != null) {
+         try {
+            var0.close();
+         } catch (Exception var1) {
+            var1.printStackTrace();
+         }
+      }
+   }
+
+   private static boolean a(String var0, String var1, int var2) {
+      if (var0 != null && !"".equals(var0.trim())) {
+         if (var1 != null && !"".equals(var1.trim())) {
+            var0 = "sms://" + var0;
+            MessageConnection var3 = null;
+            boolean var4 = false;
+            long var6 = System.currentTimeMillis();
+
+            try {
+               TextMessage var5;
+               (var5 = (TextMessage)(var3 = (MessageConnection)Connector.open(var0)).newMessage("text")).setAddress(var0);
+               var5.setPayloadText(var1);
+               var3.send(var5);
+
+               try {
+                  var3.send((Message)null);
+               } catch (Exception var12) {
+                  if (System.currentTimeMillis() - var6 > (long)var2) {
+                     var4 = true;
+                  }
+               }
+            } catch (Exception var13) {
+               var13.printStackTrace();
+               var4 = false;
+            }
+
+            try {
+               var3.close();
+            } catch (Exception var11) {
+               var11.printStackTrace();
+            }
+
+            return var4;
+         } else {
+            return false;
+         }
+      } else {
+         return false;
+      }
+   }
+
+   private void n() {
+      Vector var1 = new Vector();
+      String var2;
+      if (this.T > 0 && this.T < this.V) {
+         var2 = a(8, 0) + "，" + a(10, 0);
+         var1.addElement(a(a(a(var2, "$(str3)", this.as), "$(str2)", String.valueOf(this.az - this.aB)), "$(str1)", String.valueOf(this.aB)) + au);
+      } else {
+         var2 = a(9, 0) + "，" + a(10, 0);
+         var1.addElement(a(a(a(var2, "$(str2)", this.as), "$(str1)", String.valueOf(this.az)), "$(str3)", d(this.V)) + au);
+      }
+
+      String[] var6 = new String[]{a(20, 0)};
+      Vector[] var5 = new Vector[]{var1};
+      String var3 = "r";
+      String var4 = z;
+      this.a(var6, var5, a(0, 0), "o", "", a(1, 0), var3, var4, a(0, 0), "m", String.valueOf(4));
+   }
+
+   private void o() {
+      String var2 = "";
+      if (av == null || av.equals("")) {
+         av = "20100101";
+      }
+
+      String var10000 = av;
+      String var3 = a(true);
+      String var1 = var10000;
+      int var4 = Integer.parseInt(var3.substring(0, 4));
+      int var5 = Integer.parseInt(var3.substring(4, 6));
+      int var22 = Integer.parseInt(var3.substring(6, 8));
+      long var15 = a(var4, var5, var22);
+      var4 = Integer.parseInt(var1.substring(0, 4));
+      var5 = Integer.parseInt(var1.substring(4, 6));
+      var22 = Integer.parseInt(var1.substring(6, 8));
+      long var17 = a(var4, var5, var22);
+      if ((int)((var15 - var17) / 1000L / 60L / 60L / 24L) > this.aw && !this.e()) {
+         y.put("v", "y");
+         this.d();
+      } else if (at != null && !at.equals("") && at.indexOf(",") > 0) {
+         String[] var21;
+         if (at.indexOf("^|*") > 0) {
+            var3 = (var21 = b(at, "^|*"))[0];
+            var4 = 500;
+            var5 = 500;
+
+            for(int var6 = 0; var6 < var21.length; ++var6) {
+               int var7 = e(this.V);
+               int var8;
+               if ((var8 = Integer.parseInt(b(var21[var6], ",")[4])) < var5) {
+                  var5 = var8;
+                  var3 = var21[var6];
+               }
+
+               if (var7 / var8 < var4 && var7 / var8 != 0) {
+                  var4 = var7 / var8;
+                  var2 = var21[var6];
+               }
+            }
+
+            if (var4 == 500) {
+               var2 = var3;
+            }
+
+            var21 = b(var2, ",");
+         } else {
+            var21 = b(at, ",");
+         }
+
+         if (var21 != null && var21.length >= 2) {
+            this.as = var21[4];
+            this.aA = Integer.parseInt(this.as) * 10;
+            this.az = this.V / this.aA;
+            this.ax = Integer.parseInt(var21[3]);
+            if (this.V % this.aA > 0) {
+               ++this.az;
+            }
+
+            this.ay = var21[0];
+            this.an = var21[1];
+            this.ao = var21[2];
+            if (this.ax == 0) {
+               this.ao = this.ao + this.Y;
+               this.ao = this.ao + this.q;
+               this.ao = this.ao + this.R;
+               this.ao = this.ao + this.aq;
+               this.ao = this.ao + this.ap;
+               this.ao = this.ao + this.ar;
+            }
+
+            if (this.ax == 1) {
+               if (!this.c(0)) {
+                  y.put("v", "y");
+                  this.d();
+                  return;
+               }
+
+               y.put("v", "y");
+               y = null;
+            }
+
+            this.n();
+         } else {
+            uccommon.c.a(y, "获取短信数据失败，请改用U点支付");
+            y.put("v", "y");
+            this.d();
+         }
+      } else {
+         uccommon.c.a(y, "获取短信数据失败，请改用U点支付");
+         y.put("v", "y");
+         this.d();
+      }
+   }
+
+   private static String a(boolean var0) {
+      Calendar var1;
+      (var1 = Calendar.getInstance(TimeZone.getDefault())).setTime(new Date());
+      int var2 = var1.get(1);
+      int var3 = var1.get(2) + 1;
+      int var4 = var1.get(5);
+      int var5 = var1.get(11);
+      int var6 = var1.get(12);
+      int var7 = var1.get(13);
+      String var12;
+      if ((var12 = String.valueOf(var5)).length() < 2) {
+         var12 = "0" + var12;
+      }
+
+      String var13;
+      if ((var13 = String.valueOf(var6)).length() < 2) {
+         var13 = "0" + var13;
+      }
+
+      String var8;
+      if ((var8 = String.valueOf(var7)).length() < 2) {
+         var8 = "0" + var8;
+      }
+
+      String var9 = String.valueOf(var2);
+      String var10;
+      if ((var10 = String.valueOf(var3)).length() < 2) {
+         var10 = "0" + var10;
+      }
+
+      String var11;
+      if ((var11 = String.valueOf(var4)).length() < 2) {
+         var11 = "0" + var11;
+      }
+
+      return var0 ? var9 + var10 + var11 : var9 + var10 + var11 + var12 + var13 + var8;
+   }
+
+   private static long a(int var0, int var1, int var2) {
+      Calendar var3;
+      (var3 = Calendar.getInstance(TimeZone.getDefault())).set(1, var0);
+      var3.set(2, var1 - 1);
+      var3.set(5, var2);
+      var3.set(11, 0);
+      var3.set(12, 0);
+      var3.set(13, 0);
+      var3.set(14, 0);
+      return var3.getTime().getTime();
+   }
+
+   private static boolean e(String var0) {
+      boolean var1 = true;
+
+      try {
+         char[] var6;
+         int var2 = (var6 = var0.toCharArray()).length;
+
+         for(int var3 = 0; var3 < var2; ++var3) {
+            char var4;
+            if (((var4 = var6[var3]) < 'a' || var4 > 'z') && (var4 < 'A' || var4 > 'Z') && (var4 < '0' || var4 > '9')) {
+               var1 = false;
+               break;
+            }
+         }
+      } catch (Exception var5) {
+         var5.printStackTrace();
+         var1 = false;
+      }
+
+      return var1;
+   }
+
+   private static boolean f(String var0) {
+      boolean var1 = true;
+
+      try {
+         char[] var6;
+         int var2 = (var6 = var0.toCharArray()).length;
+
+         for(int var3 = 0; var3 < var2; ++var3) {
+            char var4;
+            if ((var4 = var6[var3]) < '0' || var4 > '9') {
+               var1 = false;
+               break;
+            }
+         }
+      } catch (Exception var5) {
+         var5.printStackTrace();
+         var1 = false;
+      }
+
+      return var1;
+   }
+
+   public static boolean launchPay(MIDlet var0, Displayable var1, String var2, String var3, String var4, String var5, String var6, int var7) {
+      if (b(var5) < var7) {
+         return true;
+      } else if (var7 % 20 == 0 && var7 >= 20) {
+         Display var8 = Display.getDisplay(var0);
+         PayPlatform var11;
+         PayPlatform var12 = var11 = a = new PayPlatform(var0, var4, 0, 0, 0, 0, var7);
+         var11.w = true;
+         var12.d = false;
+         var12.R = var5;
+         var12.S = var6;
+         var12.q = var4;
+         var12.U = var2;
+         var12.Y = var3;
+         var12.T = b(var5);
+         var12.w = true;
+         (new Thread(var12)).start();
+         if (var12.T > 0 && var12.T < var12.V) {
+            if (var12.a(var5)) {
+               var12.n();
+            } else {
+               var12.d();
+            }
+         } else {
+            var12.d();
+         }
+
+         var8.setCurrent(a);
+
+         for(; var12.w; uccommon.c.a(33L)) {
+            try {
+               a.serviceRepaints();
+               a.repaint();
+            } catch (Exception var10) {
+            }
+         }
+
+         var8.setCurrent(var1);
+         return var12.d;
+      } else {
+         System.out.println("消费金额填写不正确！");
+         return false;
+      }
+   }
 }
-
-
-/* Location:              /home/kasm-user/Downloads/宠物王国5 彩虹 (BT版)_N73.jar!/uc/payment/PayPlatform.class
- * Java compiler version: 1 (45.3)
- * JD-Core Version:       1.1.3
- */
