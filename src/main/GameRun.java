@@ -635,7 +635,7 @@ public class GameRun extends GameRun_F {
       Ms.skip = 0;
       this.buyItem = Ms.i().create2Array(data);
       this.buyPrice = Ms.i().createShort2Array(data, 0);
-      byte[] data = null;
+      data = null;
    }
 
    private short getPrice(int type, int select, boolean bb) {
@@ -889,7 +889,7 @@ public class GameRun extends GameRun_F {
    private void drawItemList(int x, int y, int w, int show_num, byte[] sel, int itemType, int length, int mode) {
       byte i = sel[1];
       byte fh = 25;
-      int wh = false;
+      int wh_temp = y + 2;
       int wh = y + 2;
       String str = "";
       Ui.i().drawListKY(show_num, x - 4, y, w, 4, fh + 1, -1, sel[0] - sel[1], 4, 2);
@@ -1492,7 +1492,7 @@ public class GameRun extends GameRun_F {
          Ms.i();
          Ms.skip = 0;
          this.monInfo_dir = Ms.i().create2Array(data);
-         Object var3 = null;
+         data = null;
       }
 
       if (bb) {
@@ -1598,8 +1598,8 @@ public class GameRun extends GameRun_F {
 
       this.drawMonPro(monsters, lx, ly);
       lx = 181;
-      short ly = 0;
-      short lw = true;
+      ly = 0;
+      lw = 0;
       if (this.t_length != 0) {
          this.drawMonList(monsters, lx + 2, ly + 13, this.list_rows, this.t_length, this.select[0]);
       }
@@ -1789,10 +1789,10 @@ public class GameRun extends GameRun_F {
       Ui.i().fillRectB();
       short lx = 1;
       short ly = 108;
-      short magicType = false;
+      short magicType = 0;
       this.drawBG0(this.bg_c, lx, ly, 5, 223);
       if (mode == 1 && this.b_c > 0) {
-         short magicType = 5;
+         magicType = 5;
          if (this.b_c == 1 && this.drawMagicC(magicType, magicType, magicType == 5 ? 6 : 1, 177, 97, 0)) {
             this.initMonStream(2, this.mList_id[this.myMonsters[id].monster[0]][0], 1);
             this.b_c = 2;
@@ -1953,7 +1953,7 @@ public class GameRun extends GameRun_F {
          }
       }
 
-      byte evolve = true;
+      evolve = 1;
       return -1;
    }
 
@@ -3305,7 +3305,7 @@ public class GameRun extends GameRun_F {
       this.npc2ImageType = Ms.i().createArray(data);
       this.map.boatCourse = Ms.i().create2Array(data);
       this.nidusList = Ms.i().create2Array(data);
-      byte[] data = null;
+      data = null;
    }
 
    private void data_null() {
@@ -3849,9 +3849,8 @@ public class GameRun extends GameRun_F {
       }
 
       g.setColor(lineColor);
-      int over = false;
+      int over = 0;
       int grid = 1;
-      int over;
       if (dir == 1) {
          over = y + height;
 
@@ -4499,7 +4498,6 @@ public class GameRun extends GameRun_F {
    }
 
    public void initSkillList(Monster mon) {
-      byte temp = false;
       this.skill_list[8] = 0;
 
       byte i;

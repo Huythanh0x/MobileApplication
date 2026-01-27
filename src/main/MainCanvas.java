@@ -478,8 +478,8 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
          }
       }
 
-      int[] vertexX = null;
-      int[] vertexY = null;
+      int[] vertexX_temp = null;
+      int[] vertexY_temp = null;
    }
 
    protected void paintMobileLogo() {

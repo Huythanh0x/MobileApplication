@@ -174,7 +174,7 @@ public class Map implements Constants_H, Key_H {
          byte[] one = new byte[]{58, 9, 16, 2, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, -1};
          info = one;
          Ms.i().rmsOptions(2, one, 2);
-         byte[] one = null;
+         one = null;
          this.event_now_list = new short[70][];
          Ms.i().rmsOptions(11, Ms.i().getEventNowData(this.event_now_list), 2);
       } else {
@@ -190,7 +190,7 @@ public class Map implements Constants_H, Key_H {
       this.gr.money = Ms.i().getInt(info, 7);
       this.gr.coin = Ms.i().getInt(info, 11);
       this.anole_type = info[15];
-      byte[] info = null;
+      info = null;
    }
 
    public void map_saveGame() {
@@ -205,7 +205,7 @@ public class Map implements Constants_H, Key_H {
       Ms.i().putInt(this.gr.coin, info, 11);
       info[15] = this.anole_type;
       Ms.i().rmsOptions(2, info, 2);
-      byte[] info = null;
+      info = null;
    }
 
    public void save() {
@@ -263,10 +263,10 @@ public class Map implements Constants_H, Key_H {
 
          this.event_now = this.event_now_list[this.mapNo];
          this.event = new byte[this.eventCount][];
-         short length_ = false;
+         short length_ = 0;
 
          for(i = 0; i < this.eventCount; ++i) {
-            short length_ = (short)(data[start_pos++] << 8 | data[start_pos++] & 255);
+            length_ = (short)(data[start_pos++] << 8 | data[start_pos++] & 255);
             this.event[i] = new byte[length_];
             System.arraycopy(data, start_pos, this.event[i], 0, this.event[i].length);
             start_pos += length_;
@@ -334,7 +334,7 @@ public class Map implements Constants_H, Key_H {
       Ms.skip = 0;
       Ms.i();
       Ms.skip2 = 0;
-      byte[] Datas = this.initData(this.gr.createData(0), this.mapNo);
+      Datas = this.initData(this.gr.createData(0), this.mapNo);
       this.npcPos = this.createNpcPos(Datas, this.npcPos);
       if (this.mapInfo[this.mapNo * 2] > 0 && this.mapTemp[this.mapNo] == null) {
          this.mapTemp[this.mapNo] = Ms.i().rmsOptions(13 + this.mapNo, (byte[])null, 1);
@@ -438,7 +438,7 @@ public class Map implements Constants_H, Key_H {
    }
 
    public byte[] createNpcPos(byte[] data, byte[] npc) {
-      byte[] npc = null;
+      npc = null;
       Ms.i();
       npc = new byte[data[Ms.skip++]];
 
@@ -1258,8 +1258,6 @@ public class Map implements Constants_H, Key_H {
    private void runEvent_srcMove(int i) {
       this.my.state = 10;
       int event_temp = this.event[i][this.event_now[i] + 2] - 1;
-      int x = false;
-      int y = false;
       int x;
       int y;
       if (event_temp == -1) {
@@ -1976,21 +1974,21 @@ public class Map implements Constants_H, Key_H {
 
    public void addAnole(int i) {
       if (i == 13 || i == 34 || i == 49 || i == 66 || i == 82) {
-         byte i;
+         byte type;
          if (i == 13) {
-            i = 0;
+            type = 0;
          } else if (i == 34) {
-            i = 1;
+            type = 1;
          } else if (i == 49) {
-            i = 2;
+            type = 2;
          } else if (i == 66) {
-            i = 3;
+            type = 3;
          } else {
-            i = 4;
+            type = 4;
          }
 
          byte[] var10000 = this.gr.rmsOther;
-         var10000[2] = (byte)(var10000[2] | 1 << i);
+         var10000[2] = (byte)(var10000[2] | 1 << type);
       }
    }
 
@@ -2105,7 +2103,6 @@ public class Map implements Constants_H, Key_H {
 
    private byte checkSoftKey(int A_X, int A_Y, int _speed_x, int _speed_y) {
       if (A_X + _speed_x >= 0 && A_X + _speed_x < this.cols * 20 && A_Y + _speed_y >= 0 && A_Y + _speed_y < this.rows * 20) {
-         byte type = false;
          byte type = this.checkIfNpc(this.npc[0], A_X + _speed_x, A_Y + _speed_y);
          if (this.my.state == 0 && type != -1) {
             if (this.anole_type == 1 && this.npc[0][type].other[8] == 4) {
@@ -2240,7 +2237,6 @@ public class Map implements Constants_H, Key_H {
    }
 
    private boolean isAnole(int _x, int _y, int _anole_type) {
-      byte _anole_type;
       if (_anole_type == 0) {
          _anole_type = 3;
       } else if (_anole_type == 2) {
@@ -2580,7 +2576,6 @@ public class Map implements Constants_H, Key_H {
    }
 
    private void drawMiniMap() {
-      short x = true;
       short fh = 24;
       Ui.i().fillRectB();
       Ui.i().drawK2(1, 2, 238, 318, 0);
@@ -2681,7 +2676,7 @@ public class Map implements Constants_H, Key_H {
       Ms.skip = 0;
       this.mapdataArea = Ms.i().create2Array(data);
       this.mapdataMap = Ms.i().create2Array(data);
-      byte[] data = null;
+      data = null;
       this.my.state = 17;
       this.showArea = -1;
       this.myMiniMap = -1;
@@ -2727,7 +2722,7 @@ public class Map implements Constants_H, Key_H {
          this.bMission = info;
       }
 
-      byte[] info = null;
+      info = null;
       if (null == this.bMission) {
          this.bMission = new byte[20];
       }
@@ -2784,7 +2779,7 @@ public class Map implements Constants_H, Key_H {
 
    public void setMission(int id, boolean bb) {
       byte type = (byte)(id / 8);
-      int id = (byte)(id % 8);
+      id = (byte)(id % 8);
       byte[] var10000;
       if (bb) {
          var10000 = this.bMission;
@@ -2799,7 +2794,7 @@ public class Map implements Constants_H, Key_H {
 
    private boolean isMission(int id) {
       byte type = (byte)(id / 8);
-      int id = (byte)(id % 8);
+      id = (byte)(id % 8);
       return (this.bMission[type] & 1 << id) != 0;
    }
 
@@ -2902,10 +2897,10 @@ public class Map implements Constants_H, Key_H {
       byte[] data = Ms.i().getStream("data/map/area.dat", -1);
       byte[] areaMap = Ms.i().createArray(data);
       byte[][] areaPic = Ms.i().create2Array(data);
-      byte[] data = null;
-      Object areaMap;
+      data = null;
+      Object areaMapObj;
       if (null != this.mapImg && areaMap[this.lastMap] == areaMap[this.mapNo]) {
-         areaMap = null;
+         areaMapObj = null;
          areaPic = (byte[][])null;
       } else {
          Ms.i();
@@ -2918,21 +2913,17 @@ public class Map implements Constants_H, Key_H {
             this.mapImg[i] = Ms.i().createImage("data/map/" + areaPic[areaMap[this.mapNo]][i]);
          }
 
-         areaMap = null;
+         areaMapObj = null;
          areaPic = (byte[][])null;
       }
    }
 
    private void loadMapData(int id) {
-      int elemNum = false;
-      int dataType = false;
       byte[] buffShort = new byte[2];
       byte[] buffInt = new byte[4];
-      byte layerType = false;
       this.bottomData = null;
       this.frontData = null;
       this.worldData = (short[][])null;
-      short arrayIndex = false;
 
       try {
          DataInputStream dis = new DataInputStream(this.getClass().getResourceAsStream("/data/map/" + id + ".mid"));
@@ -3001,9 +2992,9 @@ public class Map implements Constants_H, Key_H {
          }
 
          dis.close();
-         byte[] buff = null;
-         byte[] buffShort = null;
-         byte[] buffInt = null;
+         buff = null;
+         buffShort = null;
+         buffInt = null;
          dis = null;
       } catch (Exception var14) {
       }
@@ -3062,11 +3053,6 @@ public class Map implements Constants_H, Key_H {
             gtem.setColor(this.bgColor);
             gtem.fillRect(x1, y1, x2 - x1, y2 - y1);
          }
-
-         int bkdata_id = true;
-         int bkdata_trans = false;
-         int bkPic_w = false;
-         int bkPic_h = false;
 
          for(int i = 0; i < bkgroundData.length; i += 3) {
             if (bkgroundData[i + 2] >= 0) {
@@ -3386,7 +3372,7 @@ public class Map implements Constants_H, Key_H {
 
    public void insertNpc() {
       if (null != this.npc) {
-         byte temp = false;
+         byte temp = 0;
 
          for(byte i = 1; i < this.npcList.length; ++i) {
             for(byte j = i; j > 0; --j) {
@@ -3397,7 +3383,7 @@ public class Map implements Constants_H, Key_H {
                }
 
                if (y0 != y1 || y0 == y1 && this.npcList[j - 1] == -1) {
-                  byte temp = this.npcList[j];
+                  temp = this.npcList[j];
                   this.npcList[j] = this.npcList[j - 1];
                   this.npcList[j - 1] = temp;
                }

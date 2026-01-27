@@ -78,7 +78,6 @@ public class Monster implements Constants_H, Key_H {
 
       this.effect = 7;
       this.effect_time = 0;
-      byte[] temp_pro = null;
    }
 
    public Monster() {
@@ -167,7 +166,6 @@ public class Monster implements Constants_H, Key_H {
       this.monsterPro[3] = (short)(temp_pro[1] + temp_pro[8] * this.monster[2] / 10);
       this.resetPro(data);
       this.monsterPro[1] = this.monsterPro[3];
-      byte[] temp_pro = null;
       if (data.monInfoList[enemy_name] != 2) {
          if (data.monInfoList[enemy_name] == 0) {
             ++data.monInfoList[102];

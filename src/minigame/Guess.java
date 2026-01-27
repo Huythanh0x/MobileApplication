@@ -338,7 +338,6 @@ public class Guess implements MiniGame_H, Constants_H {
          this.box[i][3] = 0;
       }
 
-      byte[] monList = null;
       Ms.i();
       this.maxTransNum = (byte)(Ms.getRandom(2 + this.lv) + 2 + this.lv);
       this.transNum = 0;

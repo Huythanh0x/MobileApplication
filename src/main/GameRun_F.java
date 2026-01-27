@@ -282,7 +282,7 @@ public class GameRun_F implements Constants_H, Key_H {
    }
 
    public void drawMenu(StringBuffer[] menu, int x, int y, int w) {
-      byte color = true;
+      byte color;
       if (w > 0) {
          Ui.i().drawKuang(x, y, w, menu.length * 22 + 12);
       } else {
@@ -291,7 +291,6 @@ public class GameRun_F implements Constants_H, Key_H {
       }
 
       for(byte d = 0; d < menu.length; ++d) {
-         byte color;
          if (d == 0) {
             color = 9;
          } else if (d == this.cur_a) {
@@ -352,7 +351,6 @@ public class GameRun_F implements Constants_H, Key_H {
 
    public void saveMon(ByteArrayOutputStream byteArray, Monster mon) throws IOException {
       byteArray.write(mon.monster);
-      int xxx = false;
 
       for(int i = 0; i < 5; ++i) {
          int xxx = mon.monsterPro[i];
@@ -542,19 +540,18 @@ public class GameRun_F implements Constants_H, Key_H {
    public void saveItem() {
       int len = 0;
 
-      int i;
-      for(i = 0; i < 4; ++i) {
+      for(int i = 0; i < 4; ++i) {
          len += this.itemsLength[i];
       }
 
       this.info = new byte[this.items.length + len * 2];
       len = 0;
 
-      for(i = 0; i < 4; ++i) {
+      for(int i = 0; i < 4; ++i) {
          this.info[i] = this.itemsLength[i];
       }
 
-      for(i = 0; i < this.items.length; ++i) {
+      for(int i = 0; i < this.items.length; ++i) {
          for(int j = 0; j < this.itemsLength[i]; ++len) {
             this.info[len * 2 + 4] = this.items[i][j][0];
             this.info[len * 2 + 4 + 1] = this.items[i][j][1];
@@ -570,20 +567,17 @@ public class GameRun_F implements Constants_H, Key_H {
       this.info = Ms.i().rmsOptions(4, (byte[])null, 1);
       this.len = new byte[]{16, 19, 23, 12};
       this.itemsLength = new byte[4];
-      int i = false;
-      int j = false;
-      int k = false;
-      int i;
+
       if (this.info[0] != -1) {
-         for(i = 0; i < 4; ++i) {
+         for(int i = 0; i < 4; ++i) {
             this.itemsLength[i] = this.info[i];
          }
       }
 
       this.items = new byte[this.itemsLength.length][][];
-      i = 0;
+      int k = 0;
 
-      for(int k = 0; i < this.items.length; ++i) {
+      for(int i = 0; i < this.items.length; ++i) {
          this.items[i] = new byte[this.len[i]][2];
 
          for(int j = 0; j < this.itemsLength[i]; ++k) {

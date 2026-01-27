@@ -106,8 +106,6 @@ public class Ms implements Constants_H, Key_H {
             }
          }
       }
-
-      byte[] info = null;
    }
 
    public byte[] getEventNowData(short[][] event_now) {
@@ -260,7 +258,6 @@ public class Ms implements Constants_H, Key_H {
          data = new byte[this.getLen_short(dataInput.readShort())];
          dataInput.read(data);
          dataInput.close();
-         dataInput = null;
       } catch (Exception var6) {
          var6.printStackTrace();
       }
@@ -560,8 +557,6 @@ public class Ms implements Constants_H, Key_H {
       } else {
          sp.Set(this.createImage(name), this.createShort2Array(date, 2), this.createShort3Array(date, 2), this.createShort3Array(date, 2));
       }
-
-      byte[] date = null;
    }
 
    public boolean equals(StringBuffer sbuff, String str) {

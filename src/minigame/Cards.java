@@ -249,8 +249,6 @@ public class Cards implements MiniGame_H, Constants_H {
          if (++this.findC[i][j] > 3) {
             this.findC[i][j] = 0;
          }
-
-         int mode = true;
       } else {
          Ui.i().drawK(x, y, this.gw, this.gh, 5);
          this.gr.drawItem(this.findN[i][j], x + (this.gw >> 1), y + (this.gh >> 1), 3);

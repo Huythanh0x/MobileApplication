@@ -315,11 +315,11 @@ public class Ui implements Constants_H {
    }
 
    public void drawK2(int x, int y, int w, int h, int arc) {
-      boolean arc;
+      boolean arc_temp;
       if (arc == 0) {
-         arc = true;
+         arc_temp = true;
       } else {
-         arc = true;
+         arc_temp = true;
       }
 
       g.setColor(0);
