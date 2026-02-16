@@ -79,7 +79,7 @@ public class GameRun extends GameRun_F {
    private boolean[] evolve = new boolean[]{true, true, true, true, true};
    private byte[] now_action = new byte[2];
    private byte[] now_time = new byte[2];
-   String[] battleSay = new String[]{"敌人出现了，战斗吧！", "考验的时刻来了，训练师！", "尽情捕捉宠物吧！"};
+   String[] battleSay = new String[]{"Enemy appeared, battle!", "This is your moment of truth, trainer!", "Go out and catch pets!"};
    public boolean isUpdateList = false;
    public byte[] mapMove;
    public byte[][] mapRect;
@@ -139,7 +139,7 @@ public class GameRun extends GameRun_F {
       System.gc();
       mc.createFlashImage();
       mc.goMain_menu();
-      this.setAction_str(new String[]{"读取进度", "新游戏", "音量      ", "游戏帮助", "关   于", "更多精彩", "退出游戏"});
+      this.setAction_str(new String[]{"Load Progress", "New Game", "Volume      ", "Game Help", "About", "More", "Exit Game"});
       this.selectx = this.selecty = (byte)(this.rmsOther[0] == -1 ? 1 : 0);
    }
 
@@ -211,8 +211,8 @@ public class GameRun extends GameRun_F {
                   this.b_c = 1;
                   this.say_s = 52;
                   this.levelPro(this.myB.now_id, true);
-                  this.setStringB("生命：+" + this.proReplace[this.myB.now_id][0] + "#n" + "能量" + "：+" + this.proReplace[this.myB.now_id][1], 240, 0);
-                  this.setStringB("力量：+" + this.proReplace[this.myB.now_id][3] + "#n" + "防御" + "：+" + this.proReplace[this.myB.now_id][4] + "#n" + "敏捷" + "：+" + this.proReplace[this.myB.now_id][5], 240, 1);
+                  this.setStringB("HP: +" + this.proReplace[this.myB.now_id][0] + "#n" + "Energy" + ": +" + this.proReplace[this.myB.now_id][1], 240, 0);
+                  this.setStringB("Strength: +" + this.proReplace[this.myB.now_id][3] + "#n" + "Defense" + ": +" + this.proReplace[this.myB.now_id][4] + "#n" + "Agility" + ": +" + this.proReplace[this.myB.now_id][5], 240, 1);
                   this.initMonStream(2, this.mList_id[this.myB.getMon().monster[0]][0], 1);
                } else {
                   ++this.myB.now_id;
@@ -236,29 +236,25 @@ public class GameRun extends GameRun_F {
                   }
 
                   if (var7) {
-                     var8.append("可以进化了");
-                  }
+                  var8.append("Can evolve");
+               }
 
-                  StringBuffer var4 = new StringBuffer("");
-                  var7 = false;
+               StringBuffer var4 = new StringBuffer("");
+               var7 = false;
 
-                  for(var1 = 0; var1 < 5; ++var1) {
-                     if (this.getRid(var1) != -2 && this.getNexp(var1, 1) == this.getNexp(var1, 3)) {
-                        if (!Ms.i().equals(var4, "")) {
-                           var4.append("、");
-                        }
-
-                        var4.append(this.monsterT[this.monster_pro[this.getNid(var1)][6]] + "的宠物蛋");
-                        var7 = true;
-                     }
-                  }
-
-                  if (var7) {
-                     var4.append("经验已满，可以孵化了。");
-                     if (!Ms.i().equals(var8, "")) {
-                        var8.append("#n");
+               for(var1 = 0; var1 < 5; ++var1) {
+                  if (this.getRid(var1) != -2 && this.getNexp(var1, 1) == this.getNexp(var1, 3)) {
+                     if (!Ms.i().equals(var4, "")) {
+                        var4.append(", ");
                      }
 
+                     var4.append(this.monsterT[this.monster_pro[this.getNid(var1)][6]] + " pet egg");
+                     var7 = true;
+                  }
+               }
+
+               if (var7) {
+                  var4.append(" experience is full, ready to hatch.");
                      var8.append(var4.toString());
                   }
 
@@ -305,7 +301,7 @@ public class GameRun extends GameRun_F {
 
                Object var6 = null;
                if (this.cMon_count == this.max_monsters && this.myMon_length == this.max_takes) {
-                  this.say("所能携带的宠物已经达到上限！", -1);
+                  this.say("Pet capacity reached!", -1);
                   this.enB.act_num = 1;
                   this.myB.act_num = 0;
                   run_state = -31;
@@ -317,7 +313,7 @@ public class GameRun extends GameRun_F {
 
                   this.enB.action = 2;
                   this.enB.dead = 1;
-                  this.say("捕获" + this.getNameMon(this.enB.getMon().monster[0]) + "已成功！", 0);
+                  this.say("Captured " + this.getNameMon(this.enB.getMon().monster[0]) + " successfully!", 0);
                   if (this.getMonster(this.enB.getMon(), -1, false) == 0) {
                      this.myMonsters[this.myMon_length - 1].monster[1] = (byte)(this.myMon_length - 1);
                   }
@@ -427,15 +423,15 @@ public class GameRun extends GameRun_F {
             break;
          case 51:
             this.map.drawBlackSRC(g, 30, true);
-            this.drawZero("结束", 310);
+            this.drawZero("End", 310);
             break;
          case 60:
             mc.drawRectBG();
-            this.showString("战斗失败了,训练师的梦想不能实现了!", 160, 0);
+            this.showString("Battle lost! Your trainer's dream won't come true!", 160, 0);
             break;
          case 61:
             mc.drawRectBG();
-            this.showString("你要继续游戏，确定吗？", 280, 0);
+            this.showString("Continue the game?", 280, 0);
             this.drawSelectMenu(this.action_str, 82, 120, 76, 2, 0, this.popMenu);
             break;
          case 65:
@@ -460,9 +456,9 @@ public class GameRun extends GameRun_F {
             Ui.i().drawK0(-2, 292, 244, 28, 0);
             this.gogoWordM(this.gogoString, 294, 16, 3, 0, 2);
             if (this.buyOk != 0) {
-               String str = "是否保存游戏?";
+               String str = "Save progress?";
                if (this.buyOk == 2) {
-                  str = "是否读取进度?";
+                  str = "Load progress?";
                } else if (this.buyOk == 3) {
                   str = "之前未保存的部分将会丢失，是否继续？";
                }
@@ -736,7 +732,7 @@ public class GameRun extends GameRun_F {
       Ui.i().drawTriangle(x, y - 2, w_h, true, this.cur_b != 2);
       s = null;
       if (this.buyOk == 1) {
-         this.showString("是否" + ((d & 16) != 0 ? "购买" : "卖出") + "？", 180, 0);
+         this.showString("Do you want to " + ((d & 16) != 0 ? "buy" : "sell") + "?", 180, 0);
       }
 
    }
@@ -870,7 +866,7 @@ public class GameRun extends GameRun_F {
    }
 
    public void drawMoney(int x, int y, int c, boolean bb) {
-      String s = (bb ? this.coin : this.money) + (bb ? "徽章" : "金");
+      String s = (bb ? this.coin : this.money) + (bb ? " Badge" : " Gold");
       Ui var10000 = Ui.i();
       int var10001 = bb ? 53 : 52;
       int var10002 = x - (Ms.i().getStringWidth(s) >> 1) - 1;
@@ -957,7 +953,7 @@ public class GameRun extends GameRun_F {
    }
 
    private void popBagMenu(int selectx, int select_i) {
-      String ts = "返回";
+      String ts = "Return";
       byte id = this.items[selectx][select_i][0];
       if ((selectx == 0 || id == 32 || id == 33) && this.isBagUse(id)) {
          ts = "使用#n返回";
@@ -1173,7 +1169,7 @@ public class GameRun extends GameRun_F {
          Ui.i().fillRectB();
          this.drawBG0(this.bg_c, 1, 108, 0, 222);
          Ui.i().drawString(this.popMenu + 1 + "/" + 5, 10, 106, 36, 0, 2);
-         Ui.i().drawString(this.getRid(this.popMenu) == -2 ? "此位置目前还是空着的" : this.monsterT[this.monster_pro[this.getNid(this.popMenu)][6]] + "的宠物蛋", 20, 110, 0, 1, 0);
+         Ui.i().drawString(this.getRid(this.popMenu) == -2 ? "This location is currently empty" : this.monsterT[this.monster_pro[this.getNid(this.popMenu)][6]] + " pet egg", 20, 110, 0, 1, 0);
          if (this.getRid(this.popMenu) != -2) {
             if (this.b_c < 2 && this.drawCartoonOne(1, 1, this.mon_action, 177, 97, this.b_c != 1, 0)) {
                this.initMonStream(2, this.mList_id[this.getNid(this.popMenu)][0], 1);
@@ -1192,8 +1188,8 @@ public class GameRun extends GameRun_F {
                this.str_cur = this.getNexp(this.popMenu, 1) + "/" + this.getNexp(this.popMenu, 3);
                Ui.i().drawBarOne(20, 148, barW, Ms.i().mathPercent(this.getNexp(this.popMenu, 1), barW - 2, this.getNexp(this.popMenu, 3)), Ms.i().mathPercent(this.getNexp(this.popMenu, 1), barW - 2, this.getNexp(this.popMenu, 3)), 2);
                Ui.i().drawNum(this.str_cur, 20 + (barW - 8 * this.str_cur.length() >> 1), 154, 0, 0);
-               Ui.i().drawString(this.getNexp(this.popMenu, 1) == this.getNexp(this.popMenu, 3) ? "孵化已完成" : "孵化中...", 20 + (barW >> 1), 154, 17, 3, 1);
-               Ui.i().drawString("孵化所需材料", 20 + (barW >> 1), 188, 17, 3, 1);
+               Ui.i().drawString(this.getNexp(this.popMenu, 1) == this.getNexp(this.popMenu, 3) ? "Hatching complete" : "Hatching...", 20 + (barW >> 1), 154, 17, 3, 1);
+               Ui.i().drawString("Materials needed for hatching", 20 + (barW >> 1), 188, 17, 3, 1);
                this.drawEvolveMake(this.getNid(this.popMenu), 25, 214, 23);
             } else {
                Ui.i().drawStringY(this.about_a, 26, 150, 0, 3, 25, 3, 0);
@@ -1328,7 +1324,7 @@ public class GameRun extends GameRun_F {
       Ui.i().fillRectB();
       this.drawInfoBG(24, 25);
       Ui var10000 = Ui.i();
-      String var10001 = "发现度 " + Ms.i().getPrecision(this.monInfoList[102] * 1000 / 102) + "%";
+      String var10001 = "Discovery Rate " + Ms.i().getPrecision(this.monInfoList[102] * 1000 / 102) + "%";
       Graphics var10004 = g;
       Graphics var10005 = g;
       var10000.drawString(var10001, 228, 25, 8 | 16, 3, 1);
@@ -1408,7 +1404,7 @@ public class GameRun extends GameRun_F {
          Graphics var10005 = g;
          var10000.drawUi(var10001, var10002, var10003, 8 | 16, 0);
          byte color = (byte)(sel[0] == i && this.move_y == 0 ? 0 : (this.monInfoList[this.monInfo_dir[this.cur_a][j]] != 0 ? 3 : -1));
-         Ui.i().drawString((this.infoStart + j + 1 < 10 ? "0" : "") + (this.infoStart + j + 1) + " " + (this.monInfoList[this.monInfo_dir[this.cur_a][j]] != 0 ? this.getNameMon(this.monInfo_dir[this.cur_a][j]) : "未知宠物"), x + of, yy - this.move_y + i * sh, 0, color, 0);
+         Ui.i().drawString((this.infoStart + j + 1 < 10 ? "0" : "") + (this.infoStart + j + 1) + " " + (this.monInfoList[this.monInfo_dir[this.cur_a][j]] != 0 ? this.getNameMon(this.monInfo_dir[this.cur_a][j]) : "Unknown Pet"), x + of, yy - this.move_y + i * sh, 0, color, 0);
          var10000 = Ui.i();
          String var13 = this.getInfoType(this.monAppearMap[this.monInfo_dir[this.cur_a][j]][0]);
          var10002 = x + of + 152;
@@ -1530,7 +1526,7 @@ public class GameRun extends GameRun_F {
       Ui.i().drawK1(x, 307 - fh * 3, 240 - (x << 1) + 2, fh * 3 + 10, 2);
       Ui.i().drawYesNo(false, true);
       Ui.i().drawUi(this.cur_a + 5, x + 2, y + 2, 0, 0);
-      Ui.i().drawString(this.getNameMon(id) + "（" + (this.monInfoList[id] == 2 ? "已捕获" : "未捕获") + "）", 120, 6, 17, 0, 0);
+      Ui.i().drawString(this.getNameMon(id) + " (" + (this.monInfoList[id] == 2 ? "Caught" : "Not Caught") + ")", 120, 6, 17, 0, 0);
       if (this.drawCartoonOne(1, 1, this.mList_id[id][1] * 3 + this.mon_action, x + (w >> 1), y + h - 10, this.mon_action != 1, 0)) {
          this.mon_action = 0;
       }
@@ -1675,7 +1671,7 @@ public class GameRun extends GameRun_F {
          Ui.i().drawUi(this.skill_list[i] > 25 ? 50 : 51, x + 8, y + 8 + (i - sel[1]) * fontH, 0, 0);
          Ui.i().drawString(this.getNameSkill(this.skill_list[i]).toString(), x + 21, y + 1 + (i - sel[1]) * fontH, 0, sel[0] == i ? 0 : 3, 0);
          Ui var10000 = Ui.i();
-         String var10001 = this.skill_list[i] <= 30 ? this.skill[this.skill_list[i]][1] + "能量" : "被动";
+         String var10001 = this.skill_list[i] <= 30 ? this.skill[this.skill_list[i]][1] + " Energy" : "Passive";
          int var10002 = x + w - 8;
          int var10003 = y + 1 + (i - sel[1]) * fontH;
          Graphics var10004 = g;
@@ -1817,7 +1813,7 @@ public class GameRun extends GameRun_F {
       if (mode == 0) {
          this.move_x = this.move_y = 0;
          Ui var10000 = Ui.i();
-         String var10001 = this.getNameMon(this.myMonsters[id].monster[0]) + "升到了" + this.myMonsters[id].monster[2] + "级";
+         String var10001 = this.getNameMon(this.myMonsters[id].monster[0]) + " reached level " + this.myMonsters[id].monster[2];
          int var10003 = ly + 4;
          Graphics var10004 = g;
          Graphics var10005 = g;
@@ -1966,7 +1962,7 @@ public class GameRun extends GameRun_F {
                } else if (this.mini_state == 13) {
                   this.keyGetSkill(mon[this.select[0][0]]);
                } else {
-                  StringBuffer sbuff = new StringBuffer("天赋#n技能");
+                  StringBuffer sbuff = new StringBuffer("Talent#nSkill");
                   if (this.mini_state == 4) {
                      if (mon[this.select[0][0]].monster[5] > 0) {
                         sbuff.append("#n进化");
@@ -2295,7 +2291,7 @@ public class GameRun extends GameRun_F {
                   this.popMenu = -1;
                } else {
                   this.buyOk = 1;
-                  this.gogoString = "放生的宠物将会消失，是否继续？";
+                  this.gogoString = "Released pet will disappear. Continue?";
                }
             } else if (Ms.i().equals(this.about_d[this.popMenu], "存放")) {
                if (run_state == 35) {
@@ -2328,7 +2324,7 @@ public class GameRun extends GameRun_F {
                } else {
                   this.buyOk = 1;
                   this.sellMonster(this.mini_state == 4 ? this.myMonsters[this.select[0][0]] : this.cMonsters[this.select[0][0]]);
-                  this.gogoString = "获得金钱：" + this.sell_money + "，是否卖出？";
+                  this.gogoString = "Gold gained: " + this.sell_money + ", sell?";
                }
             } else if (Ms.i().equals(this.about_d[this.popMenu], "离开")) {
                this.goRUN_IN_MAP(false);
@@ -3163,7 +3159,7 @@ public class GameRun extends GameRun_F {
       this.mini_state = 3;
       this.buyItemID = 0;
       this.buyOk = 0;
-      this.gogoString = "金属克野兽，野兽克植物，植物克飞行，飞行克海洋，海洋克金属";
+      this.gogoString = "Metal beats Beast, Beast beats Plant, Plant beats Flying, Flying beats Water, Water beats Metal";
    }
 
    public void setPauseS(int mode) {
@@ -3911,7 +3907,7 @@ public class GameRun extends GameRun_F {
       switch (this.battle_state) {
          case -5:
             if (this.proReplace[this.myB.now_id][2] > -1) {
-               String s = this.getNameMon(this.myMonsters[this.myB.now_id].monster[0]) + "获得经验：";
+               String s = this.getNameMon(this.myMonsters[this.myB.now_id].monster[0]) + " gained exp: ";
                Ui.i().drawString(s, 4, 273, 36, 1, 0);
                Ui.i().drawNum("" + this.proReplace[this.myB.now_id][2], Ms.i().getStringWidth(s) + 4, 268, 0, 1);
                s = null;

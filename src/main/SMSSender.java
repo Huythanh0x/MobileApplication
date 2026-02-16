@@ -11,7 +11,7 @@ public class SMSSender implements Constants_H, Key_H {
    private GameRun gr;
    StringBuffer sms = new StringBuffer();
    StringBuffer address = new StringBuffer();
-   private String[][] menuTxt = new String[][]{{"短信商城"}, {"购买30000金", "身为四大家族之首的贵公子，没钱可不行！一次性投资更超值，现在付费立刻拥有30000金。总计4元"}, {"购买5000金", "身为四大家族之首的贵公子，没钱可不行！现在付费立刻拥有5000金。总计2元"}, {"购买50徽章", "徽章能购买双倍经验，宠物技能，强大的宠物捕获球等各种神奇的道具。现在付费立刻拥有50徽章。总计4元"}, {"购买10徽章", "徽章能购买双倍经验，宠物技能，强大的宠物捕获球等各种神奇的道具。现在付费立刻拥有10徽章。总计2元"}, {"宠物升级", "让您随身携带的全部宠物立刻升5级（超过70级宠物不能再升级），总计2元"}, {"购买奇异兽", "骑上可爱的奇异兽移动速度可以提高一倍，且不会遇到任何敌人！现在付费就可以无限使用，心动不如行动，快购买吧！总计2元"}, {"正版验证", "永久性开启后续所有游戏内容、地图。同时将免费赠送您5枚徽章（可购买强力道具）。总计4元"}, {"战斗复活", "战斗中难免死亡，让您携带的所有宠物全回复。同时再免费让他们等级提升5级（超过70级宠物不能再升级），让接下来的战斗变的更轻松。总计2元"}};
+   private String[][] menuTxt = new String[][]{{"SMS Shop"}, {"Buy 30000 Gold", "As the young master of the four great families, you can't be without money! A one-time investment is even better value. Pay now and get 30000 Gold instantly. Total: 4 yuan"}, {"Buy 5000 Gold", "As the young master of the four great families, you can't be without money! Pay now and get 5000 Gold instantly. Total: 2 yuan"}, {"Buy 50 Badges", "Badges can purchase double experience, pet skills, powerful pet capture balls and various magical items. Pay now and get 50 Badges instantly. Total: 4 yuan"}, {"Buy 10 Badges", "Badges can purchase double experience, pet skills, powerful pet capture balls and various magical items. Pay now and get 10 Badges instantly. Total: 2 yuan"}, {"Pet Upgrade", "All your carried pets instantly level up by 5 (pets over level 70 cannot level up). Total: 2 yuan"}, {"Buy Strange Beast", "Riding the cute Strange Beast doubles movement speed and you won't encounter any enemies! Pay now for unlimited use. Act now! Total: 2 yuan"}, {"Official Verification", "Permanently unlock all subsequent game content and maps. Also receive 5 free Badges (can buy powerful items). Total: 4 yuan"}, {"Battle Revival", "Death is inevitable in battle. Fully recover all your carried pets. Also freely level them up by 5 (pets over level 70 cannot level up), making the next battles easier. Total: 2 yuan"}};
    public boolean sms_a = true;
    public boolean sms_b = false;
    private StringBuffer[] about;
@@ -25,7 +25,7 @@ public class SMSSender implements Constants_H, Key_H {
    private byte sendSms = -1;
    private byte[][] smsCount = new byte[][]{{1, 1, 1}, {1, 1, 2}, {1, 1, 3}, {1, 1, 4}, {1, 1, 5}, {1, 1, 0}, {1, 1, 6}, {1, 1, 5}};
    public byte idSmsLevel;
-   public String[][] uc_text = new String[][]{{"购买30000金,仅需4元。", "74", "161", "01", "01"}, {"购买5000金 ，仅需2元。", "74", "161", "02", "01"}, {"购买50徽章，仅需4元。", "74", "161", "03", "01"}, {"购买10徽章,仅需2元。", "74", "161", "04", "01"}, {"宠物升级，仅需2元。", "74", "161", "05", "01"}, {"购买奇异兽，仅需2元。", "74", "161", "06", "01"}, {"正版验证，仅需4元。", "74", "161", "07", "01"}, {"战斗复活，仅需2元。", "74", "161", "08", "01"}};
+   public String[][] uc_text = new String[][]{{"Buy 30000 Gold, only 4 yuan.", "74", "161", "01", "01"}, {"Buy 5000 Gold, only 2 yuan.", "74", "161", "02", "01"}, {"Buy 50 Badges, only 4 yuan.", "74", "161", "03", "01"}, {"Buy 10 Badges, only 2 yuan.", "74", "161", "04", "01"}, {"Pet Upgrade, only 2 yuan.", "74", "161", "05", "01"}, {"Buy Strange Beast, only 2 yuan.", "74", "161", "06", "01"}, {"Official Verification, only 4 yuan.", "74", "161", "07", "01"}, {"Battle Revival, only 2 yuan.", "74", "161", "08", "01"}};
    public int[] uc_number = new int[]{40, 20, 40, 20, 20, 20, 40, 20};
    public boolean success = false;
 
@@ -196,7 +196,7 @@ public class SMSSender implements Constants_H, Key_H {
          Ms.i().keyRelease();
          if (this.smsType == 4 && this.sel[0] != 7 && (this.gr.myMon_length < 1 || !this.isMyMonLevel())) {
             this.sendSms = -1;
-            this.gr.say("目前没有可以升级的宠物！", 0);
+            this.gr.say("No pets available to upgrade!", 0);
          } else if (this.sendSms != 0 && this.smsCount[this.smsType][1] > 1 && this.gr.rmsSms[this.smsCount[this.smsType][2]] > 0 && this.gr.rmsSms[this.smsCount[this.smsType][2]] != this.smsCount[this.smsType][1]) {
             this.sendSms = 0;
          } else if (this.sendSms != 0) {

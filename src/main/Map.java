@@ -842,7 +842,7 @@ public class Map implements Constants_H, Key_H {
                            GameRun var12 = this.gr;
                            var12.money += var6;
                            var12 = this.gr;
-                           StringBuffer var10001 = (new StringBuffer()).append(var6 < 0 ? "失去：" : "获得：");
+                           StringBuffer var10001 = (new StringBuffer()).append(var6 < 0 ? "Lost: " : "Obtained: ");
                            Ms.i();
                            var12.say(var10001.append(Ms.abs(var6)).append("金").toString(), 0);
                         }
@@ -1452,7 +1452,7 @@ public class Map implements Constants_H, Key_H {
 
          if (event_temp != -1) {
             var3 = this.gr;
-            StringBuffer var5 = (new StringBuffer()).append(this.now_eV2 >= 0 ? "获得：" : "失去：").append(this.gr.getNameItem(this.now_eV1)).append("x");
+            StringBuffer var5 = (new StringBuffer()).append(this.now_eV2 >= 0 ? "Obtained: " : "Lost: ").append(this.gr.getNameItem(this.now_eV1)).append("x");
             Ms.i();
             var3.say(var5.append(Ms.abs(this.now_eV2)).toString(), 0);
          }
@@ -2811,10 +2811,10 @@ public class Map implements Constants_H, Key_H {
       }
 
       Ui.i().drawK1(this.gr.cur_a == 0 ? 25 : 140, 9, 76, 24, 4);
-      Ui.i().drawString("主线任务", 63, 9, 17, this.gr.cur_a == 0 ? 0 : 1, 0);
-      Ui.i().drawString("分支任务", 177, 9, 17, this.gr.cur_a == 1 ? 0 : 1, 0);
+      Ui.i().drawString("Main Quest", 63, 9, 17, this.gr.cur_a == 0 ? 0 : 1, 0);
+      Ui.i().drawString("Side Quest", 177, 9, 17, this.gr.cur_a == 1 ? 0 : 1, 0);
       Ui.i().drawTriangle(120, 18, 114, true, true);
-      Ui.i().drawString((this.gr.cur_a == 0 ? "主线完成度：" : "分支完成度：") + Ms.i().getPrecision(this.bMission[this.gr.cur_a == 0 ? 14 : 15] * 1000 / (this.gr.cur_a == 0 ? this.sMission.length - 1 : this.sMission.length)) + "%", 120, 317, 33, 0, 1);
+      Ui.i().drawString((this.gr.cur_a == 0 ? "Main Quest Progress: " : "Side Quest Progress: ") + Ms.i().getPrecision(this.bMission[this.gr.cur_a == 0 ? 14 : 15] * 1000 / (this.gr.cur_a == 0 ? this.sMission.length - 1 : this.sMission.length)) + "%", 120, 317, 33, 0, 1);
       Ui.i().drawYesNo(false, true);
    }
 

@@ -430,7 +430,7 @@ public class PayPlatform extends Canvas implements Runnable, CommandListener {
       }
 
       uccommon.c.a((Vector)this.n, 2, this.m[2], g);
-      (var5 = new Vector()).addElement(uccommon.c.a("n", "支付密码", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.e, 0));
+      (var5 = new Vector()).addElement(uccommon.c.a("n", "Payment Password", 5, "", "", uccommon.c.c, "", uccommon.c.a, this.m[1], -1, -1, uccommon.c.e, 0));
       this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
       (var5 = new Vector()).addElement(H);
       this.n.addElement(uccommon.c.a(var5, g, j, -1, -1, "n", "", ""));
@@ -793,7 +793,7 @@ public class PayPlatform extends Canvas implements Runnable, CommandListener {
                         }
                      }
 
-                     String var4 = d(this.V) + "(发送短信：" + this.aB + "条)";
+                     String var4 = d(this.V) + " (Send SMS: " + this.aB + " msg)";
                      Vector var17;
                      (var17 = new Vector()).addElement(a(5, 0) + "\n" + a(19, 0) + " " + var4);
                      this.d = true;

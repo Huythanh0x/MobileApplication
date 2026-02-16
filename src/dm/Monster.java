@@ -73,7 +73,7 @@ public class Monster implements Constants_H, Key_H {
       if (data.monInfoList[enemy_name] == 0) {
          data.monInfoList[enemy_name] = 1;
          ++data.monInfoList[102];
-         data.say("宠物图鉴已更新", 0);
+         data.say("Pet Pokedex updated", 0);
       }
 
       this.effect = 7;

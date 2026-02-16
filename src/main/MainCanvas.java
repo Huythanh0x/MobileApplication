@@ -178,10 +178,10 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
                break;
             case 10:
                Ui.i().fillRect(0, 0, 0, 240, 320);
-               Ui.i().drawString("是否打开音乐?", 120, 140, 1 | 16, 0, 0);
-               Ui.i().drawString("（apo642&onihot合作BT）", 120, 160, 1 | 16, 5, 0);
-               Ui.i().drawString("是", 4, 320, 4 | 32, 0, 0);
-               Ui.i().drawString("否", 236, 320, 8 | 32, 0, 0);
+               Ui.i().drawString("Enable music?", 120, 140, 1 | 16, 0, 0);
+               Ui.i().drawString("(apo642&onihot collaboration BT)", 120, 160, 1 | 16, 5, 0);
+               Ui.i().drawString("Yes", 4, 320, 4 | 32, 0, 0);
+               Ui.i().drawString("No", 236, 320, 8 | 32, 0, 0);
                break;
             case 11:
                Ui.i().drawImage(this.image_logo, 0, 0, 0);
@@ -368,7 +368,7 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
                               this.newGame();
                            } else {
                               this.menu_state = 2;
-                              this.gr.gogoString = "这将清除您之前的所有记录，是否继续？";
+                              this.gr.gogoString = "This will clear all previous records. Continue?";
                            }
 
                            return;
@@ -527,7 +527,7 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
             this.image_logo = null;
             this.gr.popMenu = 0;
             this.game_state = 10;
-            this.strTemp = "是否打开音乐?";
+            this.strTemp = "Enable music?";
             this.game_init();
          }
       }
@@ -580,7 +580,7 @@ public final class MainCanvas extends FullCanvas implements Runnable, Constants_
    }
 
    private void drawGameAbout() {
-      String[] aboutWord = new String[]{"开发商：华娱无线", "客服电话：", "010-88901665", "客服邮箱：", "geekan@imy.cn"};
+      String[] aboutWord = new String[]{"Developer: Huayou Wireless", "Support Phone:", "010-88901665", "Support Email:", "geekan@imy.cn"};
       GameRun var10000 = this.gr;
       GameRun.g.setColor(255);
 
