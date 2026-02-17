@@ -1,9 +1,9 @@
 {
-  "爁": "",
-  "规则说明": "",
-  "翻牌能赢得大量金钱": "",
-  "根据难度不同手续费也不同": "",
-  "错误数量到": "",
-  "时游戏结束": "",
-  "剩余的次数越多获得的奖金也越多": ""
+  "爁": "Card Flip",
+  "规则说明": "Rules",
+  "翻牌能赢得大量金钱": "Card flipping can win you a massive amount of Gold.",
+  "根据难度不同手续费也不同": "Handling fees vary based on the difficulty level.",
+  "错误数量到": "When the number of errors reaches ",
+  "时游戏结束": ", the game is over.",
+  "剩余的次数越多获得的奖金也越多": "The more attempts remaining, the higher the prize money."
 }

@@ -1,10 +1,10 @@
 {
-  "喉": "",
-  "则说明": "",
-  "接到的分数越多获得的奖励也越多": "",
-  "同理负分越多扣减的钱也越多": "",
-  "渀": "",
-  "分": "",
-  "分安": "",
-  "分嶉": ""
+  "喉": "Catch Game",
+  "则说明": "Rules",
+  "接到的分数越多获得的奖励也越多": "The more points you catch, the better the reward.",
+  "同理负分越多扣减的钱也越多": "Similarly, the more negative points, the more Gold you lose.",
+  "渀": "Action",
+  "分": " Pts",
+  "分安": "Bonus Pts",
+  "分嶉": "Penalty Pts"
 }
