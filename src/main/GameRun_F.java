@@ -5,6 +5,7 @@ import com.nokia.mid.ui.DirectUtils;
 import dm.Monster;
 import dm.Ms;
 import dm.Sound;
+import dm.Translator;
 import dm.Ui;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -268,6 +269,15 @@ public class GameRun_F implements Constants_H, Key_H {
    public String createString(String name) {
       Ms.i();
       Ms.skip = 0;
+      // Best-effort mapping: "data/help_d.t" -> "help_d_t.json", "data/gamec.d" -> "gamec_d.json", etc.
+      try {
+         int slash = name.lastIndexOf(47);
+         String base = slash >= 0 ? name.substring(slash + 1) : name;
+         String group = base.replace('.', '_') + ".json";
+         Translator.setGroup(group);
+      } catch (Exception var4) {
+         // ignore; translations will fallback to others
+      }
       StringBuffer[] str = Ms.i().createStringArray(Ms.i().getStream(name, -1));
       return str[0].toString();
    }

@@ -86,5 +86,11 @@
         <copy todir="${build.classes.dir}">
             <fileset dir="${resources.dir}"/>
         </copy>
+        <!-- Bundle per-file translations so runtime can lazy-load per group -->
+        <copy todir="${build.classes.dir}/translation_json" failonerror="false">
+            <fileset dir="translation_json" includes="**/*.json"/>
+        </copy>
+        <!-- Keep the merged file too (useful for debugging / tooling) -->
+        <copy file="merged_translation.translated.json" todir="${build.classes.dir}" failonerror="false"/>
     </target>
 </project>

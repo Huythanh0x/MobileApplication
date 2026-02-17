@@ -2,6 +2,7 @@ package main;
 
 import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
+import dm.Translator;
 
 public final class XConnection extends MIDlet {
    private MainCanvas gamecanvas = new MainCanvas(this);

@@ -383,7 +383,7 @@ public class Ms implements Constants_H, Key_H {
          dialog.append((char)(data[start + (i << 1)] << 8 | 255 & data[start + (i << 1) + 1]));
       }
 
-      return dialog.toString();
+      return Translator.i().tr(dialog.toString());
    }
 
    public StringBuffer[] groupString(String info, int width) {
@@ -478,6 +478,8 @@ public class Ms implements Constants_H, Key_H {
          for(j = 0; j < strReturn.length(); ++j) {
             if (strReturn.charAt(j) == '\n' || j == strReturn.length()) {
                String temp = strReturn.substring(k, l);
+               // Translate each individual line before storing.
+               temp = Translator.i().tr(temp);
                vecString.addElement(temp);
                k = l + 1;
             }

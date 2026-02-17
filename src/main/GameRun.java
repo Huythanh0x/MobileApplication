@@ -6,6 +6,7 @@ import dm.Monster;
 import dm.Ms;
 import dm.Sound;
 import dm.Sprite;
+import dm.Translator;
 import dm.Ui;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -3279,6 +3280,8 @@ public class GameRun extends GameRun_F {
       byte[] data = Ms.i().getStream("data/data.d", -1);
       Ms.i();
       Ms.skip = 0;
+      // Strings decoded from data/data.d are translated via translation_json/data_d.json
+      Translator.setGroup("data_d.json");
       this.skill_up = Ms.i().create2Array(data);
       this.monster_pro = Ms.i().create2Array(data);
       this.skill = Ms.i().create2Array(data);

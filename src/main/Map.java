@@ -4,6 +4,7 @@ import dm.Ms;
 import dm.Npc;
 import dm.Sound;
 import dm.Sprite;
+import dm.Translator;
 import dm.Ui;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -164,6 +165,8 @@ public class Map implements Constants_H, Key_H {
    }
 
    public void createNpcString() {
+      // NPC names/dialogs come from the "4" bundle -> translation_json/4.json
+      Translator.setGroup("4.json");
       this.npcNameData = Ms.i().loadText(this.initData(this.gr.createData(1), this.mapNo));
       this.npcStringData = Ms.i().loadText(this.initData(this.gr.createData(2), this.mapNo));
    }
@@ -1165,6 +1168,7 @@ public class Map implements Constants_H, Key_H {
                      switch (this.event[var1][this.event_now[var1] + 2]) {
                         case 0:
                            if (this.eventGoing == 0) {
+                              Translator.setGroup("event.json");
                               this.gr.say(Ms.i().getDialogs(this.event[var1], this.event_now[var1] + 4, this.event[var1][this.event_now[var1] + 3]), -1);
                               this.eventGoing = 1;
                            } else if (this.gr.say_c == 0) {
@@ -1178,6 +1182,7 @@ public class Map implements Constants_H, Key_H {
                            if (this.eventGoing == 0) {
                               this.my.state = 22;
                               this.black_0 = this.black_1 = 0;
+                              Translator.setGroup("event.json");
                               this.gr.setStringB(Ms.i().getDialogs(this.event[var1], this.event_now[var1] + 4, this.event[var1][this.event_now[var1] + 3]), 202, 3);
                               this.eventGoing = this.event[var1][this.event_now[var1] + 2];
                            } else if (this.eventGoing == 3) {
@@ -1494,6 +1499,7 @@ public class Map implements Constants_H, Key_H {
          }
 
          this.initNpcFaceOne(this.npcName);
+         Translator.setGroup("event.json");
          this.dialog = Ms.i().groupString(Ms.i().getDialogs(this.event[i], this.event_now[i] + 5, this.event[i][this.event_now[i] + 4]), 220);
          this.dialog_no = 0;
          this.my.state = 1;
@@ -1514,6 +1520,7 @@ public class Map implements Constants_H, Key_H {
          this.gr.action_str = new String[this.sEvent_eV2];
 
          for(byte j = 0; j < this.sEvent_eV2; ++j) {
+            Translator.setGroup("event.json");
             this.gr.action_str[j] = Ms.i().getDialogs(this.event[i], this.event_now[i] + 2 + this.sEvent_eV1 + 1, this.event[i][this.event_now[i] + 2 + this.sEvent_eV1]);
             this.sEvent_eV1 = (byte)(this.sEvent_eV1 + (this.event[i][this.event_now[i] + 2 + this.sEvent_eV1] << 1) + 1);
          }
@@ -2740,6 +2747,8 @@ public class Map implements Constants_H, Key_H {
          this.gr.select[0][0] = this.gr.select[0][1] = 0;
          Ms.i();
          Ms.skip = 0;
+         // Mission strings come from data/mission{type}.t -> translation_json/mission{type}_t.json
+         Translator.setGroup("mission" + type + "_t.json");
          byte[] data = Ms.i().getStream("data/mission" + type + ".t", -1);
          this.sMission = Ms.i().createString2Array(data);
          this.gr.line_max = 6;
